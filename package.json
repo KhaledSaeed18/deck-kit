@@ -1,6 +1,6 @@
 {
   "name": "deck-kit",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "description": "Offline HTML presentation kit and repository template with portable agent skills, presenter view, clicker control, PDF export and single-file builds",
