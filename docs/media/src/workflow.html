@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="kit.css"><style>
+h2 { font-size: 46px; margin: 14px 0 8px; }
+.sub { font-size: 21px; font-weight: 600; color: var(--muted); margin: 0 0 40px; }
+.track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+.track::before { content: ""; position: absolute; left: 40px; right: calc(20% - 36px); top: 36px; border-top: 4px dashed #000; }
+.phase { position: relative; padding: 0 10px; display: flex; flex-direction: column; align-items: flex-start; }
+.num { position: relative; display: grid; place-items: center; width: 72px; height: 72px; font-family: var(--head); font-size: 30px; border: var(--b); border-radius: 50%; box-shadow: var(--sh); margin-bottom: 22px; }
+.phase:nth-child(1) .num { background: var(--orange); } .phase:nth-child(2) .num { background: var(--red); }
+.phase:nth-child(3) .num { background: var(--yellow); } .phase:nth-child(4) .num { background: var(--mint); } .phase:nth-child(5) .num { background: var(--lilac); }
+.phase h3 { font-size: 24px; margin-bottom: 10px; }
+.phase p { font-size: 16.5px; line-height: 1.4; margin: 0 0 14px; font-weight: 500; }
+.files { margin-bottom: 18px; font: 600 13.5px var(--mono); color: var(--muted); line-height: 1.6; }
+.stop { margin-top: auto !important; display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-family: var(--head); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 10px; background: var(--ink); color: var(--paper); border-radius: 5px; transform: rotate(-3deg); }
+.cmd { position: absolute; right: 56px; top: 56px; font: 700 26px var(--mono); padding: 10px 18px; background: var(--card); border: var(--b); border-radius: 10px; box-shadow: var(--sh); transform: rotate(2deg); }
+.cmd b { color: var(--red); }
+.after { margin-top: 38px; display: flex; gap: 14px; align-items: center; font-weight: 600; font-size: 18px; }
+.after code { font-weight: 700; padding: 4px 10px; border: 2px solid #000; border-radius: 6px; background: var(--card); }
+</style></head><body>
+<div class="canvas">
+  <span class="eyebrow">With Claude Code</span>
+  <h2>From a topic to a finished talk</h2>
+  <p class="sub">Five phases. You review after every one, and nothing on screen changes without your approval.</p>
+  <div class="cmd"><b>&gt;</b> /new-deck</div>
+  <div class="track">
+    <div class="phase"><div class="num">0</div><h3>Brief</h3><p>Topic, audience, length, sources and look, in one round of questions.</p><div class="files">docs/brief.md</div><span class="stop">review</span></div>
+    <div class="phase"><div class="num">1</div><h3>Research</h3><p>Subagents find primary sources; a second pass tries to break every fact.</p><div class="files">fact-log.md<br>plan.md</div><span class="stop">answer flags</span></div>
+    <div class="phase"><div class="num">2</div><h3>Content</h3><p>Slides, a script for every build step, likely questions, diagrams, timings.</p><div class="files">src/slides/<br>deck.ts</div><span class="stop">review</span></div>
+    <div class="phase"><div class="num">3</div><h3>Verify</h3><p>Fact check, copy check, timing, axe, offline test, rehearsal script PDF.</p><div class="files">out/*.pdf</div><span class="stop">review</span></div>
+    <div class="phase"><div class="num">4</div><h3>Design</h3><p>A new palette, fonts and layouts, touching only the theme.</p><div class="files">src/theme/</div><span class="stop">review</span></div>
+  </div>
+  <div class="after">Then <code>/ship-deck</code> for the USB stick, and <code>/add-slide</code> or <code>/retheme</code> any time.</div>
+</div></body></html>

@@ -1,0 +1,25 @@
+/* Shared look for the README visuals: the starter theme's palette and bundled fonts. */
+@font-face { font-family: "Archivo Black"; src: url(../../../node_modules/@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Space Grotesk"; font-weight: 300 700; src: url(../../../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2) format("woff2-variations"); }
+:root {
+  --paper: #fff7e8; --ink: #1a1815; --muted: #4f493f; --card: #fff;
+  --orange: #ff9f1c; --red: #e63946; --yellow: #ffdc58; --mint: #01ffcc; --lilac: #c4a1ff; --soft: #f5eedd;
+  --b: 3px solid #000; --sh: 6px 6px 0 #000; --sh-lg: 10px 10px 0 #000;
+  --head: "Archivo Black", sans-serif; --sans: "Space Grotesk", sans-serif; --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: transparent; }
+body { font-family: var(--sans); color: var(--ink); }
+.canvas {
+  position: relative; width: 1200px; padding: 48px 56px 56px; overflow: hidden;
+  background: var(--paper) radial-gradient(circle, rgb(26 24 21 / 0.12) 1.5px, transparent 2px) 0 0 / 28px 28px;
+  border: var(--b); border-radius: 14px;
+}
+h1, h2, h3 { font-family: var(--head); font-weight: 400; margin: 0; letter-spacing: -0.02em; line-height: 1.05; }
+.eyebrow { display: inline-block; font-family: var(--head); font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; background: var(--ink); color: var(--paper); border-radius: 5px; }
+.card { background: var(--card); border: var(--b); border-radius: 10px; box-shadow: var(--sh); }
+.chip { display: inline-block; font-family: var(--head); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border: 2px solid #000; border-radius: 5px; background: var(--yellow); }
+.key { display: inline-grid; place-items: center; min-width: 46px; height: 46px; padding: 0 12px; font-family: var(--head); font-size: 18px; background: var(--card); border: var(--b); border-radius: 9px; box-shadow: 0 5px 0 #000; }
+code, .mono { font-family: var(--mono); }
+.tilt { transform: rotate(-2deg); }
+.tilt-r { transform: rotate(1.5deg); }

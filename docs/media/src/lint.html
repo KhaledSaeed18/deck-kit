@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="kit.css"><style>
+h2 { font-size: 46px; margin: 14px 0 10px; }
+.sub { font-size: 21px; font-weight: 600; color: var(--muted); margin: 0 0 30px; }
+.grid { display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start; }
+.term { background: var(--ink); color: #f3ead8; border: var(--b); border-radius: 12px; box-shadow: var(--sh-lg); overflow: hidden; }
+.term .bar { display: flex; gap: 7px; padding: 10px 14px; border-bottom: 2px solid #000; background: #2c2924; }
+.term .bar i { width: 11px; height: 11px; border-radius: 50%; background: #5a544a; }
+pre { margin: 0; padding: 18px 22px 22px; font: 500 14.5px/1.65 var(--mono); white-space: pre-wrap; }
+.p { color: #7fe8d6; } .f { color: #ffb44d; } .r { color: #ffdc58; } .x { color: #ff7a84; font-weight: 700; }
+.rules { display: grid; gap: 10px; }
+.rules div { padding: 12px 14px; font-size: 16.5px; font-weight: 600; line-height: 1.3; background: var(--card); border: 2px solid #000; border-radius: 8px; box-shadow: 4px 4px 0 #000; }
+.rules div:nth-child(3n+1) { background: var(--yellow); } .rules div:nth-child(3n+2) { background: var(--mint); } .rules div:nth-child(3n) { background: var(--lilac); }
+</style></head><body>
+<div class="canvas">
+  <span class="eyebrow">Slide lint</span>
+  <h2>Mistakes fail the build, not the talk</h2>
+  <p class="sub">Runs in <code>pnpm check</code>, and as a live overlay while you write in <code>pnpm dev</code>.</p>
+  <div class="grid">
+    <div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>{{LINT}}</pre></div>
+    <div class="rules">
+      <div>One heading per slide, linked for screen readers</div>
+      <div>About 30 words on screen; the rest goes in the notes</div>
+      <div>A script for every build step</div>
+      <div>Captions and scopes on every table</div>
+      <div>SVGs with a title and no paint attributes</div>
+      <div>No inline styles, no remote files, no emoji</div>
+    </div>
+  </div>
+</div></body></html>

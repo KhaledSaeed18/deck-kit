@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="kit.css"><style>
+h2 { font-size: 46px; margin: 14px 0 30px; }
+.grid { display: grid; grid-template-columns: 560px 1fr; gap: 40px; align-items: start; }
+pre { margin: 0; padding: 22px 24px; font: 500 15.5px/1.6 var(--mono); background: var(--ink); color: #f3ead8; border: var(--b); border-radius: 12px; box-shadow: var(--sh-lg); white-space: pre; }
+.t { color: #ffb44d; } .a { color: #7fe8d6; } .s { color: #ffdc58; } .c { color: #b8ad9a; }
+.hl { border-radius: 4px; padding: 1px 3px; margin: 0 -3px; }
+.h1 { background: rgb(255 159 28 / 0.28); } .h2 { background: rgb(1 255 204 / 0.22); } .h3 { background: rgb(196 161 255 / 0.3); }
+.n { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-left: 6px; font: 400 13px var(--head); color: #000; border: 2px solid #000; border-radius: 50%; vertical-align: 1px; }
+.n1 { background: var(--orange); } .n2 { background: var(--mint); } .n3 { background: var(--lilac); }
+.out { display: grid; gap: 22px; }
+.shot { overflow: hidden; } .shot img { display: block; width: 100%; }
+.label { display: flex; align-items: center; gap: 8px; font-family: var(--head); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 8px; }
+.points { display: grid; gap: 10px; margin-top: 4px; }
+.points div { display: flex; gap: 10px; align-items: baseline; font-size: 17px; font-weight: 600; line-height: 1.35; }
+.points .n { flex: none; margin: 0; }
+</style></head><body>
+<div class="canvas">
+  <span class="eyebrow">Anatomy of a slide</span>
+  <h2>One file. Two windows.</h2>
+  <div class="grid">
+<pre><span class="c">&lt;!-- src/slides/04-keys.html --&gt;</span>
+<span class="t">&lt;section</span> <span class="a">class</span>=<span class="s">"slide"</span> <span class="a">data-type</span>=<span class="s">"comparison-table"</span>
+         <span class="a">data-id</span>=<span class="s">"keys"</span><span class="t">&gt;</span>
+  <span class="t">&lt;h2&gt;</span>Keys while presenting<span class="t">&lt;/h2&gt;</span>
+  <span class="t">&lt;table&gt;</span> …
+    <span class="hl h1"><span class="t">&lt;tr</span> <span class="a">data-fragment</span>=<span class="s">"1"</span><span class="t">&gt;</span></span><span class="n n1">1</span>
+      Next and previous …
+    <span class="hl h1"><span class="t">&lt;tr</span> <span class="a">data-fragment</span>=<span class="s">"2"</span><span class="t">&gt;</span></span>
+      Jump to a slide …
+  <span class="t">&lt;/table&gt;</span>
+  <span class="hl h2"><span class="t">&lt;aside</span> <span class="a">class</span>=<span class="s">"notes"</span><span class="t">&gt;</span></span><span class="n n2">2</span>
+    <span class="t">&lt;h3&gt;</span>Script<span class="t">&lt;/h3&gt;</span>
+    <span class="hl h3"><span class="t">&lt;div</span> <span class="a">data-step</span>=<span class="s">"1"</span><span class="t">&gt;</span></span><span class="n n3">3</span>
+      Rows reveal one by one …
+    <span class="t">&lt;h3&gt;</span>If asked<span class="t">&lt;/h3&gt;</span> …
+  <span class="t">&lt;/aside&gt;</span>
+<span class="t">&lt;/section&gt;</span></pre>
+    <div class="out">
+      <div><div class="label">Audience screen</div><div class="shot card"><img src="../deck-build.png" alt=""></div></div>
+      <div class="points">
+        <div><span class="n n1">1</span>Build steps reveal in order. Hidden rows keep their space, so nothing jumps.</div>
+        <div><span class="n n2">2</span>Notes never reach the audience. They go to the presenter window.</div>
+        <div><span class="n n3">3</span>Each step has its own script, highlighted as you click.</div>
+      </div>
+    </div>
+  </div>
+</div></body></html>

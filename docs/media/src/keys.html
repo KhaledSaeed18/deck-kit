@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="kit.css"><style>
+h2 { font-size: 46px; margin: 14px 0 34px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.k { padding: 20px 22px 22px; }
+.k .caps { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 16px; }
+.k h3 { font-size: 22px; margin-bottom: 5px; }
+.k p { margin: 0; font-size: 16px; font-weight: 500; color: var(--muted); line-height: 1.35; }
+.k:nth-child(1) { background: var(--orange); } .k:nth-child(5) { background: var(--mint); } .k:nth-child(9) { background: var(--lilac); }
+.k:nth-child(1) p, .k:nth-child(5) p, .k:nth-child(9) p { color: var(--ink); }
+.foot { margin-top: 30px; font-size: 18px; font-weight: 600; display: flex; gap: 24px; }
+.foot span::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 8px; background: var(--ink); border-radius: 2px; transform: rotate(45deg); }
+</style></head><body>
+<div class="canvas">
+  <span class="eyebrow">Keyboard and clicker</span>
+  <h2>Everything is one key away</h2>
+  <div class="grid">
+    <div class="k card"><div class="caps"><span class="key">PgDn</span><span class="key">Space</span><span class="key">&#8594;</span></div><h3>Next</h3><p>The next build step, then the next slide. Clickers just work.</p></div>
+    <div class="k card"><div class="caps"><span class="key">PgUp</span><span class="key">&#8592;</span><span class="key">Bksp</span></div><h3>Previous</h3><p>Steps hide again in reverse order.</p></div>
+    <div class="k card"><div class="caps"><span class="key">1</span><span class="key">2</span><span class="key">Enter</span></div><h3>Jump</h3><p>Type a slide number, then Enter. G shows the chip.</p></div>
+    <div class="k card"><div class="caps"><span class="key">Home</span><span class="key">End</span></div><h3>First and last</h3><p>Back to the title, or straight to questions.</p></div>
+    <div class="k card"><div class="caps"><span class="key">P</span></div><h3>Presenter</h3><p>Opens the synced presenter window with notes and timer.</p></div>
+    <div class="k card"><div class="caps"><span class="key">O</span></div><h3>Overview</h3><p>Every slide as a grid. Arrows move, Enter jumps.</p></div>
+    <div class="k card"><div class="caps"><span class="key">B</span><span class="key">.</span></div><h3>Blackout</h3><p>A black screen when you want the room's attention.</p></div>
+    <div class="k card"><div class="caps"><span class="key">F</span><span class="key">H</span></div><h3>Fullscreen, hide chrome</h3><p>H hides the progress bar and counter, and remembers it.</p></div>
+    <div class="k card"><div class="caps"><span class="key">?</span></div><h3>Help</h3><p>The full list, generated from the same keymap the engine uses.</p></div>
+  </div>
+  <div class="foot"><span>Letters follow the physical key, so AZERTY and Arabic layouts work</span><span>Swipe on touch screens</span></div>
+</div></body></html>

@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="kit.css"><style>
+h2 { font-size: 46px; margin: 14px 0 10px; }
+.sub { font-size: 21px; font-weight: 600; color: var(--muted); margin: 0 0 36px; }
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; align-items: end; }
+.step { padding: 24px; position: relative; }
+.step:nth-child(1) { background: var(--mint); min-height: 330px; }
+.step:nth-child(2) { background: var(--yellow); min-height: 290px; }
+.step:nth-child(3) { background: var(--lilac); min-height: 250px; }
+.rank { position: absolute; top: -22px; right: 18px; font-family: var(--head); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 12px; background: var(--ink); color: var(--paper); border-radius: 6px; transform: rotate(3deg); }
+.icon { width: 64px; height: 64px; display: grid; place-items: center; background: var(--card); border: var(--b); border-radius: 12px; box-shadow: 4px 4px 0 #000; margin-bottom: 18px; }
+.icon svg { width: 36px; height: 36px; fill: none; stroke: #000; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.step h3 { font-size: 27px; margin-bottom: 10px; }
+.step p { font-size: 17px; font-weight: 500; line-height: 1.4; margin: 0 0 14px; }
+.step code { display: inline-block; font-weight: 700; font-size: 15px; padding: 4px 9px; background: var(--card); border: 2px solid #000; border-radius: 6px; }
+.offline { margin-top: 34px; display: flex; gap: 12px; align-items: center; font-size: 19px; font-weight: 700; }
+.offline .chip { background: var(--red); }
+</style></head><body>
+<div class="canvas">
+  <span class="eyebrow">On the day</span>
+  <h2>Three ways to run it</h2>
+  <p class="sub">The room's network does not matter: fonts, icons and scripts are all bundled.</p>
+  <div class="ladder">
+    <div class="step card"><span class="rank">Plan A</span><div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Static server</h3><p>Serve the build, open the deck, press P and drag the presenter to your laptop screen.</p><code>pnpm preview</code></div>
+    <div class="step card"><span class="rank">Plan B</span><div class="icon"><svg viewBox="0 0 24 24"><path d="M10 7V3h4v4M7 7h10v8a5 5 0 0 1-10 0z"/><path d="M12 19v2"/></svg></div><h3>One file on a USB stick</h3><p>Double-click deck.html on any laptop. P still opens the synced presenter.</p><code>pnpm build:single</code></div>
+    <div class="step card"><span class="rank">Plan C</span><div class="icon"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div><h3>The PDF</h3><p>One page per slide, every step shown. Plus your script, one page per slide.</p><code>pnpm pdf</code></div>
+  </div>
+  <div class="offline"><span class="chip">Tested</span>Every browser test runs with outside requests blocked.</div>
+</div></body></html>

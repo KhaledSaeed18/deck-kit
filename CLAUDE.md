@@ -57,3 +57,4 @@ plus one deck's content and design. Each copy of this repo is one talk.
 - `pnpm test:deck` (your deck in a browser), `pnpm test:engine`, `pnpm test:e2e` (both)
 - `pnpm pdf`, `pnpm notes:pdf [profile]`, `pnpm notes:md`
 - `pnpm dev:example` shows the bundled example deck
+- `pnpm media` regenerates the README images in `docs/media/` (sources in `docs/media/src/`)

@@ -1,62 +1,105 @@
-# Deck kit
+<p align="center">
+  <img src="docs/media/hero.png" alt="deck-kit: write slides as HTML, present with a synced presenter view, ship one file that runs with the network off" width="100%">
+</p>
 
-An offline, self-hosted HTML presentation kit with a real presenter view. You write slides as
-small HTML files; the engine handles the rest: keyboard and clicker control, step-by-step
-builds, a synced presenter window with notes and a pace timer, overview, blackout, print to PDF,
-and a single-file build you can run from a USB stick with Wi-Fi off.
+<p align="center">
+  <a href="#start-a-new-talk"><b>Start a new talk</b></a> ·
+  <a href="#features">Features</a> ·
+  <a href="#keys">Keys</a> ·
+  <a href="#on-the-day">On the day</a> ·
+  <a href="docs/authoring.md">Authoring reference</a>
+</p>
 
-It comes with Claude Code skills that take a new talk from brief to finished deck, with a review
-stop after each phase.
+<p align="center">
+  <img alt="Use this template" src="https://img.shields.io/badge/GitHub-use%20this%20template-ff9f1c?style=flat-square&labelColor=1a1815">
+  <img alt="Runs offline" src="https://img.shields.io/badge/runtime%20requests-0-01ffcc?style=flat-square&labelColor=1a1815">
+  <img alt="Vite 8" src="https://img.shields.io/badge/Vite-8-c4a1ff?style=flat-square&labelColor=1a1815">
+  <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-ffdc58?style=flat-square&labelColor=1a1815">
+  <img alt="Claude Code skills" src="https://img.shields.io/badge/Claude%20Code-4%20skills-e63946?style=flat-square&labelColor=1a1815">
+  <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-fff7e8?style=flat-square&labelColor=1a1815">
+</p>
+
+An offline, self-hosted HTML presentation kit with a real presenter view. You write each slide
+as a small HTML file, and the engine does the rest: keyboard and clicker control, step-by-step
+builds, a synced presenter window with your script and a pace timer, an overview grid, blackout,
+print to PDF, and a single-file build that runs from a USB stick with Wi-Fi off.
+
+It ships with **Claude Code skills** that take a new talk from a topic to a finished,
+fact-checked, designed deck, stopping for your review after every phase.
+
+<p align="center">
+  <img src="docs/media/sync.gif" alt="The audience deck on the left and the presenter window on the right. Pressing Page Down in either window moves both, and the presenter highlights the script for the current step." width="100%">
+  <br><sub>Audience window (left) and presenter (right). Either one drives the other.</sub>
+</p>
 
 ## Start a new talk
 
-1. On GitHub, click **Use this template** (or clone the repo), then:
-   ```sh
-   pnpm install
-   pnpm dev            # http://localhost:5173, and /presenter.html for the presenter view
-   ```
-   You will see the starter deck, which demonstrates every slide type and feature.
-2. In Claude Code, from the repo folder, run **`/new-deck`**. It asks about your topic,
-   audience, length, sources and look, then works in phases:
+```sh
+# 1. On GitHub: "Use this template", then clone your copy
+pnpm install
+pnpm dev            # http://localhost:5173, plus /presenter.html for the presenter view
+```
 
-   | Phase | What happens | You review |
-   |---|---|---|
-   | 0. Brief | Fills `docs/brief.md`: narrative and slide plan | the plan |
-   | 1. Research and plan | Subagents research and adversarially verify every fact; `docs/fact-log.md`, `docs/plan.md` with numbered questions | answer the flags |
-   | 2. Content | Writes the slides, speaker notes, Q&A, diagrams, profiles and timings; lint, browser checks and screenshots | the slides |
-   | 3. Verify | Fact check, copy check, timing, rehearsal script PDF | the report |
-   | 4. Design | `/retheme`: new palette, fonts and layouts, only in `src/theme/` | the look |
+The starter deck that opens demonstrates every slide type and feature. To make your own talk,
+open Claude Code in the folder and run:
 
-   Other skills: **`/add-slide`**, **`/retheme`**, **`/ship-deck`** (final checks, PDFs, the
-   files for the USB stick).
+```
+/new-deck
+```
 
-You can also write slides by hand: see [`docs/authoring.md`](docs/authoring.md).
+<p align="center"><img src="docs/media/workflow.png" alt="The /new-deck workflow in five phases: Brief, Research, Content, Verify, Design, each followed by a review stop" width="100%"></p>
+
+| Skill | What it does |
+|---|---|
+| `/new-deck` | The whole talk in five phases. Research is done by subagents and then checked by a second, adversarial pass. On-screen content never changes without your approval. |
+| `/add-slide` | Adds or reworks one slide, with notes, build steps, timings and checks. |
+| `/retheme` | Gives the deck a new look (palette, fonts, layouts, diagrams, presenter). Only the theme changes. |
+| `/ship-deck` | Runs every check, builds `deck.html`, the PDFs and your script, and lists what to put on the USB stick. |
+
+No Claude? Slides are plain HTML: copy one from `src/slides/`, add it to `src/deck.ts`, and
+follow [`docs/authoring.md`](docs/authoring.md).
 
 ## Features
 
+<table>
+  <tr>
+    <td width="50%"><img src="docs/media/presenter.png" alt="Presenter window"></td>
+    <td width="50%"><img src="docs/media/overview.png" alt="Overview grid"></td>
+  </tr>
+  <tr>
+    <td><b>Presenter window (P).</b> The current slide at its live step and the next slide. Your script, with the block for this step highlighted, plus a Next line, acronyms and likely questions. An elapsed timer that survives a refresh, the wall clock, and ahead or behind against each slide's target time.</td>
+    <td><b>Overview (O).</b> Every slide as a grid of live thumbnails. Arrows move, Enter or a click jumps. The clicker moves the selection, not the deck.</td>
+  </tr>
+  <tr>
+    <td><img src="docs/media/deck-build.png" alt="A table revealing row by row"></td>
+    <td><img src="docs/media/help.png" alt="Help overlay"></td>
+  </tr>
+  <tr>
+    <td><b>Build steps.</b> Rows, cards and diagram parts appear in order. Hidden items keep their space, so nothing jumps. The URL keeps your place (<code>#/4/2</code>), so refresh and the back button just work.</td>
+    <td><b>Help (?).</b> Generated from the same keymap the engine uses, so it never goes out of date.</td>
+  </tr>
+</table>
+
+<p align="center"><img src="docs/media/anatomy.png" alt="A slide's HTML source next to the audience screen: fragments become build steps, the notes aside goes to the presenter, and each data-step block is the script for one step" width="100%"></p>
+
 - **Fixed 1920x1080 canvas**, scaled to any screen with letterboxing. Layouts never reflow.
-- **Build steps** (`data-fragment`): table rows, cards and diagram parts appear in order, and
-  hidden items keep their space.
-- **Presenter window** (P): current slide at its live step, next slide, notes with the script
-  for the current step highlighted, Next line, acronyms and likely questions, elapsed timer
-  (survives a refresh), wall clock, per-slide target and ahead/behind pace.
-- **Two-way sync** between the windows, over BroadcastChannel, with a `window.opener` fallback so
-  it also works from `file://` in Firefox.
-- **Profiles**: several versions of one talk (`?profile=short`), each with its own order and
-  timings; backup slides after the end.
-- **URL keeps your place** (`#/5/2`): refresh and the back button work.
-- **Overview grid** (O), **blackout** (B), **jump** to slide N, **help** overlay (?), **hide
-  chrome** (H), **fullscreen** (F), swipe on touch screens.
-- **Offline by construction**: fonts, icons and scripts are bundled; tests block the network.
-- **Print**: Ctrl/Cmd+P gives one slide per page with every step shown; `pnpm pdf` does it for
-  each profile; `pnpm notes:pdf` prints the speaker script, one A4 page per slide.
-- **Slide lint** in `pnpm check` and as a live overlay in `pnpm dev`: one heading per slide,
-  word limit, copy voice, a script for every step, accessible tables and SVGs, no inline styles,
-  no remote resources, icons from the whitelist.
-- **Accessible**: live region announces each slide, hidden slides are inert, axe runs on every
-  slide in the test suite.
+- **Two-way sync** over BroadcastChannel, with a `window.opener` fallback so it also works from
+  `file://` in Firefox.
+- **Profiles**: several versions of one talk (`?profile=short`), each with its own slide order
+  and timings, plus backup slides after the end.
+- **Blackout** (B), **jump** to any slide, **hide chrome** (H), **fullscreen** (F), and swipe
+  on touch screens.
+- **Print**: Ctrl/Cmd+P gives one slide per page with every step shown. `pnpm pdf` does this
+  for each profile, and `pnpm notes:pdf` prints your script, one A4 page per slide.
+- **Accessible**: a live region announces each slide, hidden slides are inert, and axe checks
+  every slide in the test suite.
+- **No framework**: vanilla TypeScript and DOM; the starter deck is about 15 kB of JavaScript gzipped, slides and icons included.
+
+<p align="center"><img src="docs/media/lint.png" alt="Real slide-lint output for a broken slide: missing fragment step, missing scripts, em dash, exclamation mark, arrow character, inline style, table without caption" width="100%"></p>
 
 ## Keys
+
+<p align="center"><img src="docs/media/keys.png" alt="Keyboard reference: Next, Previous, Jump, First and last, Presenter, Overview, Blackout, Fullscreen and hide chrome, Help" width="100%"></p>
 
 | Action | Keys |
 |---|---|
@@ -73,6 +116,46 @@ You can also write slides by hand: see [`docs/authoring.md`](docs/authoring.md).
 
 Letters match the physical key, so they work on AZERTY and Arabic layouts. Ctrl, Cmd and Alt
 shortcuts go to the browser. Clickers send PageUp/PageDown, so they work out of the box.
+
+## On the day
+
+<p align="center"><img src="docs/media/delivery.png" alt="Three ways to run it: Plan A a static server, Plan B one deck.html file on a USB stick, Plan C the PDF" width="100%"></p>
+
+1. **`pnpm preview`**, or any static server on `dist/` (for example
+   `python3 -m http.server -d dist`). Open the deck and press **P** for the presenter window.
+2. **`dist-single/deck.html` from a USB stick.** Double-click it, and **P** opens
+   `deck.html?role=presenter`. Sync works on `file://` in Chrome and Safari, and in Firefox
+   through the opener fallback.
+3. **The PDF** from `pnpm pdf`.
+
+A plain `dist/index.html` opened by double-click will not run, because browsers block module
+scripts on `file://`. Use option 1 or 2.
+
+## How it is built
+
+<p align="center"><img src="docs/media/architecture.png" alt="Three layers: Slides change every talk, Theme changes every design, Engine never changes" width="100%"></p>
+
+```
+src/
+  engine/        the engine: never edited per deck; no visual values (a test enforces it)
+  slides/        one HTML partial per slide: content and semantic markup only
+  theme/         every visual value, as tokens; the design pass touches only this
+  assets/        icons.ts: the lucide icon whitelist
+  deck.ts        slide order, profiles, target times
+examples/wifi/   a complete real deck: worked example, and the engine's e2e fixture
+docs/            authoring.md, templates/, media/, and per deck: brief, decisions, plan, fact log
+.claude/skills/  new-deck, add-slide, retheme, ship-deck
+```
+
+Two browser test suites run with every outside request blocked:
+- **engine**: the full engine contract (keys, fragments, router, sync, presenter, print,
+  offline, axe) in Chromium and WebKit. It runs against the example deck, so it never depends on
+  your slides.
+- **deck**: your own slides. Every slide must fit the canvas, pass axe, print one page per
+  slide, and run from `deck.html` offline.
+
+Stack: pnpm, Vite 8, strict TypeScript 7, vanilla DOM, Biome, Vitest, Playwright. No UI
+framework and no presentation library. Node 22.12 or later.
 
 ## Commands
 
@@ -91,40 +174,12 @@ shortcuts go to the browser. Clickers send PageUp/PageDown, so they work out of 
 | `pnpm pdf` | `out/deck-<profile>.pdf` for every profile |
 | `pnpm notes:pdf [profile]` | `out/presenter-script.pdf` |
 | `pnpm notes:md` | `docs/presenter-script.md` |
+| `pnpm media` | Regenerates the images in this README (needs ffmpeg for the GIF) |
 
 First run of the browser tests: `pnpm exec playwright install chromium webkit`.
-
-## Running it in the room (fallback order)
-
-1. **`pnpm preview`** (or any static server on `dist/`, for example
-   `python3 -m http.server -d dist`). Open the deck and press **P** for the presenter window.
-2. **`dist-single/deck.html` from a USB stick.** Double-click it; **P** opens
-   `deck.html?role=presenter`. Sync works on `file://` in Chrome and Safari, and in Firefox
-   through the opener fallback.
-3. **The PDF** from `pnpm pdf`.
-
-A plain `dist/index.html` opened by double-click will not run: browsers block module scripts on
-`file://`. Use option 1 or 2.
-
-## Layout
-
-```
-src/
-  engine/      the engine: never edited per deck; no visual values (a test enforces it)
-  slides/      one HTML partial per slide: content and semantic markup only
-  theme/       every visual value, as tokens; the design pass touches only this
-  assets/      icons.ts: the lucide icon whitelist
-  deck.ts      slide order, profiles, target times
-examples/wifi/ a complete real deck: worked example, and the engine's e2e fixture
-docs/          authoring.md, templates/, and per deck: brief, decisions, plan, fact log
-.claude/skills/ new-deck, add-slide, retheme, ship-deck
-```
-
-Stack: pnpm, Vite 8, strict TypeScript 7, vanilla DOM, Biome, Vitest, Playwright. No UI
-framework and no presentation library. Node 22.12 or later.
 
 ## Credits
 
 The example deck, "Wireless Networks by Coverage and the Evolution of Wi-Fi", was made for
 CENG645 Mobile Communication (LIU), Fall 2026. Fonts: Archivo Black and Space Grotesk (SIL OFL
-1.1) through Fontsource. Icons: Lucide (ISC).
+1.1) through Fontsource. Icons: Lucide (ISC). MIT licensed.
