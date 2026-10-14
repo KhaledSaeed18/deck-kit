@@ -13,8 +13,7 @@ description: Final verification and packaging for this deck kit: runs every chec
    - `pnpm build:single`, which writes `dist-single/deck.html`
    - `pnpm pdf`, which writes `out/deck-<profile>.pdf` for every profile
    - `pnpm notes:pdf` (and `pnpm notes:pdf <profile>` for each other profile the speaker
-     might give), which writes `out/presenter-script.pdf`; rename each copy so they do not
-     overwrite each other
+     might give), which writes `out/presenter-script-<profile>.pdf`
 2. Check that nothing is pending: no `data-todo` (the lint fails on them), every flag in
    `docs/plan.md` has an answer in `docs/decisions.md`, and the profile times fit the slot.
 3. Collect the files to take to the room into `out/usb/`:

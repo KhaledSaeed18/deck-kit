@@ -142,3 +142,23 @@ describe('slide lint rules', () => {
     ]);
   });
 });
+
+describe('slide lint: maths and diagrams', () => {
+  it('allows a factorial but not an exclamation mark', () => {
+    expect(rules(slide('<p>26! keys</p>'))).not.toContain('copy');
+    expect(rules(slide('<p>Wow!</p>'))).toContain('copy');
+  });
+
+  it('leaves diagram labels out of the word cap, but still checks their copy', () => {
+    const labels = Array.from(
+      { length: 40 },
+      (_, i) => `<text class="dgm-label">w${i}</text>`,
+    ).join('');
+    const svg = (extra: string) =>
+      `<svg role="img"><title>Forty labels</title>${labels}${extra}</svg>`;
+    expect(rules(slide(svg('')))).not.toContain('words');
+    expect(rules(slide(svg('<text class="dgm-label">Go!</text>')))).toContain('copy');
+    const prose = Array.from({ length: 31 }, (_, i) => `w${i}`).join(' ');
+    expect(rules(slide(`<p>${prose}</p>`))).toContain('words');
+  });
+});

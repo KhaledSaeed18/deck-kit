@@ -28,7 +28,8 @@ const PICTOGRAPHIC = /\p{Extended_Pictographic}/u;
 /** On-screen copy voice (decision S5). */
 const COPY_RULES: readonly { pattern: RegExp; message: string }[] = [
   { pattern: /—/, message: 'no em dashes on screen' },
-  { pattern: /!/, message: 'no exclamation marks on screen' },
+  // A ! straight after a digit is a factorial (26!), not an exclamation.
+  { pattern: /(?<!\d)!/, message: 'no exclamation marks on screen' },
   { pattern: /[←-⇿⟰-⟿⤀-⥿⬀-⯿]/, message: 'arrows must be icons' },
   { pattern: /[~≈]/, message: 'write "about" instead of "~" or "≈"' },
   { pattern: /×/, message: 'write "x" instead of "×"' },
@@ -41,10 +42,12 @@ const REMOTE = /^\s*(?:https?:)?\/\//i;
 const RESOURCE_ATTRS = ['src', 'srcset', 'poster', 'data', 'href', 'xlink:href', 'action'];
 const FORBIDDEN_TAGS = ['script', 'style', 'link', 'iframe', 'object', 'embed', 'base', 'meta'];
 
-/** On-screen text: everything except speaker notes and SVG titles/descriptions. */
-export function onScreenText(section: Element): string {
+/** On-screen text: everything except speaker notes and SVG titles/descriptions. With
+ * `diagrams: false`, SVG labels are left out too (the word cap counts prose, not diagrams). */
+export function onScreenText(section: Element, options: { diagrams?: boolean } = {}): string {
   const clone = section.cloneNode(true) as Element;
-  for (const hidden of clone.querySelectorAll('aside.notes, svg title, svg desc')) hidden.remove();
+  const hide = options.diagrams === false ? 'aside.notes, svg' : 'aside.notes, svg title, svg desc';
+  for (const hidden of clone.querySelectorAll(hide)) hidden.remove();
   // Separate block-level cells and SVG text runs so their words do not merge.
   for (const node of clone.querySelectorAll('*')) node.append(' ');
   return (clone.textContent ?? '').replace(/\s+/g, ' ').trim();
@@ -129,7 +132,7 @@ export function lintSlide(file: string, source: string, iconNames: readonly stri
 
   // Word cap and copy voice, on-screen text only.
   const text = onScreenText(section);
-  const words = countWords(text);
+  const words = countWords(onScreenText(section, { diagrams: false }));
   const exemption = section.dataset.wordcount;
   if (exemption !== undefined && exemption !== 'exempt') {
     add('words', 'data-wordcount may only be "exempt"');

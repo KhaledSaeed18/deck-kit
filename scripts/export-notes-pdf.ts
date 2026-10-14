@@ -1,5 +1,5 @@
 /**
- * `pnpm notes:pdf [profile]`: writes out/presenter-script.pdf, one A4 page per slide of the talk
+ * `pnpm notes:pdf [profile]`: writes out/presenter-script-<profile>.pdf, one A4 page per slide of the talk
  * (the default profile unless one is named),
  * with only what the speaker says: the step-by-step Script, Next, Acronyms and If asked.
  * No timings, no slide numbers, no "More detail" section. Pages are numbered in the footer.
@@ -97,7 +97,7 @@ ul.acronyms { display: flex; flex-wrap: wrap; gap: 0.35em; padding: 0; list-styl
 ul.acronyms li { margin: 0; padding: 0.1em 0.45em; background: var(--soft); border: 1.5px solid var(--line); border-radius: 3px; }
 </style></head><body>${pages.join('\n')}</body></html>`;
 
-const htmlFile = resolve(outDir, 'presenter-script.html');
+const htmlFile = resolve(outDir, `presenter-script-${profile}.html`);
 writeFileSync(htmlFile, html);
 
 const browser = await chromium.launch();
@@ -128,7 +128,7 @@ try {
       '<div style="width:100%;font-size:9pt;color:#4f493f;text-align:center;font-family:sans-serif;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>',
     margin: { top: '0', bottom: '10mm' },
   });
-  const target = resolve(outDir, 'presenter-script.pdf');
+  const target = resolve(outDir, `presenter-script-${profile}.pdf`);
   writeFileSync(target, pdf);
   const count = (pdf.toString('latin1').match(/\/Type\s*\/Page(?!s)/g) ?? []).length;
   console.log(`wrote ${target}: ${count} pages for ${pages.length} slides`);

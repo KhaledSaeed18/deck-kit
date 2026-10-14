@@ -12,7 +12,7 @@ overlay in `pnpm dev`) enforces the rules marked **lint**.
 | `src/assets/icons.ts` | Icon whitelist (lucide, imported one by one) | content work |
 | `src/theme/**` | Every visual value: tokens, fonts, layouts, diagram styles | design work |
 | `src/engine/**` | Navigation, presenter, sync, print, lint | never, per deck |
-| `examples/wifi/` | A complete real deck: worked example and engine test fixture | never |
+| `examples/wifi/`, `examples/crypto/` | Complete real decks: worked examples (wifi is also the engine test fixture) | never |
 
 File names only set the load order of partials. The talk order comes from `src/deck.ts`, which
 refers to slides by `data-id`. Number files in talk order anyway so the folder reads like the talk.
@@ -87,10 +87,11 @@ deck runs with that profile. Use it for Next lines when a profile skips the foll
 
 ## On-screen copy (lint)
 
-- About 30 words on screen per slide, counted without notes or SVG titles. A slide that must hold
-  more (a data table, the references) takes `data-wordcount="exempt"` on its section.
+- About 30 words on screen per slide, counted without notes and without SVG diagrams (labels in
+  a diagram do not count; the copy rules below still apply to them). A slide that must hold
+  more prose (a data table, the references) takes `data-wordcount="exempt"` on its section.
 - No emoji or pictographic characters anywhere. Icons come from lucide (below).
-- No em dashes, no exclamation marks.
+- No em dashes, no exclamation marks. A `!` right after a digit is a factorial (`26!`) and is allowed.
 - No arrow characters: use `<i data-icon="arrow-right"></i>`.
 - Write "about" instead of `~` or `≈`, "x" instead of `×`; no `*` footnote marks (use a tag).
 
@@ -169,5 +170,5 @@ export const manifest: DeckManifest = {
 | `pnpm test:deck` | Your deck in a real browser: every slide fits the canvas, passes axe, prints one page per slide, runs offline |
 | `pnpm test:engine` | The engine contract against the example deck (run after any engine change) |
 | `pnpm pdf` | `out/deck-<profile>.pdf` |
-| `pnpm notes:pdf [profile]` | `out/presenter-script.pdf`, one A4 page of script per slide |
+| `pnpm notes:pdf [profile]` | `out/presenter-script-<profile>.pdf`, one A4 page of script per slide |
 | `pnpm notes:md` | `docs/presenter-script.md` |

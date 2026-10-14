@@ -25,8 +25,11 @@ const server = await preview({
 });
 const browser = await chromium.launch();
 try {
-  const page = await browser.newPage({ viewport: { width: 1600, height: 900 } });
-  await page.route('**/*', (route) =>
+  const context = await browser.newContext({ viewport: { width: 1600, height: 900 } });
+  const page = await context.newPage();
+  // No fade transitions, so a step screenshot never catches fragments mid-fade.
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await context.route('**/*', (route) =>
     route.request().url().startsWith(base) ? route.continue() : route.abort(),
   );
   for (const [i, entry] of entries.entries()) {
@@ -45,10 +48,16 @@ try {
       await page.screenshot({ path: resolve(outDir, `${name}-step1.png`) });
     }
   }
-  await page.goto(`${base}/presenter.html?profile=${profile}#/${Math.min(2, entries.length)}`);
-  await page.waitForSelector('.presenter-current .slide');
-  await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: resolve(outDir, 'presenter.png') });
+  // The presenter reads "Linked to deck" only with a deck window open in the same browser.
+  const step = Math.min(2, entries.length);
+  await page.goto(`${base}/index.html?profile=${profile}#/${step}`);
+  await page.waitForSelector('.stage > .slide[data-current]');
+  const presenter = await context.newPage();
+  await presenter.emulateMedia({ reducedMotion: 'reduce' });
+  await presenter.goto(`${base}/presenter.html?profile=${profile}#/${step}`);
+  await presenter.waitForSelector('[data-status][data-linked]');
+  await presenter.evaluate(() => document.fonts.ready);
+  await presenter.screenshot({ path: resolve(outDir, 'presenter.png') });
   console.log(`wrote ${outDir} (${entries.length} slides, profile ${profile})`);
 } finally {
   await browser.close();

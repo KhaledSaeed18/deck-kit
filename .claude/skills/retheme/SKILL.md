@@ -36,8 +36,13 @@ in this pass. At the end, `git diff --stat` should list only `src/theme/**`, `pa
 Rules:
 - Change values in `tokens.css` first; most redesigns are mostly token work. Keep the token
   names (the engine and other files refer to them); add new tokens when you need them.
-- Every visual value lives in `src/theme/`, as a token or in a rule that uses tokens. No colours
-  or fonts anywhere else (a unit test scans the engine, entries and slides).
+- Every visual value lives in `src/theme/`. Raw values (colours, lengths, durations) are allowed
+  **only in `tokens.css`**: every other theme file must use `var(--token)`, and
+  `tests/unit/literals.test.ts` fails on any raw value there. Unitless numbers, percentages and
+  `0` are fine. Write new rules with tokens from the start; it is much cheaper than moving
+  values into tokens afterwards. Gradients and data-URI images can be tokens too.
+- No colours or fonts anywhere outside `src/theme/` (the same test scans the engine, entries
+  and slides).
 - Fragments: keep `visibility: hidden` as the hiding mechanism (the engine owns it). Style
   `[data-fragment-state="current"]` if the newest step should stand out.
 - Keep `prefers-reduced-motion` working: the `@media (prefers-reduced-motion: reduce)` block at the
@@ -49,13 +54,15 @@ Rules:
 - Use fonts with an open licence from Fontsource: `pnpm add @fontsource-variable/<name>` (or
   `@fontsource/<name>` for static fonts), import them in `fonts.css`, and point `--font-head`,
   `--font-sans` and `--font-mono` at the family names, with system fallbacks.
-- Remove font packages the theme no longer uses (`pnpm remove …`).
+- Remove a font package only if no theme uses it: the example decks in `examples/*/theme/`
+  import their own fonts (`grep -r fontsource examples/*/theme`).
 - Never use Google Fonts URLs or any remote `@import`.
 
 ## 4. Notes PDF
 
 `scripts/export-notes-pdf.ts` styles the printed presenter script on its own: update the
-`:root` palette block and the two `@font-face` paths to match the new theme.
+`:root` palette block, the two `@font-face` paths and the `font-family` lines to match the new
+theme.
 
 ## 5. Verify, and iterate
 
