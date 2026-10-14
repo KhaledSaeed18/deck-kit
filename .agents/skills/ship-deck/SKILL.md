@@ -1,6 +1,6 @@
 ---
 name: ship-deck
-description: Final verification and packaging for this deck kit: runs every check, builds the single-file deck, the PDFs and the presenter script, and lists what to take to the room with the fallback order. Use when the talk is ready, before presenting, or when the user asks to export, build, package, or "get it ready for the USB stick".
+description: "Final verification and packaging for this deck kit: runs every check, builds the single-file deck, the PDFs and the presenter script, and lists what to take to the room with the fallback order. Use when the talk is ready, before presenting, or when the user asks to export, build, package, or \"get it ready for the USB stick\"."
 ---
 
 # Ship the deck

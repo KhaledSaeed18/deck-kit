@@ -9,7 +9,7 @@ Builds one talk in this repo, end to end, in phases. The engine (navigation, pre
 sync, print, lint) is finished and never changes; only `src/slides/`, `src/deck.ts`,
 `src/assets/icons.ts`, `src/theme/` and `docs/` do.
 
-Before starting, read `CLAUDE.md` and `docs/authoring.md`. See `examples/crypto/docs/` for what the brief, plan, decisions and fact log look like when
+Before starting, read `AGENTS.md` and `docs/authoring.md`. See `examples/crypto/docs/` for what the brief, plan, decisions and fact log look like when
 done. Open two or three slides in
 `examples/wifi/slides/` and `examples/crypto/slides/` to see the bar for slides and notes: script per step, Next line,
 acronyms, likely questions with answers, sources.
@@ -30,7 +30,7 @@ Check the state first and resume from the right phase:
 
 1. Gather what the brief needs. If the speaker has already pasted an outline, a brief, lecture
    notes or files, read them first and only ask about what is missing. Ask in one round, with
-   AskUserQuestion where the options are clear-cut:
+   the host's question tool where available, or ordinary chat; offer options where clear-cut:
    - topic and working title; speaker name(s) exactly as shown; event or course; date
    - audience and what they already know; the goal of the talk
    - length, and whether a shorter version (second profile) is needed
@@ -50,11 +50,15 @@ Check the state first and resume from the right phase:
 
 ## Phase 1: Research and plan
 
+If subagents are unavailable, run separate research and adversarial verification passes
+yourself, following the same evidence requirements. Disclose that verification was not
+independent. Use this fallback for Phase 3 as well.
+
 1. List every factual claim the plan needs: numbers, dates, names, definitions, quotes.
-2. Research with subagents in parallel, one per topic area (sonnet). Each returns claims with
+2. Research with subagents in parallel, one per topic area, using available models. Each returns claims with
    primary sources (standards, papers, official docs, the speaker's own material first; vendor
    blogs and Wikipedia only as pointers), exact figures, dates and caveats.
-3. Verify adversarially: one opus subagent per research batch tries to break each claim
+3. Verify adversarially: one independent verification subagent per research batch tries to break each claim
    (outdated, misquoted, wrong unit, marketing figure, needs a qualifier). Keep only what
    survives; record disputes.
 4. Write `docs/fact-log.md` (one id per claim) and `docs/research/references.md`.
@@ -99,10 +103,10 @@ fit, and the output of the checks (paste failures, do not summarise them away).
 
 ## Phase 3: Verify
 
-1. Adversarial fact check (opus subagent): every on-screen number and claim, and every "If
+1. Adversarial fact check (verification subagent when available): every on-screen number and claim, and every "If
    asked" answer, against `docs/fact-log.md` and its sources. Report mismatches; fix only what
    is a transcription error, and flag the rest.
-2. Copy check (haiku subagent): the voice rules in `docs/authoring.md`, spelling consistency,
+2. Copy check (copy-review subagent when available): the voice rules in `docs/authoring.md`, spelling consistency,
    and that each slide's Script covers what is on screen at each step.
 3. Timing: the target times per profile add up to the brief's length, with about a minute
    spare for questions.
@@ -113,12 +117,12 @@ fit, and the output of the checks (paste failures, do not summarise them away).
 
 ## Phase 4: Design
 
-Run the `/retheme` skill with the brief's design direction. **Stop** after it for review.
+Run the `retheme` skill with the brief's design direction. **Stop** after it for review.
 
-Then suggest `/ship-deck` for the final build and the files to take to the room.
+Then suggest `ship-deck` for the final build and the files to take to the room.
 
 ## Notes
 
 - Commit only when the speaker asks. Good commit points are the end of each phase.
-- If the speaker wants to change content later, use `/add-slide` or edit slides directly, and
+- If the speaker wants to change content later, use `add-slide` or edit slides directly, and
   record content changes in `docs/decisions.md`.

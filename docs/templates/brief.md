@@ -1,7 +1,7 @@
 # Brief: {{talk title}}
 
-> The single source of truth for this deck's content. `/new-deck` fills it with you; after you
-> approve it, Claude never changes facts, numbers or wording on its own. Changes go through
+> The single source of truth for this deck's content. The `new-deck` skill fills it with you; after you
+> approve it, the agent never changes facts, numbers or wording on its own. Changes go through
 > `docs/decisions.md`.
 
 ## The talk

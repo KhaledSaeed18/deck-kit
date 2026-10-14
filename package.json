@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Offline, self-hosted HTML presentation kit: presenter view, keyboard and clicker control, fragments, overview, print to PDF, single-file build, slide lint",
+  "description": "Offline HTML presentation kit and repository template with portable agent skills, presenter view, clicker control, PDF export and single-file builds",
   "engines": {
     "node": ">=22.12"
   },

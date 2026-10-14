@@ -17,16 +17,16 @@ h2 { font-size: 46px; margin: 14px 0 8px; }
 .after code { font-weight: 700; padding: 4px 10px; border: 2px solid #000; border-radius: 6px; background: var(--card); }
 </style></head><body>
 <div class="canvas">
-  <span class="eyebrow">With Claude Code</span>
+  <span class="eyebrow">With your coding agent</span>
   <h2>From a topic to a finished talk</h2>
   <p class="sub">Five phases. You review after every one, and nothing on screen changes without your approval.</p>
-  <div class="cmd"><b>&gt;</b> /new-deck</div>
+  <div class="cmd"><b>&gt;</b> new-deck</div>
   <div class="track">
     <div class="phase"><div class="num">0</div><h3>Brief</h3><p>Topic, audience, length, sources and look, in one round of questions.</p><div class="files">docs/brief.md</div><span class="stop">review</span></div>
-    <div class="phase"><div class="num">1</div><h3>Research</h3><p>Subagents find primary sources; a second pass tries to break every fact.</p><div class="files">fact-log.md<br>plan.md</div><span class="stop">answer flags</span></div>
+    <div class="phase"><div class="num">1</div><h3>Research</h3><p>Research finds primary sources; a second pass tries to break every fact.</p><div class="files">fact-log.md<br>plan.md</div><span class="stop">answer flags</span></div>
     <div class="phase"><div class="num">2</div><h3>Content</h3><p>Slides, a script for every build step, likely questions, diagrams, timings.</p><div class="files">src/slides/<br>deck.ts</div><span class="stop">review</span></div>
     <div class="phase"><div class="num">3</div><h3>Verify</h3><p>Fact check, copy check, timing, axe, offline test, rehearsal script PDF.</p><div class="files">out/*.pdf</div><span class="stop">review</span></div>
     <div class="phase"><div class="num">4</div><h3>Design</h3><p>A new palette, fonts and layouts, touching only the theme.</p><div class="files">src/theme/</div><span class="stop">review</span></div>
   </div>
-  <div class="after">Then <code>/ship-deck</code> for the USB stick, and <code>/add-slide</code> or <code>/retheme</code> any time.</div>
+  <div class="after">Then <code>ship-deck</code> for the USB stick, and <code>add-slide</code> or <code>retheme</code> any time.</div>
 </div></body></html>

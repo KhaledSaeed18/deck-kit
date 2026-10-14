@@ -16,17 +16,19 @@
   <img alt="Runs offline" src="https://img.shields.io/badge/runtime%20requests-0-01ffcc?style=flat-square&labelColor=1a1815">
   <img alt="Vite 8" src="https://img.shields.io/badge/Vite-8-c4a1ff?style=flat-square&labelColor=1a1815">
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-ffdc58?style=flat-square&labelColor=1a1815">
-  <img alt="Claude Code skills" src="https://img.shields.io/badge/Claude%20Code-4%20skills-e63946?style=flat-square&labelColor=1a1815">
+  <img alt="Agent skills" src="https://img.shields.io/badge/Agent%20Skills-4%20skills-e63946?style=flat-square&labelColor=1a1815">
   <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-fff7e8?style=flat-square&labelColor=1a1815">
 </p>
 
-An offline, self-hosted HTML presentation kit with a real presenter view. You write each slide
+An offline, self-hosted HTML presentation kit and reusable repository template with a real presenter view. You write each slide
 as a small HTML file, and the engine does the rest: keyboard and clicker control, step-by-step
 builds, a synced presenter window with your script and a pace timer, an overview grid, blackout,
 print to PDF, and a single-file build that runs from a USB stick with Wi-Fi off.
 
-It ships with **Claude Code skills** that take a new talk from a topic to a finished,
-fact-checked, designed deck, stopping for your review after every phase.
+It ships with **portable agent skills** that take a new talk from a topic to a finished,
+fact-checked, designed deck, stopping for your review after every phase. Use Codex, Claude Code,
+or another coding agent that can read the instructions, edit files and run the project commands.
+Automatic skill discovery depends on the agent; explicit file instructions work as a fallback.
 
 <p align="center">
   <img src="docs/media/sync.gif" alt="The audience deck on the left and the presenter window on the right. Pressing Page Down in either window moves both, and the presenter highlights the script for the current step." width="100%">
@@ -42,22 +44,28 @@ pnpm dev            # http://localhost:5173, plus /presenter.html for the presen
 ```
 
 The starter deck that opens demonstrates every slide type and feature. To make your own talk,
-open Claude Code in the folder and run:
+open your coding agent in the folder and use the `new-deck` skill:
 
-```
-/new-deck
-```
+- **Codex:** ask “Use the new-deck skill to create a presentation about …”. In the CLI or
+  IDE extension, you can also invoke `$new-deck`.
+- **Claude Code:** run `/new-deck`.
+- **Other agents:** if they support `AGENTS.md` and `.agents/skills/`, use their skill
+  invocation mechanism. Otherwise, ask them to read `AGENTS.md` and
+  `.agents/skills/new-deck/SKILL.md` explicitly.
 
-<p align="center"><img src="docs/media/workflow.png" alt="The /new-deck workflow in five phases: Brief, Research, Content, Verify, Design, each followed by a review stop" width="100%"></p>
+The workflows use available tools and models. If subagents are unavailable, research and
+verification run as separate passes, with that limitation disclosed.
+
+<p align="center"><img src="docs/media/workflow.png" alt="The new-deck workflow in five phases: Brief, Research, Content, Verify, Design, each followed by a review stop" width="100%"></p>
 
 | Skill | What it does |
 |---|---|
-| `/new-deck` | The whole talk in five phases. Research is done by subagents and then checked by a second, adversarial pass. On-screen content never changes without your approval. |
-| `/add-slide` | Adds or reworks one slide, with notes, build steps, timings and checks. |
-| `/retheme` | Gives the deck a new look (palette, fonts, layouts, diagrams, presenter). Only the theme changes. |
-| `/ship-deck` | Runs every check, builds `deck.html`, the PDFs and your script, and lists what to put on the USB stick. |
+| `new-deck` | The whole talk in five phases. Research uses primary sources followed by an adversarial verification pass, with subagents when available. On-screen content never changes without your approval. |
+| `add-slide` | Adds or reworks one slide, with notes, build steps, timings and checks. |
+| `retheme` | Gives the deck a new look (palette, fonts, layouts, diagrams, presenter). Only the theme changes. |
+| `ship-deck` | Runs every check, builds `deck.html`, the PDFs and your script, and lists what to put on the USB stick. |
 
-No Claude? Slides are plain HTML: copy one from `src/slides/`, add it to `src/deck.ts`, and
+Working without an agent? Slides are plain HTML: copy one from `src/slides/`, add it to `src/deck.ts`, and
 follow [`docs/authoring.md`](docs/authoring.md).
 
 ## Examples
@@ -85,7 +93,7 @@ against.
 ### The Key Is the Only Secret
 
 A talk on Chapter 1 of Paar and Pelzl, *Understanding Cryptography*, made end to end with
-`/new-deck` as a test of the kit. The design is a cryptanalyst's notebook: graph paper, a red
+the `new-deck` skill as a test of the kit. The design is a cryptanalyst's notebook: graph paper, a red
 margin, fountain-pen navy, red-pencil notes and typewriter ciphertext (Fraunces, IBM Plex Mono,
 Caveat). The title arrives encrypted and decrypts on the first click; the ciphertext on slide 2
 is broken with letter frequencies on slide 7. Its brief, plan, decisions and fact log are in
@@ -187,8 +195,18 @@ src/
   deck.ts        slide order, profiles, target times
 examples/        two complete decks: wifi (also the engine's e2e fixture) and crypto
 docs/            authoring.md, templates/, media/, and per deck: brief, decisions, plan, fact log
-.claude/skills/  new-deck, add-slide, retheme, ship-deck
+AGENTS.md        shared project rules
+CLAUDE.md        -> AGENTS.md (Claude Code compatibility)
+.agents/skills/  new-deck, add-slide, retheme, ship-deck (canonical sources)
+.claude/skills   -> ../.agents/skills (Claude Code compatibility)
 ```
+
+Edit `AGENTS.md` and `.agents/skills/` to update the shared instructions. The Claude paths
+are relative symlinks, so both tools read the same files without maintaining duplicate copies.
+Keep symlinks enabled when cloning; on Windows this may require Developer Mode or elevated
+permissions and `git config --global core.symlinks true` before cloning. If your checkout
+contains plain files with link-target text instead of symlinks, restore the links before
+using Claude Code's automatic discovery.
 
 Two browser test suites run with every outside request blocked:
 - **engine**: the full engine contract (keys, fragments, router, sync, presenter, print,
@@ -227,5 +245,6 @@ First run of the browser tests: `pnpm exec playwright install chromium webkit`.
 The example decks were made for university courses at LIU, Fall 2026: "Wireless Networks by
 Coverage and the Evolution of Wi-Fi" (CENG645 Mobile Communication) and "The Key Is the Only
 Secret" (Chapter 1 of Paar and Pelzl, *Understanding Cryptography*, Springer 2010; the book's
-text is not included). Fonts: Archivo Black, Space Grotesk, Fraunces,
+text is not included). The example research logs preserve their original Claude authoring
+history; they do not define a requirement for using the kit. Fonts: Archivo Black, Space Grotesk, Fraunces,
 IBM Plex Mono and Caveat (SIL OFL 1.1) through Fontsource. Icons: Lucide (ISC). MIT licensed.
