@@ -1,0 +1,110 @@
+<section class="slide" data-type="two-column" data-id="wifi6" data-wordcount="exempt" aria-labelledby="wifi6-h">
+  <h2 id="wifi6-h">Wi-Fi 6: from faster to smarter</h2>
+  <div class="columns">
+    <article>
+      <h3>OFDM vs OFDMA</h3>
+      <p class="expansion">Orthogonal Frequency-Division Multiplexing; OFDMA adds Multiple Access</p>
+      <figure data-fragment="1">
+        <svg role="img" viewBox="0 0 860 140" class="dgm-trucks">
+          <title>OFDM: three trucks, each carrying one package</title>
+          <g class="dgm-truck">
+            <rect class="dgm-truck-box" x="10" y="10" width="170" height="90" rx="6" />
+            <rect class="dgm-truck-cab" x="180" y="40" width="70" height="60" rx="8" />
+            <circle class="dgm-wheel" cx="50" cy="112" r="16" />
+            <circle class="dgm-wheel" cx="210" cy="112" r="16" />
+            <rect class="dgm-parcel dgm-parcel-1" x="70" y="35" width="50" height="40" />
+          </g>
+          <g class="dgm-truck">
+            <rect class="dgm-truck-box" x="300" y="10" width="170" height="90" rx="6" />
+            <rect class="dgm-truck-cab" x="470" y="40" width="70" height="60" rx="8" />
+            <circle class="dgm-wheel" cx="340" cy="112" r="16" />
+            <circle class="dgm-wheel" cx="500" cy="112" r="16" />
+            <rect class="dgm-parcel dgm-parcel-2" x="360" y="35" width="50" height="40" />
+          </g>
+          <g class="dgm-truck">
+            <rect class="dgm-truck-box" x="590" y="10" width="170" height="90" rx="6" />
+            <rect class="dgm-truck-cab" x="760" y="40" width="70" height="60" rx="8" />
+            <circle class="dgm-wheel" cx="630" cy="112" r="16" />
+            <circle class="dgm-wheel" cx="790" cy="112" r="16" />
+            <rect class="dgm-parcel dgm-parcel-3" x="650" y="35" width="50" height="40" />
+          </g>
+        </svg>
+        <figcaption><strong>OFDM: one user per transmission.</strong> One truck per delivery.</figcaption>
+      </figure>
+      <figure data-fragment="2">
+        <svg role="img" viewBox="0 0 860 140" class="dgm-trucks">
+          <title>OFDMA: one truck carrying packages for three users</title>
+          <g class="dgm-truck">
+            <rect class="dgm-truck-box" x="10" y="10" width="170" height="90" rx="6" />
+            <rect class="dgm-truck-cab" x="180" y="40" width="70" height="60" rx="8" />
+            <circle class="dgm-wheel" cx="50" cy="112" r="16" />
+            <circle class="dgm-wheel" cx="210" cy="112" r="16" />
+            <rect class="dgm-parcel dgm-parcel-1" x="22" y="35" width="44" height="40" />
+            <rect class="dgm-parcel dgm-parcel-2" x="73" y="35" width="44" height="40" />
+            <rect class="dgm-parcel dgm-parcel-3" x="124" y="35" width="44" height="40" />
+          </g>
+        </svg>
+        <figcaption><strong>OFDMA: many users per transmission.</strong> One truck carrying packages for several users.</figcaption>
+      </figure>
+    </article>
+    <article>
+      <ul class="features">
+        <li data-fragment="3">
+          <h3>TWT</h3>
+          <p class="expansion">Target Wake Time</p>
+        </li>
+        <li data-fragment="4">
+          <h3>BSS coloring</h3>
+          <p class="expansion">BSS = Basic Service Set (one Wi-Fi network)</p>
+        </li>
+      </ul>
+    </article>
+  </div>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Wi-Fi 6 is where the goal changed: from faster to smarter, so a busy network works well.</p>
+      </div>
+      <div data-step="1">
+        <p>OFDM gives the whole channel to one user per transmission: one truck per delivery, so even a tiny message uses a whole transmission.</p>
+      </div>
+      <div data-step="2">
+        <p>OFDMA splits the channel so many users share one transmission: one truck carries packages for several users at once. That helps a lot when there are many small messages: phones, chat, smart devices.</p>
+      </div>
+      <div data-step="3">
+        <p>TWT, Target Wake Time: devices sleep until their scheduled time to wake up, which saves battery.</p>
+      </div>
+      <div data-step="4">
+        <p>BSS coloring (a BSS is one Wi-Fi network: a router and its devices): your network can talk over a faint neighbour on the same channel instead of always waiting.</p>
+        <p>Wi-Fi 6E is the same technology plus the new 6 GHz band, where the country allows it.</p>
+      </div>
+    <h3>Next</h3>
+    <p>Then Wi-Fi 7 went back to speed, and Wi-Fi 8 does something new.</p>
+    <h3>Acronyms</h3>
+    <ul class="acronyms">
+      <li><strong>OFDMA</strong>: Orthogonal Frequency-Division Multiple Access</li>
+      <li><strong>TWT</strong>: Target Wake Time</li>
+      <li><strong>BSS</strong>: Basic Service Set (one router and its devices)</li>
+    </ul>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Wi-Fi 6 vs 6E?</strong> Same technology; 6E adds the 6 GHz band, subject to national regulation.</li>
+      <li><strong>OFDMA vs MU-MIMO?</strong> OFDMA gives users different slices of the channel at once; MU-MIMO serves users on the same frequency using different antennas. Wi-Fi 6 can use both.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <h3>More questions</h3>
+      <ul>
+        <li><strong>How many users share one OFDMA transmission?</strong> With the smallest resource unit (26 tones), up to 9 stations share a 20 MHz channel.</li>
+        <li><strong>Are TWT and BSS coloring new in Wi-Fi 6?</strong> Both first appeared in 802.11ah (Wi-Fi HaLow, for IoT); 802.11ax adapted them for dense networks.</li>
+      </ul>
+      <h3>Local context</h3>
+      <p>Lebanon has not opened 6 GHz. TRA consulted in April 2026 on the lower part of the band, 5925 to 6425 MHz, for licence-free indoor use (the upper part, 6425 to 7125 MHz, is still undecided between Wi-Fi and mobile networks) and comments closed on 28 August 2026, with no decision as of October 2026. Here, Wi-Fi 6E and 7 run on 2.4 and 5 GHz at up to 160 MHz.</p>
+      <h3>Sources</h3>
+      <ul>
+      <li>Fact log B-10-ofdma, B-10-twt, B-10-bss-coloring, B-10-6e-same-tech, B-10-6ghz-lebanon</li>
+      <li>Cisco Meraki, Wi-Fi 6 (802.11ax) Technical Guide; Wi-Fi Alliance 6 GHz regulations table</li>
+    </ul>
+    </details>
+  </aside>
+</section>

@@ -1,0 +1,230 @@
+/*
+ * Engine CSS: functional rules only (layout mechanics, visibility, print flow).
+ * No colours, fonts, shadows, radii or spacing: anything visual comes from src/theme/.
+ * The only fixed sizes are the 1920x1080 canvas.
+ * The layer order puts the theme above the engine; print rules use !important, which in an
+ * earlier layer beats the theme, so the PDF backup always shows every slide fully built.
+ */
+@layer engine, theme;
+
+@page {
+  size: 1920px 1080px;
+  margin: 0;
+}
+
+@layer engine {
+  /* !important: a theme `display` rule (e.g. grid on .overview) must never un-hide an overlay. */
+  [hidden] {
+    display: none !important;
+  }
+
+  html,
+  body {
+    margin: 0;
+    height: 100%;
+  }
+
+  html {
+    overscroll-behavior-x: none;
+  }
+
+  html[data-role="deck"] body {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  /* Stage: a fixed 1920x1080 canvas, centred and scaled uniformly (letterboxed). */
+  .deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  /* Whole-pixel offsets from stage.ts keep the canvas edges crisp against the letterbox. */
+  .stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform: translate(var(--stage-x, 0), var(--stage-y, 0)) scale(var(--scale, 1));
+    transform-origin: 0 0;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* !important in the engine layer outranks any theme display rule (e.g. flex on title slides). */
+  @media screen {
+    .stage > .slide:not([data-current]) {
+      display: none !important;
+    }
+  }
+
+  aside.notes {
+    display: none;
+  }
+
+  /* Fragments: hidden keeps their box, so tables never reflow and readers skip them. */
+  [data-fragment-state="hidden"] {
+    visibility: hidden;
+  }
+
+  /* Chrome and overlays sit on the stage so they scale with it. */
+  .deck-chrome {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  html[data-chrome-hidden] .deck-chrome {
+    display: none !important;
+  }
+
+  .deck-progress-bar {
+    transform: scaleX(var(--progress, 0));
+    transform-origin: left center;
+  }
+
+  .deck-jump,
+  .deck-toast {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .overview {
+    position: absolute;
+    inset: 0;
+    overflow: auto;
+    z-index: 4;
+  }
+
+  .help {
+    position: absolute;
+    overflow: auto;
+    z-index: 5;
+  }
+
+  .deck-blackout {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+  }
+
+  .lint-overlay {
+    position: fixed;
+    inset: auto 0 0;
+    overflow: auto;
+    margin: 0;
+    white-space: pre-wrap;
+    z-index: 20;
+  }
+
+  /* Previews: a 16:9 box holding the full canvas, scaled to the box width. */
+  .preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .preview-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    transform: scale(var(--preview-scale, 0));
+    transform-origin: 0 0;
+    pointer-events: none;
+  }
+
+  .preview-canvas > .slide {
+    display: block;
+  }
+
+  .presenter .overview,
+  .presenter .help {
+    position: fixed;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      transition: none !important;
+      animation: none !important;
+    }
+
+    html,
+    body {
+      width: 1920px;
+      height: auto !important;
+      overflow: visible !important;
+    }
+
+    .deck-viewport {
+      position: static !important;
+      overflow: visible !important;
+    }
+
+    .stage {
+      position: static !important;
+      width: 1920px !important;
+      height: auto !important;
+      overflow: visible !important;
+      transform: none !important;
+    }
+
+    .stage > .slide {
+      position: relative !important;
+      inset: auto !important;
+      width: 1920px !important;
+      height: 1080px !important;
+      overflow: hidden !important;
+      break-after: page;
+      break-inside: avoid;
+    }
+
+    .stage > .slide:last-of-type {
+      break-after: auto;
+    }
+
+    [data-fragment] {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .deck-chrome,
+    .deck-jump,
+    .deck-toast,
+    .overview,
+    .help,
+    .deck-blackout,
+    .lint-overlay,
+    [data-live] {
+      display: none !important;
+    }
+  }
+}

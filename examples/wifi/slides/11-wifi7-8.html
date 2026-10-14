@@ -1,0 +1,75 @@
+<section class="slide" data-type="two-column" data-id="wifi7-8" data-wordcount="exempt" aria-labelledby="wifi7-8-h">
+  <h2 id="wifi7-8-h">Wi-Fi 7 and Wi-Fi 8: the plot twist</h2>
+  <div class="columns">
+    <article data-fragment="1">
+      <h3>Wi-Fi 7</h3>
+      <ul>
+        <li>320 MHz channels</li>
+        <li>4096-QAM</li>
+        <li>Multi-Link Operation</li>
+      </ul>
+    </article>
+    <article data-fragment="2">
+      <h3>Wi-Fi 8 (802.11bn)</h3>
+      <p>Keeps the same peak speed. Targets Ultra High Reliability:</p>
+      <ul>
+        <li data-fragment="3">25% lower tail latency</li>
+        <li data-fragment="3">25% fewer lost frames (especially when roaming)</li>
+        <li data-fragment="3">25% more throughput at the same signal level</li>
+      </ul>
+    </article>
+  </div>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Now the plot twist of the talk.</p>
+      </div>
+      <div data-step="1">
+        <p>Wi-Fi 7 brings 320 MHz channels, 4096-QAM, and Multi-Link Operation: use two bands at once, like driving on two roads.</p>
+        <p>Multi-Link can add speed, but its bigger win in practice is lower delay: a device uses whichever link is free right now. So the story so far: speed, then crowding, then delay.</p>
+      </div>
+      <div data-step="2">
+        <p>Wi-Fi 8 keeps the same peak speed. This is the first numbered Wi-Fi generation whose top speed does not go up. Its goal is reliability.</p>
+      </div>
+      <div data-step="3">
+        <p>Its targets, compared with Wi-Fi 7: 25% lower tail latency, 25% fewer lost frames (especially when roaming), and 25% more throughput at the same signal level.</p>
+        <p>In plain words: fewer slow moments, fewer dropped frames when you move between access points, and more speed at the same signal strength. Chips already appeared at CES 2026; the standard should be final in 2028.</p>
+      </div>
+    <h3>Next</h3>
+    <p>Wi-Fi is not alone: what about 5G?</p>
+    <h3>Acronyms</h3>
+    <ul class="acronyms">
+      <li><strong>QAM</strong>: Quadrature Amplitude Modulation</li>
+      <li><strong>MLO</strong>: Multi-Link Operation</li>
+      <li><strong>UHR</strong>: Ultra High Reliability (Wi-Fi 8)</li>
+      <li><strong>CES</strong>: Consumer Electronics Show</li>
+    </ul>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Will I get 23 Gbps?</strong> No. That is the lab maximum: 8 antennas, the widest channel, a perfect signal. A phone with 2 antennas on a 160 MHz channel links at about 2.4 to 2.9 Gbps (an iPhone stops at 2.4), and you measure less, about 1.5 to 2 Gbps at best, because the air is shared.</li>
+      <li><strong>Does a Wi-Fi 7 router speed up my old phone?</strong> Only somewhat. The standard is backward compatible, but the link runs at the client's generation. Newer clients free up airtime, which helps everyone.</li>
+      <li><strong>Is Wi-Fi 8 100 Gbps?</strong> No. That came from a 2024 millimetre-wave prototype. Wi-Fi 8 keeps about 23 Gbps, like Wi-Fi 7.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <h3>More questions</h3>
+      <ul>
+        <li><strong>Can I use Wi-Fi 7 fully in Lebanon?</strong> Not the 6 GHz part yet. Here Wi-Fi 7 runs on 2.4 and 5 GHz, up to 160 MHz channels.</li>
+        <li><strong>I read Wi-Fi 8 is 100 Gbps.</strong> That came from a 2024 millimetre-wave prototype press release. 802.11bn stays below 7.25 GHz and keeps about 23 Gbps; mmWave is a separate IEEE project (802.11bq).</li>
+        <li><strong>When is Wi-Fi 8 final?</strong> Draft 2.0 passed its first working-group ballot in September 2026 (77%); IEEE predicts final approval in May 2028. Pre-standard chips (Broadcom, MediaTek) and an ASUS concept router appeared at CES 2026.</li>
+      </ul>
+      <h3>Nuances</h3>
+      <ul>
+      <li>Phones often use single-radio MLO (EMLSR): they listen on two links but transmit or receive on only one at a time.</li>
+    </ul>
+      <h3>Local context</h3>
+      <p>Lebanon has not opened 6 GHz. TRA consulted in April 2026 on the lower part of the band, 5925 to 6425 MHz, for licence-free indoor use (the upper part, 6425 to 7125 MHz, is still undecided between Wi-Fi and mobile networks) and comments closed on 28 August 2026, with no decision as of October 2026. Here, Wi-Fi 6E and 7 run on 2.4 and 5 GHz at up to 160 MHz.</p>
+      <h3>Sources</h3>
+      <ul>
+      <li>IEEE 802.11 TGbn (UHR) status page: PAR objectives, schedule</li>
+      <li>Wi-Fi Alliance, "Wi-Fi Alliance introduces Wi-Fi CERTIFIED 7", 8 Jan 2024</li>
+      <li>Fact log B-11-wifi7-features, B-11-mlo, B-11-wifi8-latency, B-11-wifi8-loss, B-11-wifi8-throughput-omitted, B-11-first-no-speed, B-11-ces2026</li>
+    </ul>
+    </details>
+  </aside>
+</section>

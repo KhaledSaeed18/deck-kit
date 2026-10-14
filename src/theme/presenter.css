@@ -1,0 +1,271 @@
+@layer engine, theme;
+
+@layer theme {
+  html[data-role="presenter"] {
+    background: var(--background);
+  }
+
+  /* Notes take the full height on the right; the next slide and the info chips sit under the
+   * current slide. */
+  .presenter {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.25fr) minmax(0, 2fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas:
+      "current current notes"
+      "next bar notes";
+    gap: var(--space-2);
+    height: var(--presenter-h);
+    padding: var(--space-2);
+    box-sizing: border-box;
+    font-size: var(--presenter-fs);
+  }
+
+  .presenter-bar {
+    grid-area: bar;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    align-content: start;
+    align-items: center;
+    min-height: 0;
+    overflow: auto;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .presenter-bar > * {
+    padding: var(--space-1) var(--space-2);
+    background: var(--card);
+    border: var(--presenter-border-w) solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--presenter-shadow);
+  }
+
+  .presenter-counter {
+    background: var(--patch-1);
+    font-family: var(--font-head);
+  }
+
+  .presenter-current {
+    grid-area: current;
+    min-height: 0;
+  }
+
+  .presenter-next {
+    grid-area: next;
+    min-height: 0;
+  }
+
+  .presenter-pace[data-pace="ahead"] {
+    background: var(--patch-4);
+  }
+
+  .presenter-pace[data-pace="on"] {
+    background: var(--patch-3);
+  }
+
+  .presenter-pace[data-pace="behind"] {
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+    font-weight: 700;
+  }
+
+  .presenter-notes {
+    grid-area: notes;
+    min-height: 0;
+    overflow: auto;
+    padding: var(--space-2) var(--space-3);
+    background: var(--card);
+    border: var(--presenter-border-w) solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--presenter-shadow);
+    font-size: var(--presenter-fs-notes);
+    line-height: var(--lh-body);
+  }
+
+  /* Stays visible while the notes scroll, so the slide being spoken about is always named. */
+  .presenter-notes-title {
+    position: sticky;
+    top: calc(-1 * var(--space-2));
+    z-index: 1;
+    margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-3)) var(--space-1);
+    padding: var(--space-2) var(--space-3) var(--space-1);
+    background: var(--card);
+    border-bottom: var(--presenter-border-w) solid var(--border);
+    font-family: var(--font-head);
+    font-size: var(--presenter-fs-heading);
+    font-weight: 400;
+  }
+
+  .presenter-notes-body h3 {
+    display: inline-block;
+    margin: var(--space-2) 0 var(--space-1);
+    padding: 0 var(--space-1);
+    background: var(--patch-3);
+    border: var(--presenter-border-w) solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-head);
+    font-size: var(--presenter-fs-small);
+    font-weight: 400;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .presenter-notes-body p,
+  .presenter-notes-body ul,
+  .presenter-notes-body ol {
+    margin: 0 0 var(--space-1);
+  }
+
+  /* Script: one block per build step, labelled, with the current step highlighted. */
+  .presenter-notes-body [data-step] {
+    margin: 0 0 var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    border-left: calc(var(--presenter-border-w) * 3) solid var(--muted);
+    border-radius: var(--radius-sm);
+  }
+
+  .presenter-notes-body [data-step]::before {
+    content: "Step " attr(data-step);
+    display: block;
+    margin-bottom: calc(var(--space-1) / 2);
+    color: var(--muted-foreground);
+    font-family: var(--font-head);
+    font-size: var(--presenter-fs-small);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .presenter-notes-body [data-step="0"]::before {
+    content: "As the slide appears";
+  }
+
+  .presenter-notes-body [data-step][data-active] {
+    background: var(--accent);
+    border-left-color: var(--primary);
+    box-shadow: var(--presenter-shadow);
+  }
+
+  .presenter-notes-body [data-step][data-active]::before {
+    color: var(--foreground);
+  }
+
+  /* Acronyms: a compact, always-visible glossary for the slide. */
+  .presenter-notes-body .acronyms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding: 0;
+    list-style: none;
+    font-size: var(--presenter-fs-small);
+  }
+
+  .presenter-notes-body .acronyms li {
+    padding: calc(var(--space-1) / 2) var(--space-1);
+    background: var(--muted);
+    border: var(--presenter-border-w) solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Extra detail and sources: folded away until needed. */
+  .presenter-notes-body details {
+    margin-top: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    background: var(--muted);
+    border: var(--presenter-border-w) solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: var(--presenter-fs);
+  }
+
+  .presenter-notes-body summary {
+    font-family: var(--font-head);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .presenter .preview {
+    background: var(--letterbox);
+    border: var(--presenter-border-w) solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--presenter-shadow);
+  }
+
+  .presenter-next-label {
+    margin: 0 0 var(--space-1);
+    color: var(--muted-foreground);
+    font-weight: 700;
+  }
+
+  .presenter-elapsed {
+    font-family: var(--font-head);
+    font-size: var(--presenter-fs-timer);
+  }
+
+  .presenter-timer {
+    display: flex;
+    gap: var(--space-1);
+    align-items: center;
+  }
+
+  .presenter-timer button {
+    display: grid;
+    place-items: center;
+    padding: var(--space-1);
+    background: var(--patch-4);
+    border: var(--presenter-border-w) solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-xs);
+    cursor: pointer;
+  }
+
+  .presenter-timer button[data-running] {
+    background: var(--patch-3);
+  }
+
+  .presenter-timer .icon {
+    width: var(--presenter-icon-size);
+    height: var(--presenter-icon-size);
+  }
+
+  .presenter-status[data-linked] {
+    background: var(--patch-4);
+  }
+
+  .presenter-status:not([data-linked]) {
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+    font-weight: 700;
+  }
+
+  html[data-audience-blackout] .presenter-status {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+  }
+
+  html[data-audience-blackout] .presenter-current .preview {
+    outline: calc(var(--presenter-border-w) * 3) solid var(--secondary);
+  }
+
+  .presenter .overview-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .presenter .overview-thumb {
+    font-size: var(--presenter-fs-small);
+  }
+
+  .presenter .help {
+    font-size: var(--presenter-fs);
+  }
+
+  .presenter .help-title {
+    font-size: var(--presenter-fs-title);
+  }
+
+  .presenter .deck-jump,
+  .presenter .deck-toast {
+    position: fixed;
+    font-size: var(--presenter-fs-notes);
+  }
+}

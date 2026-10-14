@@ -1,0 +1,177 @@
+@layer engine, theme;
+
+@layer theme {
+  .deck-progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--progress-h);
+    background: var(--muted);
+    border-top: var(--border-w-thin) solid var(--border);
+  }
+
+  .deck-progress-bar {
+    height: 100%;
+    background: var(--primary);
+    border-right: var(--border-w-thin) solid var(--border);
+  }
+
+  .deck-counter {
+    position: absolute;
+    right: var(--space-4);
+    bottom: calc(var(--progress-h) + var(--space-3));
+    padding: 0 var(--space-2);
+    background: var(--card);
+    color: var(--foreground);
+    border: var(--border-w-thin) solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-xs);
+    font-family: var(--font-head);
+    font-size: var(--fs-label);
+    letter-spacing: var(--tracking-label);
+  }
+
+  .deck-jump,
+  .deck-toast {
+    left: 50%;
+    bottom: var(--space-12);
+    transform: translateX(-50%) rotate(var(--tilt));
+    padding: var(--space-2) var(--space-4);
+    background: var(--patch-3);
+    color: var(--patch-ink);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    font-family: var(--font-head);
+    font-size: var(--fs-lead);
+  }
+
+  .deck-jump[data-invalid] {
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+  }
+
+  .deck-toast {
+    background: var(--card);
+    color: var(--card-foreground);
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    font-weight: 700;
+  }
+
+  .deck-blackout {
+    background: var(--blackout);
+  }
+
+  /* Overview: a sheet of slide cards on dotted paper. */
+  .overview {
+    background-color: var(--muted);
+    background-image: var(--dot-grid);
+    background-size: var(--dot-size) var(--dot-size);
+    padding: var(--space-6);
+    box-sizing: border-box;
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6) var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .overview-thumb {
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: var(--shadow-md);
+    font: inherit;
+    font-size: var(--fs-label);
+    text-align: start;
+    cursor: pointer;
+  }
+
+  .overview-thumb[data-selected] {
+    outline: none;
+    background: var(--primary);
+    box-shadow: var(--shadow-lg);
+    transform: translate(calc(-1 * var(--border-w)), calc(-1 * var(--border-w)));
+  }
+
+  .overview-thumb .preview {
+    border-bottom: var(--border-w) solid var(--border);
+  }
+
+  .overview-label {
+    display: block;
+    padding: var(--space-1) var(--space-2);
+    font-weight: 700;
+  }
+
+  /* Help: a window card with an ink title bar. */
+  .help {
+    inset: var(--space-12) var(--space-12) auto;
+    max-height: calc(100% - 2 * var(--space-12));
+    padding: 0 var(--space-6) var(--space-6);
+    background: var(--card);
+    color: var(--card-foreground);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-xl);
+    box-sizing: border-box;
+    font-size: var(--fs-small);
+  }
+
+  .help-title {
+    margin: 0 calc(-1 * var(--space-6)) var(--space-4);
+    padding: var(--space-2) var(--space-6);
+    background: var(--primary);
+    border-bottom: var(--border-w) solid var(--border);
+    font-family: var(--font-head);
+    font-size: var(--fs-h4);
+    font-weight: 400;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .help-table {
+    border-collapse: collapse;
+  }
+
+  .help-table th,
+  .help-table td {
+    padding: var(--space-1) var(--space-2);
+    text-align: start;
+    vertical-align: top;
+  }
+
+  .help-table th {
+    font-weight: 400;
+  }
+
+  .help-table kbd {
+    margin-inline-end: var(--space-1);
+  }
+
+  .help-hint {
+    margin: var(--space-3) 0 0;
+    color: var(--muted-foreground);
+  }
+
+  .lint-overlay {
+    max-height: var(--lint-max-h);
+    padding: var(--space-2);
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+    border-top: var(--border-w) solid var(--border);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+  }
+}

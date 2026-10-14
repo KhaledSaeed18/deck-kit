@@ -1,0 +1,27 @@
+<section class="slide" data-type="two-column" data-id="delivery" aria-labelledby="delivery-h">
+  <h2 id="delivery-h">Runs with the network off</h2>
+  <div class="columns">
+    <article data-fragment="1">
+      <h3>One file</h3>
+      <p>deck.html opens by double-click from a USB stick</p>
+    </article>
+    <article data-fragment="2">
+      <h3>A PDF backup</h3>
+      <p>One page per slide, every step revealed</p>
+    </article>
+  </div>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Fonts, icons and scripts are all bundled. Nothing is fetched at runtime.</p>
+      </div>
+      <div data-step="1">
+        <p>pnpm build:single writes one self-contained deck.html. The presenter opens from it with P.</p>
+      </div>
+      <div data-step="2">
+        <p>pnpm pdf writes a PDF per profile, in case the laptop fails.</p>
+      </div>
+    <h3>Next</h3>
+    <p>What to take away.</p>
+  </aside>
+</section>

@@ -1,0 +1,141 @@
+/*
+ * Theme tokens: mcce neo-brutalist, light palette (decisions S10a/S10b), mapped for a
+ * 1920x1080 projected canvas: 1 site px = 2 slide px for type, borders, shadows and radius.
+ * Source: docs/research/mcce-design-audit.md §5, with the projector contrast fixes
+ * (darker muted ink, black text on red).
+ */
+@layer engine, theme;
+
+@layer theme {
+  :root {
+    /* Surfaces */
+    --background: #fff7e8;
+    --foreground: #1a1815;
+    --card: #ffffff;
+    --card-foreground: #1a1815;
+    --primary: #ff9f1c;
+    --primary-foreground: #000000;
+    --secondary: #1a1815;
+    --secondary-foreground: #fff7e8;
+    --muted: #f5eedd;
+    --muted-foreground: #4f493f;
+    --accent: #ffe4bd;
+    --accent-foreground: #2b1c05;
+    --destructive: #e63946;
+    --destructive-foreground: #000000;
+    --border: #000000;
+    --ring: #ff9f1c;
+
+    /* Patches: the five mcce tile, chip and sticker colours, always with black ink */
+    --patch-1: #ff9f1c;
+    --patch-2: #e63946;
+    --patch-3: #ffdc58;
+    --patch-4: #01ffcc;
+    --patch-5: #c4a1ff;
+    --patch-ink: #000000;
+
+    --letterbox: #1a1815;
+    --blackout: #000000;
+
+    /* Shape */
+    --border-w: 4px;
+    --border-w-thin: 2px;
+    --radius: 8px;
+    --radius-sm: 5px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --shadow-color: #000000;
+    --shadow-xs: 2px 2px 0 0 var(--shadow-color);
+    --shadow-sm: 4px 4px 0 0 var(--shadow-color);
+    --shadow: 6px 6px 0 0 var(--shadow-color);
+    --shadow-md: 8px 8px 0 0 var(--shadow-color);
+    --shadow-lg: 12px 12px 0 0 var(--shadow-color);
+    --shadow-xl: 20px 20px 0 2px var(--shadow-color);
+    --shadow-2xl: 32px 32px 0 2px var(--shadow-color);
+    --tilt: -3deg;
+    --tilt-alt: 2deg;
+
+    /* Textures (precomputed alpha; no color-mix) */
+    --dot-size: 44px;
+    --dot-grid: radial-gradient(circle, rgb(26 24 21 / 0.12) 2px, transparent 3px);
+    --hatch: repeating-linear-gradient(45deg, rgb(26 24 21 / 0.16) 0 2px, transparent 2px 12px);
+
+    /* Fonts (bundled locally through fonts.css; never remote) */
+    --font-head: "Archivo Black", system-ui, sans-serif;
+    --font-sans: "Space Grotesk Variable", system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --tracking-head: -0.025em;
+    --tracking-label: 0.06em;
+
+    /* Type scale for 1920x1080 (floor 24px) */
+    --fs-display: 144px;
+    --fs-title: 104px;
+    --fs-h1: 96px;
+    --fs-h2: 72px;
+    --fs-h3: 60px;
+    --fs-h4: 44px;
+    --fs-lead: 40px;
+    --fs-body-lg: 36px;
+    --fs-body: 32px;
+    --fs-small: 28px;
+    --fs-label: 24px;
+    --lh-tight: 1.05;
+    --lh-body: 1.4;
+
+    /* Spacing */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-10: 80px;
+    --space-12: 96px;
+    --safe-x: 96px;
+    --safe-y: 72px;
+    --rule-w: 160px;
+    --rule-h: 14px;
+    --patch-size: 72px;
+    --title-mark-size: 420px;
+
+    /* Icons and diagrams */
+    --icon-size: 48px;
+    --icon-stroke: 2.5;
+    --dgm-stroke: 4px;
+    --dgm-stroke-thin: 3px;
+    --dgm-dash: 14px 10px;
+    --dgm-zone-1: var(--patch-5);
+    --dgm-zone-2: var(--patch-1);
+    --dgm-zone-3: var(--patch-3);
+    --dgm-zone-4: var(--patch-4);
+    --dgm-max-h: 640px;
+
+    /* Presenter window (window pixels, not the 1920 canvas) */
+    --presenter-fs: 18px;
+    --presenter-fs-small: 16px;
+    --presenter-fs-notes: 21px;
+    --presenter-fs-heading: 22px;
+    --presenter-fs-title: 24px;
+    --presenter-fs-timer: 28px;
+    --presenter-icon-size: 20px;
+    --presenter-border-w: 2px;
+    --presenter-shadow: 4px 4px 0 0 var(--shadow-color);
+    --presenter-h: 100vh;
+    --lint-max-h: 40vh;
+
+    /* Motion and chrome */
+    --dur-step: 200ms;
+    --dur-slide: 0ms;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --rise: 16px;
+    --progress-h: 12px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --dur-step: 0ms;
+      --dur-slide: 0ms;
+      --rise: 0px;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-single/
+out/
+test-results/
+playwright-report/
+.DS_Store
+*.log
+dist-example/
+dist-example-single/
+docs/presenter-script.md

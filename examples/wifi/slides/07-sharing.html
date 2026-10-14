@@ -1,0 +1,59 @@
+<section class="slide" data-type="diagram" data-id="sharing" aria-labelledby="sharing-h">
+  <h2 id="sharing-h">Sharing the air: why Wi-Fi takes turns</h2>
+  <ol class="steps">
+    <li data-fragment="1">Listen</li>
+    <li data-fragment="2"><i data-icon="arrow-right"></i> Wait random backoff</li>
+    <li data-fragment="3"><i data-icon="arrow-right"></i> Transmit</li>
+    <li data-fragment="4"><i data-icon="arrow-right"></i> ACK</li>
+  </ol>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Wi-Fi devices share one channel, and a radio can't send and listen at the same time. That's half-duplex, like a walkie-talkie in Lecture 1. So they take turns.</p>
+      </div>
+      <div data-step="1">
+        <p>Listen: is anyone else talking?</p>
+      </div>
+      <div data-step="2">
+        <p>Wait a random moment, so two devices don't start at the same time.</p>
+      </div>
+      <div data-step="3">
+        <p>Transmit: send the data.</p>
+      </div>
+      <div data-step="4">
+        <p>ACK: the receiver says "got it". No ACK means something collided, so the sender tries again.</p>
+        <p>This is called CSMA/CA: avoid collisions, because a radio can't hear one while it is sending.</p>
+      </div>
+    <h3>Next</h3>
+    <p>Now the story of Wi-Fi itself, generation by generation.</p>
+    <h3>Acronyms</h3>
+    <ul class="acronyms">
+      <li><strong>CSMA/CA</strong>: Carrier Sense Multiple Access with Collision Avoidance</li>
+      <li><strong>ACK</strong>: Acknowledgement</li>
+      <li><strong>CSMA/CD</strong>: Carrier Sense Multiple Access with Collision Detection (old shared-cable Ethernet)</li>
+    </ul>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Is Wi-Fi full-duplex?</strong> No, half-duplex. Full-duplex Wi-Fi is a research topic because of self-interference (Lecture 1, slide 7: the full-duplex figure's "Self-Interference" label).</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <h3>More questions</h3>
+      <ul>
+        <li><strong>How hard is full-duplex?</strong> A Wi-Fi radio transmits at about 20 dBm and listens near -90 dBm, so it must cancel about 110 dB of its own signal. Prototypes exist; no 802.11 amendment does it.</li>
+        <li><strong>Is RTS/CTS always on?</strong> No. It is optional and the usual default threshold effectively turns it off, because it adds overhead.</li>
+      </ul>
+      <h3>Nuances</h3>
+      <ul>
+      <li>CSMA/CD was only classic shared-cable Ethernet; modern switched Ethernet does not need it.</li>
+      <li>Trap: Lecture 1, slide 8 calls TDD a form of full-duplex. Wi-Fi also takes turns in time, but at the radio it never sends and receives at the same instant, so it is half-duplex.</li>
+    </ul>
+      <h3>Link to Lecture 1</h3>
+      <p>Slides 4 to 8: simplex, half-duplex (walkie-talkie, push-to-talk, same frequency, the closest analogy to Wi-Fi) and full-duplex (FDD, TDD, duplexer).</p>
+      <h3>Sources</h3>
+      <ul>
+      <li>Fact log A-07-half-duplex, A-07-csma-ca-reason, A-07-ethernet-csmacd, A-07-turn-sequence, L1-s08-tdd-full-duplex, L1-s07-self-interference-wording</li>
+    </ul>
+    </details>
+  </aside>
+</section>

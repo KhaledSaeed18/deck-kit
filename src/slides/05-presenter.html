@@ -1,0 +1,40 @@
+<section class="slide" data-type="diagram" data-id="presenter" aria-labelledby="presenter-h">
+  <h2 id="presenter-h">Two windows, always in sync</h2>
+  <svg role="img" viewBox="0 0 1600 560" class="dgm-windows">
+    <title>The audience deck and the presenter window, linked both ways</title>
+    <desc>The deck window shows the slide. The presenter window shows the current and next slide, the notes and a timer. Moving in either window moves both.</desc>
+    <g data-fragment="1">
+      <rect class="dgm-zone dgm-zone-1" x="0" y="80" width="560" height="400" rx="16" />
+      <text class="dgm-label dgm-label-strong" x="40" y="150">Deck</text>
+      <text class="dgm-label" x="40" y="200">What the room sees</text>
+    </g>
+    <g data-fragment="2">
+      <rect class="dgm-zone dgm-zone-2" x="1040" y="80" width="560" height="400" rx="16" />
+      <text class="dgm-label dgm-label-strong" x="1080" y="150">Presenter</text>
+      <text class="dgm-label" x="1080" y="200">Notes, next slide, timer</text>
+    </g>
+    <g data-fragment="3">
+      <path class="dgm-link" d="M 600 240 H 1000 M 976 222 L 1000 240 L 976 258" />
+      <path class="dgm-link" d="M 1000 320 H 600 M 624 302 L 600 320 L 624 338" />
+      <text class="dgm-label" x="660" y="210">same slide, same step</text>
+    </g>
+  </svg>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Diagrams are hand-written inline SVG. Their classes start with dgm-, so the theme can restyle them.</p>
+      </div>
+      <div data-step="1">
+        <p>The deck window is what the room sees.</p>
+      </div>
+      <div data-step="2">
+        <p>The presenter window shows this slide, the next one, these notes and a timer with pace.</p>
+      </div>
+      <div data-step="3">
+        <p>They stay in sync both ways, even from a USB stick with no network.</p>
+      </div>
+    <h3>Next</h3>
+    <p data-profile="full">Three ways to run it on the day.</p>
+    <p data-profile="short">What to take away.</p>
+  </aside>
+</section>

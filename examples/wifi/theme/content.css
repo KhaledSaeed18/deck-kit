@@ -1,0 +1,429 @@
+/* Content blocks in the mcce neo-brutalist language. Every value comes from tokens. */
+@layer engine, theme;
+
+@layer theme {
+  .slide > .columns,
+  .slide > .steps,
+  .slide > .timeline,
+  .slide > .takeaways {
+    align-self: stretch;
+  }
+
+  .slide > svg[role="img"] {
+    width: 100%;
+    height: auto;
+    max-height: var(--dgm-max-h);
+  }
+
+  .slide h3 {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-head);
+    font-size: var(--fs-h4);
+    font-weight: 400;
+    letter-spacing: var(--tracking-head);
+    line-height: var(--lh-tight);
+  }
+
+  .slide figure {
+    margin: 0 0 var(--space-3);
+  }
+
+  .slide figcaption {
+    margin-top: var(--space-1);
+    font-size: var(--fs-small);
+    font-weight: 600;
+  }
+
+  /* Cards: white box, ink border, hard shadow. Their first heading is a tilted patch sticker. */
+  .slide .columns > article {
+    position: relative;
+    padding: var(--space-4);
+    background: var(--card);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* In normal flow, pulled up over the card's top edge, so a long label wraps inside the card. */
+  .slide .columns > article > h3:first-child {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: calc(-1 * (var(--space-4) + var(--space-6))) 0 var(--space-3);
+    padding: var(--space-1) var(--space-3);
+    background: var(--patch-1);
+    color: var(--patch-ink);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transform: rotate(var(--tilt));
+  }
+
+  .slide .columns > article:nth-child(2) > h3:first-child {
+    background: var(--patch-4);
+    transform: rotate(var(--tilt-alt));
+  }
+
+  .slide .columns > article:nth-child(3) > h3:first-child {
+    background: var(--patch-5);
+  }
+
+  .slide .columns > article:nth-child(4) > h3:first-child {
+    background: var(--patch-3);
+  }
+
+  .slide .columns > article ul {
+    margin: 0;
+    padding-inline-start: var(--space-4);
+  }
+
+  .slide .columns > article li + li {
+    margin-top: var(--space-1);
+  }
+
+  .slide .columns > article p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Slide 10's right column: the two features as patch chips, no card. */
+  .slide .columns > article:has(> .features:only-child) {
+    padding: var(--space-4) 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .slide .features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Full names of acronyms, set small under or after the term. */
+  .slide .expansion {
+    margin: var(--space-1) 0 0;
+    color: var(--muted-foreground);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    line-height: var(--lh-body);
+  }
+
+  .slide figcaption strong {
+    display: block;
+  }
+
+  .slide .features h3 {
+    display: inline-block;
+    margin: 0;
+    padding: var(--space-2) var(--space-4);
+    background: var(--patch-3);
+    color: var(--patch-ink);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    font-size: var(--fs-h3);
+  }
+
+  .slide .features li:nth-child(2) h3 {
+    background: var(--patch-4);
+  }
+
+  /* Title slide: a large Wi-Fi icon on a tilted patch tile in the right margin. The slide keeps
+   * the engine's absolute full-canvas box, so the tile is positioned against the slide. */
+  .slide[data-type="title"] {
+    padding-right: calc(var(--safe-x) + var(--title-mark-size) + var(--space-12));
+  }
+
+  .slide[data-type="title"] .title-mark {
+    position: absolute;
+    top: 50%;
+    right: calc(var(--safe-x) + var(--space-6));
+    display: grid;
+    place-items: center;
+    width: var(--title-mark-size);
+    height: var(--title-mark-size);
+    background: var(--patch-1);
+    color: var(--patch-ink);
+    border: var(--border-w) solid var(--border);
+    border-radius: calc(var(--radius) * 3);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-50%) rotate(var(--tilt-alt));
+  }
+
+  .slide[data-type="title"] .title-mark .icon {
+    width: 62%;
+    height: 62%;
+    stroke-width: calc(var(--icon-stroke) * 0.8);
+  }
+
+  .slide[data-type="title"] h1 {
+    max-width: 20ch;
+  }
+
+  .slide[data-type="title"] .course,
+  .slide[data-type="title"] .date {
+    margin-bottom: var(--space-1);
+    color: var(--muted-foreground);
+    font-size: var(--fs-lead);
+    font-weight: 600;
+  }
+
+  /* Stickers and chips. */
+  .slide .question,
+  .slide .questions {
+    display: inline-block;
+    margin-top: var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    background: var(--patch-3);
+    color: var(--patch-ink);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    font-family: var(--font-head);
+    font-size: var(--fs-h3);
+    line-height: var(--lh-tight);
+    transform: rotate(var(--tilt));
+  }
+
+  .slide .bands,
+  .slide .bridge {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-head);
+    font-size: var(--fs-body-lg);
+  }
+
+  .slide .bridge {
+    margin-top: var(--space-6);
+  }
+
+  .slide .tag {
+    display: inline-block;
+    margin-inline-start: var(--space-1);
+    padding: 0 var(--space-1);
+    background: var(--patch-3);
+    color: var(--patch-ink);
+    border: var(--border-w-thin) solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-xs);
+    font-family: var(--font-head);
+    font-size: var(--fs-label);
+    letter-spacing: var(--tracking-label);
+    line-height: var(--lh-body);
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  /* Step rows (slide 07) and the security timeline (slide 13): cards in a row. */
+  .slide .steps,
+  .slide .timeline {
+    display: flex;
+    gap: var(--space-8);
+    padding: 0;
+    list-style: none;
+  }
+
+  .slide .steps > li,
+  .slide .timeline > li {
+    position: relative;
+    flex: 1;
+    padding: var(--space-4);
+    background: var(--card);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-head);
+    font-size: var(--fs-h4);
+    line-height: var(--lh-tight);
+  }
+
+  .slide .steps > li:nth-child(1) {
+    background: var(--patch-4);
+  }
+
+  .slide .steps > li:nth-child(2) {
+    background: var(--patch-3);
+  }
+
+  .slide .steps > li:nth-child(3) {
+    background: var(--patch-1);
+  }
+
+  .slide .steps > li:nth-child(4) {
+    background: var(--patch-5);
+  }
+
+  /* The arrow icons sit in the gap between two cards. */
+  .slide .steps .icon,
+  .slide .timeline .icon {
+    position: absolute;
+    top: var(--space-4);
+    left: calc(-0.5 * (var(--space-8) + var(--icon-size)) - var(--border-w));
+  }
+
+  .slide .steps > li {
+    min-height: calc(var(--patch-size) * 3);
+  }
+
+  .slide .timeline strong {
+    display: inline-block;
+    padding: 0 var(--space-2);
+    background: var(--patch-1);
+    border: var(--border-w-thin) solid var(--border);
+    border-radius: var(--radius-sm);
+    font-weight: 400;
+  }
+
+  .slide .timeline > li:nth-child(2) strong {
+    background: var(--patch-3);
+  }
+
+  .slide .timeline > li:nth-child(3) strong {
+    background: var(--patch-5);
+  }
+
+  .slide .timeline > li:nth-child(4) strong {
+    background: var(--patch-4);
+  }
+
+  .slide .timeline .year,
+  .slide .timeline .verdict,
+  .slide .timeline .attack {
+    display: block;
+    margin-top: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  .slide .timeline .year {
+    font-weight: 700;
+  }
+
+  .slide .timeline .attack {
+    margin-top: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+    border: var(--border-w-thin) solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-small);
+    font-weight: 600;
+  }
+
+  .slide .ladder {
+    font-size: var(--fs-small);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .slide .ladder .icon {
+    width: calc(var(--icon-size) * 0.66);
+    height: calc(var(--icon-size) * 0.66);
+  }
+
+  /* Rows outside the talk: hatched and muted. */
+  .slide [data-scope="outside"] > * {
+    background-image: var(--hatch);
+    color: var(--muted-foreground);
+  }
+
+  /* Takeaways: numbered patch tiles. */
+  .slide .takeaways {
+    display: flex;
+    gap: var(--space-4);
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: takeaway;
+    font-size: var(--fs-body);
+    font-weight: 700;
+    line-height: var(--lh-tight);
+  }
+
+  .slide .takeaways > li {
+    display: flex;
+    flex: 1;
+    gap: var(--space-2);
+    align-items: center;
+    counter-increment: takeaway;
+  }
+
+  .slide .takeaways > li::before {
+    content: counter(takeaway);
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: var(--patch-size);
+    height: var(--patch-size);
+    background: var(--patch-1);
+    color: var(--patch-ink);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    font-family: var(--font-head);
+    font-size: var(--fs-h4);
+    font-weight: 400;
+  }
+
+  .slide .takeaways > li:nth-child(2)::before {
+    background: var(--patch-4);
+  }
+
+  .slide .takeaways > li:nth-child(3)::before {
+    background: var(--patch-5);
+  }
+
+  /* References. */
+  .slide .refs {
+    margin: 0;
+    padding: var(--space-4) var(--space-4) var(--space-4) var(--space-8);
+    background: var(--card);
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    font-size: var(--fs-small);
+    line-height: var(--lh-body);
+  }
+
+  .slide .refs li + li {
+    margin-top: var(--space-1);
+  }
+
+  .slide .generations th,
+  .slide .generations td {
+    padding-block: calc(var(--space-1) / 2);
+  }
+
+  .slide .generations td:nth-child(2) {
+    white-space: nowrap;
+  }
+
+  .slide .generations,
+  .slide .table-1-5,
+  .slide .versus {
+    font-size: var(--fs-label);
+  }
+
+  .slide .table-updated {
+    font-size: var(--fs-body);
+  }
+
+  /* The row the talk is about. */
+  .slide tr[data-focus] > * {
+    background: var(--patch-3);
+  }
+
+  .slide .versus {
+    min-width: 60%;
+    font-size: var(--fs-body);
+  }
+}

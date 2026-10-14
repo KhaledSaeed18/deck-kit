@@ -1,0 +1,8 @@
+/*
+ * Font faces, bundled from npm (OFL-1.1) so the deck needs no network. Vite emits the woff2
+ * files into dist/assets; the single-file build inlines them as data URIs.
+ * Archivo Black has one weight: never set bold or italic on --font-head.
+ */
+@import "@fontsource/archivo-black/latin-400.css";
+@import "@fontsource/archivo-black/latin-ext-400.css";
+@import "@fontsource-variable/space-grotesk/wght.css";

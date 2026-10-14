@@ -1,0 +1,67 @@
+<section class="slide" data-type="three-column" data-id="faster" aria-labelledby="faster-h">
+  <h2 id="faster-h">How Wi-Fi gets faster</h2>
+  <div class="columns">
+    <article data-fragment="1">
+      <h3>Wider channels</h3>
+      <p>Highway lanes</p>
+      <p class="ladder">20 <i data-icon="arrow-right"></i> 320 MHz</p>
+    </article>
+    <article data-fragment="2">
+      <h3>More bits per symbol</h3>
+      <p>Needs a strong signal</p>
+      <p class="ladder">6 <i data-icon="arrow-right"></i> 12 bits</p>
+    </article>
+    <article data-fragment="3">
+      <h3>More antennas</h3>
+      <p>Parallel conveyor belts</p>
+      <p class="ladder">Up to 8</p>
+    </article>
+  </div>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Each generation got faster by turning one of three dials.</p>
+      </div>
+      <div data-step="1">
+        <p>Wider channels are more lanes on the highway. Wi-Fi channels grew from 20 MHz to 320 MHz with Wi-Fi 7. The catch: fewer wide channels fit in a band.</p>
+      </div>
+      <div data-step="2">
+        <p>More bits per symbol: each signal carries more data, from 6 bits to 12 bits with Wi-Fi 7. The catch: it needs a strong, clean signal, so top speed only happens close to the router.</p>
+      </div>
+      <div data-step="3">
+        <p>More antennas are parallel conveyor belts: several data streams travel at once on the same channel, up to 8. A phone usually has 2.</p>
+      </div>
+    <h3>Next</h3>
+    <p data-profile="full">Wi-Fi 6 changed the goal, from faster to smarter.</p>
+    <p data-profile="10min">Wi-Fi 6, 7 and 8 together.</p>
+    <h3>Acronyms</h3>
+    <ul class="acronyms">
+      <li><strong>MHz</strong>: megahertz (channel width)</li>
+      <li><strong>QAM</strong>: Quadrature Amplitude Modulation</li>
+      <li><strong>MIMO</strong>: Multiple-Input Multiple-Output</li>
+    </ul>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>What is QAM?</strong> The way bits are packed into each radio symbol: 64-QAM carries 6 bits, 4096-QAM carries 12.</li>
+      <li><strong>Why does my phone not reach the top speed?</strong> It has 2 antennas, not 8, and it is rarely close enough for the densest signal.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <h3>More questions</h3>
+      <ul>
+        <li><strong>How many bits per symbol?</strong> 64-QAM carries 6 bits, 256-QAM 8, 1024-QAM 10, 4096-QAM 12. 1024 to 4096 is only 20% more.</li>
+        <li><strong>How clean must the signal be?</strong> Roughly 25 dB SNR for 256-QAM, 31 dB for 1024-QAM and close to 42 dB for 4096-QAM, so 4096-QAM works only very near the AP.</li>
+        <li><strong>How many streams?</strong> 802.11n up to 4; 802.11ac, ax and be up to 8. A phone with 2 antennas gets 2.</li>
+      </ul>
+      <h3>Nuances</h3>
+      <ul>
+      <li>MIMO streams share the same frequency at the same time; they are separated in space by the antennas and multipath, not by extra spectrum.</li>
+    </ul>
+      <h3>Sources</h3>
+      <ul>
+      <li>Fact log B-09-width-20-40, B-09-width-80-160, B-09-width-320, B-09-qam, B-09-lanes-analogy, B-09-mimo-analogy, B-09-three-dials</li>
+      <li>Cisco Meraki, Wi-Fi 7 (802.11be) Technical Guide (SNR per QAM)</li>
+    </ul>
+    </details>
+  </aside>
+</section>

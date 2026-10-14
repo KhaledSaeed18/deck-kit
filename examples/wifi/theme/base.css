@@ -1,0 +1,196 @@
+@layer engine, theme;
+
+@layer theme {
+  html {
+    background: var(--letterbox);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Paper: cream with the projector-strength dot grid, on every slide (prints too). */
+  .slide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--background);
+    background-image: var(--dot-grid);
+    background-size: var(--dot-size) var(--dot-size);
+    color: var(--foreground);
+    padding: var(--safe-y) var(--safe-x);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  .slide h1,
+  .slide h2 {
+    margin: 0 0 var(--space-6);
+    font-family: var(--font-head);
+    font-weight: 400;
+    letter-spacing: var(--tracking-head);
+    line-height: var(--lh-tight);
+  }
+
+  .slide h1 {
+    font-size: var(--fs-title);
+  }
+
+  .slide h2 {
+    font-size: var(--fs-h2);
+  }
+
+  /* Heading rule: a short orange bar with an ink edge under every slide title. */
+  .slide h2::after {
+    content: "";
+    display: block;
+    width: var(--rule-w);
+    height: var(--rule-h);
+    margin-top: var(--space-3);
+    background: var(--primary);
+    border: var(--border-w-thin) solid var(--border);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .slide p,
+  .slide ul,
+  .slide ol {
+    margin: 0 0 var(--space-4);
+  }
+
+  .slide h1,
+  .slide h2,
+  .slide h3 {
+    text-wrap: balance;
+  }
+
+  .slide p,
+  .slide li,
+  .slide figcaption,
+  .slide caption {
+    text-wrap: pretty;
+  }
+
+  .slide strong {
+    font-weight: 700;
+  }
+
+  /* Tables: a hard-shadow card with an ink header row. */
+  .slide table {
+    border-collapse: separate;
+    border-spacing: 0;
+    background: transparent;
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    font-size: var(--fs-small);
+  }
+
+  .slide thead tr > :first-child {
+    border-top-left-radius: calc(var(--radius) - var(--border-w));
+  }
+
+  .slide thead tr > :last-child {
+    border-top-right-radius: calc(var(--radius) - var(--border-w));
+  }
+
+  .slide caption {
+    caption-side: bottom;
+    padding-top: var(--space-3);
+    color: var(--muted-foreground);
+    font-size: var(--fs-label);
+    text-align: start;
+  }
+
+  /* Cells carry the white, so rows not yet revealed show the paper through the frame. */
+  .slide th,
+  .slide td {
+    background: var(--card);
+    border-bottom: var(--border-w-thin) solid var(--border);
+    border-right: var(--border-w-thin) solid var(--border);
+    padding: var(--space-1) var(--space-2);
+    text-align: start;
+    vertical-align: middle;
+  }
+
+  .slide tr > :last-child {
+    border-right: 0;
+  }
+
+  .slide tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  .slide thead th {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    font-family: var(--font-head);
+    font-weight: 400;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .slide tbody th {
+    font-weight: 700;
+  }
+
+  .slide svg[role="img"] {
+    display: block;
+    max-width: 100%;
+  }
+
+  .icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    stroke-width: var(--icon-stroke);
+    vertical-align: middle;
+  }
+
+  /* Fragment builds: fade and rise into place (motion is zero under reduced motion). */
+  [data-fragment] {
+    transition:
+      opacity var(--dur-step) var(--ease),
+      transform var(--dur-step) var(--ease),
+      visibility var(--dur-step);
+  }
+
+  [data-fragment-state="hidden"] {
+    opacity: 0;
+  }
+
+  .slide article[data-fragment-state="hidden"],
+  .slide li[data-fragment-state="hidden"],
+  .slide p[data-fragment-state="hidden"],
+  .slide figure[data-fragment-state="hidden"] {
+    transform: translateY(var(--rise));
+  }
+
+  /* The newest step gets the accent wash (screen only, so the PDF stays uniform). */
+  @media screen {
+    .slide tr[data-fragment-state="current"] > * {
+      background: var(--accent);
+    }
+  }
+
+  :focus-visible {
+    outline: var(--border-w) solid var(--ring);
+    outline-offset: var(--border-w);
+  }
+
+  kbd {
+    display: inline-block;
+    margin-block: var(--space-1);
+    padding: 0 var(--space-1);
+    background: var(--card);
+    border: var(--border-w-thin) solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-xs);
+    font-family: var(--font-head);
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: var(--patch-3);
+    color: var(--patch-ink);
+  }
+}

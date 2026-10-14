@@ -1,0 +1,46 @@
+/* Per-slide-type layout. */
+@layer engine, theme;
+
+@layer theme {
+  .slide[data-type="title"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .slide .columns {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  /* The content block sits centred in the space under the heading. Doubled class so it
+   * outranks the per-block margins, and last in the cascade. */
+  .slide.slide > h2 + * {
+    margin-top: auto;
+  }
+
+  .slide.slide > :last-child {
+    margin-bottom: auto;
+  }
+
+  /* The title slide centres its whole stack instead (justify-content in the rule above). */
+  .slide.slide[data-type="title"] > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* Room above the cards for the tilted stickers that overhang their top edge. */
+  .slide .columns:has(> article > h3:first-child) {
+    padding-top: var(--space-6);
+  }
+
+  .slide[data-type="timeline"] h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .slide[data-type="references"] .columns {
+    margin-bottom: var(--space-4);
+  }
+}

@@ -1,0 +1,100 @@
+/* Diagram classes (dgm-*): ink strokes, patch fills, Archivo for labels that name things. */
+@layer engine, theme;
+
+@layer theme {
+  .dgm-zone {
+    stroke: var(--border);
+    stroke-width: var(--dgm-stroke);
+  }
+
+  .dgm-zone-1 {
+    fill: var(--dgm-zone-1);
+  }
+
+  .dgm-zone-2 {
+    fill: var(--dgm-zone-2);
+  }
+
+  .dgm-zone-3 {
+    fill: var(--dgm-zone-3);
+  }
+
+  .dgm-zone-4 {
+    fill: var(--dgm-zone-4);
+  }
+
+  .dgm-node {
+    fill: var(--card);
+    stroke: var(--border);
+    stroke-width: var(--dgm-stroke);
+  }
+
+  .dgm-ap {
+    fill: var(--patch-1);
+  }
+
+  .dgm-sta {
+    fill: var(--patch-4);
+  }
+
+  .dgm-link {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: var(--dgm-stroke);
+    stroke-linecap: square;
+  }
+
+  .dgm-ds {
+    stroke-dasharray: var(--dgm-dash);
+  }
+
+  .dgm-label {
+    fill: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--fs-small);
+    font-weight: 600;
+  }
+
+  .dgm-label-strong {
+    font-family: var(--font-head);
+    font-weight: 400;
+    letter-spacing: var(--tracking-label);
+  }
+
+  .dgm-coverage .dgm-label-strong {
+    font-size: var(--fs-h4);
+  }
+
+  .dgm-truck-box {
+    fill: var(--card);
+    stroke: var(--border);
+    stroke-width: var(--dgm-stroke);
+  }
+
+  .dgm-truck-cab {
+    fill: var(--patch-3);
+    stroke: var(--border);
+    stroke-width: var(--dgm-stroke);
+  }
+
+  .dgm-wheel {
+    fill: var(--foreground);
+  }
+
+  .dgm-parcel {
+    stroke: var(--border);
+    stroke-width: var(--dgm-stroke-thin);
+  }
+
+  .dgm-parcel-1 {
+    fill: var(--patch-1);
+  }
+
+  .dgm-parcel-2 {
+    fill: var(--patch-4);
+  }
+
+  .dgm-parcel-3 {
+    fill: var(--patch-5);
+  }
+}

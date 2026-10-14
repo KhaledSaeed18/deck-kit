@@ -1,0 +1,89 @@
+<section class="slide" data-type="diagram" data-id="coverage" data-wordcount="exempt" aria-labelledby="coverage-h">
+  <h2 id="coverage-h">Classifying wireless networks by coverage</h2>
+  <svg role="img" viewBox="0 0 1728 780" class="dgm-coverage">
+    <title>Coverage classes by reach: WPAN inside WLAN inside WMAN inside WWAN</title>
+    <desc>WPAN, about 10 m, IEEE 802.15: Zigbee, UWB; Bluetooth comes from the Bluetooth SIG. WLAN, about 100 m, IEEE 802.11: Wi-Fi. WMAN, km to tens of km, IEEE 802.16: WiMAX. WWAN, nationwide, 3GPP: 2G to 5G cellular. The nesting shows reach only.</desc>
+    <g data-fragment="4">
+      <rect class="dgm-zone dgm-zone-4" x="0" y="0" width="1728" height="780" rx="24" />
+      <text class="dgm-label dgm-label-strong" x="40" y="58">WWAN</text>
+      <text class="dgm-label" x="40" y="96">nationwide · 3GPP · 2G–5G cellular</text>
+    </g>
+    <g data-fragment="3">
+      <rect class="dgm-zone dgm-zone-3" x="30" y="120" width="1380" height="630" rx="20" />
+      <text class="dgm-label dgm-label-strong" x="70" y="178">WMAN</text>
+      <text class="dgm-label" x="70" y="216">km–tens of km · IEEE 802.16 · WiMAX</text>
+    </g>
+    <g data-fragment="2">
+      <rect class="dgm-zone dgm-zone-2" x="60" y="240" width="1000" height="480" rx="16" />
+      <text class="dgm-label dgm-label-strong" x="100" y="298">WLAN</text>
+      <text class="dgm-label" x="100" y="336">about 100 m · IEEE 802.11 · Wi-Fi</text>
+    </g>
+    <g data-fragment="1">
+      <rect class="dgm-zone dgm-zone-1" x="90" y="360" width="640" height="330" rx="12" />
+      <text class="dgm-label dgm-label-strong" x="130" y="418">WPAN</text>
+      <text class="dgm-label" x="130" y="456">about 10 m · IEEE 802.15</text>
+      <text class="dgm-label" x="130" y="494">Zigbee, UWB; Bluetooth (Bluetooth SIG)</text>
+    </g>
+  </svg>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>We group wireless networks by how far they reach. Reach decides the trade-offs: power, speed, cost, and whether you need a licence.</p>
+      </div>
+      <div data-step="1">
+        <p><strong>WPAN</strong>, Wireless <strong>P</strong>ersonal Area Network: a few metres around you, about 10 m. Bluetooth is the best-known example.</p>
+      </div>
+      <div data-step="2">
+        <p><strong>WLAN</strong>, Wireless <strong>L</strong>ocal Area Network: a building or campus, about 100 m. This is Wi-Fi, IEEE 802.11, and it's our focus today.</p>
+      </div>
+      <div data-step="3">
+        <p><strong>WMAN</strong>, Wireless <strong>M</strong>etropolitan Area Network: a city, kilometres. WiMAX was the example; it lost to 4G LTE.</p>
+      </div>
+      <div data-step="4">
+        <p><strong>WWAN</strong>, Wireless <strong>W</strong>ide Area Network: the whole country. That's cellular, 2G to 5G.</p>
+        <p>Bigger reach usually means licensed spectrum and an operator; small reach means anyone can set it up.</p>
+        <p>The boxes show reach, not "a kind of": Bluetooth is not a small Wi-Fi.</p>
+      </div>
+    <h3>Next</h3>
+    <p>Who decides what counts as Wi-Fi?</p>
+    <h3>Acronyms</h3>
+    <ul class="acronyms">
+      <li><strong>WPAN</strong>: Wireless Personal Area Network</li>
+      <li><strong>WLAN</strong>: Wireless Local Area Network</li>
+      <li><strong>WMAN</strong>: Wireless Metropolitan Area Network (metro = a city)</li>
+      <li><strong>WWAN</strong>: Wireless Wide Area Network</li>
+      <li><strong>IEEE</strong>: Institute of Electrical and Electronics Engineers</li>
+      <li><strong>3GPP</strong>: 3rd Generation Partnership Project</li>
+      <li><strong>LTE</strong>: Long Term Evolution (4G)</li>
+    </ul>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Wi-Fi vs WLAN?</strong> WLAN is the category; Wi-Fi is the certified brand of 802.11 WLAN.</li>
+      <li><strong>Is Bluetooth a kind of Wi-Fi?</strong> No. It is WPAN, a different standard and purpose, though it shares 2.4 GHz and can interfere.</li>
+      <li><strong>Why did WiMAX lose?</strong> LTE had an upgrade path from GSM/UMTS and operator backing. The CDMA carriers chose LTE too, phones and chips followed LTE, and Intel stepped back in 2010.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <h3>More questions</h3>
+      <ul>
+        <li><strong>Is bigger coverage always licensed?</strong> No, it is a tendency. LoRaWAN is unlicensed and reaches up to 15 km rural; Wi-Fi HaLow reaches about 1 km; 5G can run in unlicensed bands (NR-U, 3GPP Release 16).</li>
+        <li><strong>Is 10 m a hard limit for WPAN?</strong> No, it is the typical "personal operating space" from IEEE 802.15.1. The Bluetooth SIG says range runs from under a metre to over a kilometre.</li>
+        <li><strong>Why do car keys use UWB?</strong> Distance bounding: the key is authenticated over Bluetooth LE, then UWB secure ranging measures the true distance, so a relay attack cannot fake proximity (CCC Digital Key 3.0).</li>
+        <li><strong>Is WiMAX dead?</strong> The big public networks closed (Yota Moscow 2012, Sprint 2015); WiMAX-derived systems live on in niches such as airport surface links (AeroMACS).</li>
+      </ul>
+      <h3>Sources</h3>
+      <ul>
+      <li>Fact log A-03-wpan-range, A-03-wlan-range, A-03-wman-range, A-03-wwan-nationwide, A-03-nested-subset</li>
+      <li>TechTarget, "The 4 different types of wireless networks", 2025</li>
+    </ul>
+      <ul>
+      <li>Fact log A-05-bt-sig-now-802151-withdrawn, A-05-zigbee-thread-802154, A-05-uwb-use, A-05-wimax-reasons, A-05-wimax-wg-status, A-LEC24-wimax-4g</li>
+      <li>IEEE 802.15.1-2005 (Inactive-Withdrawn 2018-05-07); Bluetooth SIG, "About us"</li>
+    </ul>
+      <h3>Bluetooth history</h3>
+      <p>The Bluetooth SIG has written Bluetooth since 1.0 (1999). IEEE adapted v1.1 as 802.15.1-2002/2005 and withdrew it in 2018. So it was never "originally IEEE".</p>
+      <h3>Link to Lecture 1</h3>
+      <p>Lecture 1, slide 24 lists WiMAX under 4G, but only the later 802.16m (WirelessMAN-Advanced) was designated IMT-Advanced by the ITU (January 2012).</p>
+    </details>
+  </aside>
+</section>

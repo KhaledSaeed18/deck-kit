@@ -1,0 +1,86 @@
+<section class="slide" data-type="three-column" data-id="bands" aria-labelledby="bands-h">
+  <h2 id="bands-h">Wi-Fi's three bands</h2>
+  <div class="columns">
+    <article data-fragment="1">
+      <h3>2.4 GHz</h3>
+      <ul>
+        <li>Longest range</li>
+        <li>Most crowded</li>
+      </ul>
+    </article>
+    <article data-fragment="2">
+      <h3>5 GHz</h3>
+      <ul>
+        <li>Faster</li>
+        <li>Less crowded</li>
+      </ul>
+    </article>
+    <article data-fragment="3">
+      <h3>6 GHz</h3>
+      <ul>
+        <li>Fastest, cleanest</li>
+        <li>Not yet open in Lebanon</li>
+      </ul>
+    </article>
+  </div>
+  <p class="bridge" data-fragment="4">Higher frequency: faster, but shorter range</p>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Wi-Fi works in three radio bands. You often see them on your router: 2.4, 5 and 6 GHz.</p>
+      </div>
+      <div data-step="1">
+        <p>2.4 GHz reaches the farthest and goes through walls best. But it's crowded: only 3 channels that don't overlap (1, 6 and 11), and microwave ovens and Bluetooth use the same band.</p>
+      </div>
+      <div data-step="2">
+        <p>5 GHz is faster and less crowded, but its range is shorter.</p>
+      </div>
+      <div data-step="3">
+        <p>6 GHz is the newest band: the cleanest and the fastest, used by Wi-Fi 6E, 7 and 8.</p>
+        <p>In Lebanon it is not open yet: the regulator, TRA, asked for public comments in 2026, and there is no decision so far.</p>
+      </div>
+      <div data-step="4">
+        <p>The simple rule: higher frequency means more speed but shorter range.</p>
+        <p>All three bands are licence-free: no operator needed, anyone can install a router.</p>
+      </div>
+    <h3>Next</h3>
+    <p data-profile="full">So how do many devices share one channel?</p>
+    <p data-profile="10min">On to the generations.</p>
+    <h3>Acronyms</h3>
+    <ul class="acronyms">
+      <li><strong>GHz</strong>: gigahertz, the radio frequency</li>
+      <li><strong>TRA</strong>: Telecommunications Regulatory Authority (Lebanon)</li>
+    </ul>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Why is 2.4 GHz slower but reaches farther?</strong> Lower frequencies attenuate less; but the band is narrow and crowded.</li>
+      <li><strong>Wi-Fi 6 vs 6E?</strong> Same technology; 6E adds the 6 GHz band, subject to national regulation.</li>
+      <li><strong>Is Wi-Fi radiation harmful?</strong> Non-ionizing, low power, within regulatory limits; research inconclusive (matching Lecture 1).</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <h3>More questions</h3>
+      <ul>
+        <li><strong>Is Wi-Fi full-duplex?</strong> No, half-duplex. Full-duplex Wi-Fi is a research topic because of self-interference (Lecture 1, slide 7: the full-duplex figure's "Self-Interference" label).</li>
+        <li><strong>Do walls really block higher frequencies more?</strong> It depends on the material. In the 3GPP channel model concrete loses about 15 dB at 2.4 GHz and about 25 dB at 5 GHz, while glass and wood change by under 1 dB.</li>
+        <li><strong>Where does home mesh Wi-Fi fit?</strong> Several APs forming one network, so closest to an ESS with wireless backhaul. It is not ad hoc (IBSS).</li>
+      </ul>
+      <h3>Lecture 1 link (architecture)</h3><p>Slide 28: a router (access point) and its devices form a BSS; several access points joined by a wired network form an ESS; devices talking directly form an ad hoc network (IBSS).</p>
+      <h3>Nuances</h3>
+      <ul>
+      <li>1, 6, 11 is the 11-channel plan; most of the world allows 13 channels.</li>
+      <li>6 GHz range is shorter partly because the rules allow less power.</li>
+    </ul>
+      <h3>Local context</h3>
+      <p>Lebanon has not opened 6 GHz. TRA consulted in April 2026 on the lower part of the band, 5925 to 6425 MHz, for licence-free indoor use (the upper part, 6425 to 7125 MHz, is still undecided between Wi-Fi and mobile networks) and comments closed on 28 August 2026, with no decision as of October 2026. Here, Wi-Fi 6E and 7 run on 2.4 and 5 GHz at up to 160 MHz.</p>
+    <p>Careful with "all unlicensed" here: the same TRA consultation shows Lebanon handles 5 GHz under a light-licence framework, at least for outdoor and higher-power use.</p>
+      <h3>Link to Lecture 1</h3>
+      <p>Slide 28: the infrastructure figure (STA, BSS, AP, distribution system, portal, ESS) and the ad hoc figure (IBSS). Slide 13: interference, since Bluetooth and WLAN share the same band. Slides 4 to 8 (duplexing): Wi-Fi is half-duplex on one shared channel, like the walkie-talkie on slide 6 (also on slide 07, which the 10-minute talk skips).</p>
+      <h3>Sources</h3>
+      <ul>
+      <li>Fact log A-06-bss-ess-ibss-defs, A-06-2g4-three-channels, A-06-interference-mw-bt, A-06-walls-attenuation, A-06-lebanon-6ghz</li>
+      <li>TRA Lebanon, "Spectrum Refarming: Broadband Context and Framework" consultation, 30 Apr 2026</li>
+    </ul>
+    </details>
+  </aside>
+</section>
