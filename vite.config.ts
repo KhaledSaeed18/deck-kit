@@ -9,10 +9,15 @@ const root = import.meta.dirname;
  * Build modes:
  * - default: your deck (src/deck.ts, src/slides, src/theme) to dist/
  * - single: your deck as one self-contained dist-single/deck.html
- * - example / example-single: the bundled Wi-Fi example deck (examples/wifi), the fixture the
- *   engine e2e suite runs against, so engine tests never depend on your own slides.
+ * - example / example-single: the Wi-Fi example deck (examples/wifi), the fixture the engine
+ *   e2e suite runs against, so engine tests never depend on your own slides. Output: dist-example/
+ * - example-<name> / example-<name>-single: any other example, e.g. example-crypto for
+ *   examples/crypto. Output: dist-example-<name>/
  */
-const EXAMPLE = resolve(root, 'examples/wifi');
+function exampleName(mode: string): string | null {
+  if (!mode.startsWith('example')) return null;
+  return mode.replace(/^example-?/, '').replace(/-?single$/, '') || 'wifi';
+}
 
 /** Renames the single-file output to deck.html once it is written. */
 function renameToDeck(outDir: string): Plugin {
@@ -25,12 +30,13 @@ function renameToDeck(outDir: string): Plugin {
   };
 }
 
-/** Points the entry points' deck, content and theme imports at the example deck. */
-function useExampleDeck(): Plugin {
+/** Points the entry points' deck, content and theme imports at an example deck. */
+function useExampleDeck(name: string): Plugin {
+  const dir = resolve(root, 'examples', name);
   const swap = new Map([
-    [resolve(root, 'src/deck.ts'), resolve(EXAMPLE, 'deck.ts')],
-    [resolve(root, 'src/content.ts'), resolve(EXAMPLE, 'content.ts')],
-    [resolve(root, 'src/theme/index.css'), resolve(EXAMPLE, 'theme/index.css')],
+    [resolve(root, 'src/deck.ts'), resolve(dir, 'deck.ts')],
+    [resolve(root, 'src/content.ts'), resolve(dir, 'content.ts')],
+    [resolve(root, 'src/theme/index.css'), resolve(dir, 'theme/index.css')],
   ]);
   return {
     name: 'use-example-deck',
@@ -43,10 +49,11 @@ function useExampleDeck(): Plugin {
 }
 
 export default defineConfig(({ mode }) => {
-  const example = mode.startsWith('example');
+  const example = exampleName(mode);
   const single = mode.endsWith('single');
-  const plugins: Plugin[] = example ? [useExampleDeck()] : [];
-  const outDir = resolve(root, `${example ? 'dist-example' : 'dist'}${single ? '-single' : ''}`);
+  const plugins: Plugin[] = example ? [useExampleDeck(example)] : [];
+  const base = example ? `dist-example${example === 'wifi' ? '' : `-${example}`}` : 'dist';
+  const outDir = resolve(root, `${base}${single ? '-single' : ''}`);
   if (single) {
     return {
       base: './',
@@ -63,6 +70,6 @@ export default defineConfig(({ mode }) => {
     },
     plugins,
     build: { outDir, emptyOutDir: true },
-    preview: { port: example ? 4173 : 4175, strictPort: true },
+    preview: { port: example === 'wifi' ? 4173 : 4175, strictPort: true },
   };
 });

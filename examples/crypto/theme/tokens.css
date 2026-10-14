@@ -1,0 +1,208 @@
+/*
+ * Theme tokens: "the cryptanalyst's notebook". Graph paper with a red margin rule and binder
+ * holes, fountain-pen navy ink, red pencil where the code breaks, a yellow highlighter, and
+ * typewriter ciphertext. Light palette for projectors; every text pair passes WCAG AA.
+ */
+@layer engine, theme;
+
+@layer theme {
+  :root {
+    /* Paper and ink */
+    --paper: #f4eddc;
+    --paper-deep: #e8dec6;
+    --card: #fffcf4;
+    --ink: #1c2742;
+    --ink-soft: #46506a;
+    --ink-wash: #e3eaf3;
+    --pencil: #b3261e;
+    --pencil-wash: #f8e1da;
+    --marker: #f6d24a;
+    --marker-soft: rgb(246 210 74 / 0.62);
+    --brass: #8a6a10;
+    --go: #2e6a4c;
+    --go-wash: #dcebe0;
+    --letterbox: #23201b;
+    --blackout: #000000;
+
+    /* Paper texture: blue grid every 54 px (20 rows on the canvas), red margin, binder holes */
+    --grid: 54px;
+    --grid-line: rgb(66 112 160 / 0.16);
+    --margin-x: 136px;
+    --margin-line: rgb(179 38 30 / 0.5);
+    --hole: radial-gradient(circle, #d9ccb0 0 15px, #cbbd9e 16px 17px, transparent 18px);
+
+    /* Shape */
+    --line: 3px;
+    --line-thin: 2px;
+    --radius: 6px;
+    --lift: 0 1px 0 rgb(28 39 66 / 0.08), 0 18px 30px -16px rgb(28 39 66 / 0.45);
+    --lift-sm: 0 1px 0 rgb(28 39 66 / 0.08), 0 8px 16px -10px rgb(28 39 66 / 0.45);
+    --tilt: -1.2deg;
+    --tilt-alt: 0.9deg;
+    --note-tilt: -3deg;
+
+    /* Hand-drawn underline (local SVG data URI, no network) */
+    --underline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24'%3E%3Cpath d='M4 15 C 60 6, 120 20, 180 11 S 270 8, 296 13' fill='none' stroke='%23b3261e' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E");
+
+    /* Fonts (bundled locally through fonts.css; never remote) */
+    --font-serif: "Fraunces Variable", Georgia, serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    --font-hand: "Caveat Variable", "Bradley Hand", cursive;
+    --serif-display: "opsz" 144, "SOFT" 60, "WONK" 1;
+    --serif-text: "opsz" 36, "SOFT" 30, "WONK" 0;
+
+    /* Type scale for 1920x1080 (floor 24px) */
+    --fs-title: 132px;
+    --fs-h2: 80px;
+    --fs-h3: 46px;
+    --fs-display: 200px;
+    --fs-quote: 64px;
+    --fs-lead: 46px;
+    --fs-body: 36px;
+    --fs-small: 30px;
+    --fs-label: 26px;
+    --fs-cipher: 48px;
+    --fs-note: 56px;
+    --lh-tight: 1.04;
+    --lh-body: 1.38;
+    --tracking-mono: 0.08em;
+    --tracking-label: 0.14em;
+
+    /* Spacing */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-12: 96px;
+    --pad-top: 76px;
+    --pad-right: 120px;
+    --pad-bottom: 72px;
+    --pad-left: 200px;
+    --icon-size: 40px;
+    --icon-stroke: 2.5;
+
+    /* Diagrams */
+    --dgm-stroke: 3px;
+    --dgm-stroke-bold: 5px;
+    --dgm-dash: 12px 9px;
+
+    /* Presenter window (window pixels, not the 1920 canvas) */
+    --presenter-fs: 17px;
+    --presenter-fs-small: 14px;
+    --presenter-fs-notes: 21px;
+    --presenter-fs-heading: 23px;
+    --presenter-fs-timer: 30px;
+    --presenter-icon-size: 20px;
+    --presenter-h: 100vh;
+    --lint-max-h: 40vh;
+
+    /* Paper texture pieces */
+    --margin-rule: linear-gradient(
+      90deg,
+      transparent calc(var(--margin-x) - 5px),
+      var(--margin-line) calc(var(--margin-x) - 5px) calc(var(--margin-x) - 2px),
+      transparent calc(var(--margin-x) - 2px) calc(var(--margin-x) + 3px),
+      var(--margin-line) calc(var(--margin-x) + 3px) calc(var(--margin-x) + 6px),
+      transparent calc(var(--margin-x) + 6px)
+    );
+    --grid-rows: linear-gradient(var(--grid-line) 2px, transparent 2px);
+    --grid-cols: linear-gradient(90deg, var(--grid-line) 2px, transparent 2px);
+    --hole-size: 80px;
+    --hole-x: 28px;
+    --hole-1-y: 200px;
+    --hole-2-y: 500px;
+    --hole-3-y: 800px;
+    --ink-rule: rgb(28 39 66 / 0.35);
+    --marker-faint: rgb(246 210 74 / 0.38);
+    --strike: rgb(179 38 30 / 0.4);
+    --strike-w: 4px;
+    --pencil-line: 4px;
+    --select-w: 6px;
+    --select-gap: 4px;
+    --radius-paper: 3px;
+    --underline-gap: 26px;
+    --underline-size: 300px 24px;
+
+    /* Index cards and tape */
+    --card-line: 55px;
+    --card-rules: repeating-linear-gradient(transparent 0 53px, rgb(66 112 160 / 0.22) 53px 55px);
+    --card-rules-top: 128px;
+    --tape: rgb(232 222 198 / 0.82);
+    --tape-shadow: 0 1px 2px rgb(28 39 66 / 0.18);
+    --tape-top: -18px;
+    --tape-w: 150px;
+    --tape-h: 38px;
+
+    /* Small pieces */
+    --tracking-head: -0.015em;
+    --tracking-cipher-title: 0.22em;
+    --fs-sup: 0.62em;
+    --icon-baseline: -0.12em;
+    --kbd-pad: 0.4em;
+    --kbd-fs: 0.9em;
+    --kbd-shadow: 0 2px 0 var(--ink);
+    --space-hair: 2px;
+    --mark-pad: 0.12em;
+    --cipher-word-gap: 0.35em;
+    --refs-dash-top: 0.62em;
+    --refs-dash-w: 14px;
+    --circle-w: 104px;
+    --circle-h: 96px;
+
+    /* Measures */
+    --measure: 1300px;
+    --measure-quote: 1400px;
+    --measure-wide: 1440px;
+    --measure-title: 1500px;
+    --figure-w: 620px;
+
+    /* More type */
+    --fs-plaintext: 42px;
+    --fs-formula: 52px;
+    --fs-formula-card: 44px;
+    --fs-cipher-title: 64px;
+    --fs-takeaway: 64px;
+    --fs-circle: 72px;
+    --fs-questions: 132px;
+    --fs-help-title: 64px;
+    --fs-help-hint: 44px;
+    --dgm-fs-title: 44px;
+    --dgm-fs-label: 34px;
+    --dgm-fs-letter: 36px;
+    --dgm-fs-letter-sm: 32px;
+    --dgm-fs-small: 26px;
+    --dgm-fs-center: 48px;
+    --dgm-fs-center-big: 96px;
+    --dgm-stroke-hair: 1.5px;
+
+    /* Presenter spacing (window pixels) */
+    --p-1: 2px;
+    --p-2: 6px;
+    --p-3: 8px;
+    --p-4: 10px;
+    --p-5: 12px;
+    --p-6: 14px;
+    --p-7: 18px;
+    --p-8: 22px;
+    --p-9: 34px;
+    --p-margin: 18px;
+    --p-margin-end: 20px;
+    --presenter-fs-hand: 24px;
+    --presenter-fs-help-title: 30px;
+
+    /* Motion and chrome */
+    --dur-step: 260ms;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --rise: 10px;
+    --progress-h: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --dur-step: 0ms;
+      --rise: 0px;
+    }
+  }
+}

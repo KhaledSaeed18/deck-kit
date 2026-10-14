@@ -9,8 +9,9 @@ Builds one talk in this repo, end to end, in phases. The engine (navigation, pre
 sync, print, lint) is finished and never changes; only `src/slides/`, `src/deck.ts`,
 `src/assets/icons.ts`, `src/theme/` and `docs/` do.
 
-Before starting, read `CLAUDE.md` and `docs/authoring.md`. Open two or three slides in
-`examples/wifi/slides/` to see the bar for slides and notes: script per step, Next line,
+Before starting, read `CLAUDE.md` and `docs/authoring.md`. See `examples/crypto/docs/` for what the brief, plan, decisions and fact log look like when
+done. Open two or three slides in
+`examples/wifi/slides/` and `examples/crypto/slides/` to see the bar for slides and notes: script per step, Next line,
 acronyms, likely questions with answers, sources.
 
 **Stop at the end of every phase** and wait for the speaker's review. Never carry on into the
@@ -42,7 +43,8 @@ Check the state first and resume from the right phase:
    speaker gave you, so they can see it.
 3. Copy `docs/templates/decisions.md` and `docs/templates/fact-log.md` into `docs/`.
 4. Set `src/deck.ts` `id` (kebab-case) and `title`, and `package.json` `name` and `description`.
-   Rewrite the README's first paragraph for this talk, keeping the rest.
+   Replace the README's header (the kit's banner, badges and intro paragraphs, down to the
+   sync GIF) with this talk's title and a short description, and keep the rest.
 
 **Stop.** Show the brief's narrative and slide plan; ask for corrections.
 
@@ -81,7 +83,9 @@ answers in `docs/decisions.md`, with date and source, before writing any slide.
    profile skips the following slide.
 4. Diagrams: hand-drawn inline SVG, `dgm-*` classes. Add new classes to
    `src/theme/diagrams.css` with neutral styling that uses the existing tokens.
-5. Icons: add what you use to `src/assets/icons.ts`; remove starter icons nothing uses.
+5. Icons: add what you use to `src/assets/icons.ts`. Before removing one, check it is not used
+   by the engine (`grep -r "'name'" src/engine`, e.g. the timer's play, pause, rotate-ccw) or
+   by an example (`grep -r data-icon examples`).
 6. Update `src/deck.ts`: every profile, in order, with target times that add up to the brief.
 7. Check, and fix until clean:
    - `pnpm check` (typecheck, Biome, unit tests, slide lint)

@@ -1,0 +1,38 @@
+<section class="slide" data-type="two-column" data-id="reduce" aria-labelledby="reduce-h">
+  <h2 id="reduce-h">Reduce early, keep numbers small</h2>
+  <div class="columns">
+    <article data-fragment="1">
+      <h3>The long way</h3>
+      <p class="formula">3<sup>8</sup> = 6561</p>
+      <p class="formula">6561 <span class="eq">≡</span> 2 mod 7</p>
+    </article>
+    <article data-fragment="2">
+      <h3>The smart way</h3>
+      <p class="formula">3<sup>8</sup> = 81 · 81</p>
+      <p class="formula"><span class="eq">≡</span> 4 · 4 = 16 <span class="eq">≡</span> 2 mod 7</p>
+    </article>
+  </div>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Because any member of a class works, we can swap big numbers for small ones mid-calculation. Let's compute 3 to the 8 mod 7.</p>
+      </div>
+      <div data-step="1">
+        <p>The long way: 3 to the 8 is 6561, and dividing that by 7 in your head is not fun. The answer is 2.</p>
+      </div>
+      <div data-step="2">
+        <p>The smart way: 3 to the 8 is 81 times 81. 81 is 4 mod 7, so this is 4 times 4, 16, which is 2. Same answer, and no number bigger than 81.</p>
+        <p>This is not a party trick. RSA raises 2048-bit numbers to 2048-bit powers. Without reducing early the intermediate results would not fit in the universe.</p>
+      </div>
+    <h3>Next</h3>
+    <p>Now back to ciphers: Caesar, written as clock arithmetic.</p>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Can we always divide mod m?</strong> Only by numbers that have an inverse, which happens exactly when gcd(a, m) = 1. 15 has an inverse mod 26 (it is 7); 14 does not, since gcd(14, 26) = 2.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <p>Paar and Pelzl, Ex. 1.8 and 1.10, section 1.4.2. Fact log F-09, F-11.</p>
+    </details>
+  </aside>
+</section>

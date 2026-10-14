@@ -1,0 +1,72 @@
+<section class="slide" data-type="diagram" data-id="clock" data-wordcount="exempt" aria-labelledby="clock-h">
+  <h2 id="clock-h">Arithmetic on a clock</h2>
+  <div class="split">
+    <svg role="img" viewBox="0 0 600 600" class="dgm-clock">
+      <title>A dial of the numbers 0 to 8: starting at 8 and moving 4 steps lands on 3, so 8 plus 4 is 3 mod 9</title>
+      <desc>Nine positions, 0 to 8, around a circle. An arrow starts at 8 and moves forward four steps, wrapping past 0, and stops at 3.</desc>
+      <circle class="dgm-ring" cx="300" cy="300" r="200" />
+      <circle class="dgm-dot" cx="300.0" cy="100.0" r="34" />
+      <text class="dgm-num" x="300.0" y="113.0">0</text>
+      <circle class="dgm-dot" cx="428.6" cy="146.8" r="34" />
+      <text class="dgm-num" x="428.6" y="159.8">1</text>
+      <circle class="dgm-dot" cx="497.0" cy="265.3" r="34" />
+      <text class="dgm-num" x="497.0" y="278.3">2</text>
+      <circle class="dgm-dot dgm-dot-land" cx="473.2" cy="400.0" r="34" />
+      <text class="dgm-num" x="473.2" y="413.0">3</text>
+      <circle class="dgm-dot" cx="368.4" cy="487.9" r="34" />
+      <text class="dgm-num" x="368.4" y="500.9">4</text>
+      <circle class="dgm-dot" cx="231.6" cy="487.9" r="34" />
+      <text class="dgm-num" x="231.6" y="500.9">5</text>
+      <circle class="dgm-dot" cx="126.8" cy="400.0" r="34" />
+      <text class="dgm-num" x="126.8" y="413.0">6</text>
+      <circle class="dgm-dot" cx="103.0" cy="265.3" r="34" />
+      <text class="dgm-num" x="103.0" y="278.3">7</text>
+      <circle class="dgm-dot dgm-dot-start" cx="171.4" cy="146.8" r="34" />
+      <text class="dgm-num" x="171.4" y="159.8">8</text>
+      <g data-fragment="1">
+        <path class="dgm-scribble" d="M 153.5 82.8 A 262 262 0 0 1 539.3 406.6" />
+        <path class="dgm-scribble" d="M 561.1 392.2 L 539.3 406.6 L 535.5 380.8" />
+        <text class="dgm-hand dgm-hand-step" x="195.7" y="23.4">+1</text>
+        <text class="dgm-hand dgm-hand-step" x="404.3" y="23.4">+1</text>
+        <text class="dgm-hand dgm-hand-step" x="564.1" y="157.5">+1</text>
+        <text class="dgm-hand dgm-hand-step" x="600.4" y="363.0">+1</text>
+      </g>
+      <text class="dgm-center" x="300" y="318">mod 9</text>
+    </svg>
+    <div class="working">
+      <p class="formula" data-fragment="1">8 + 4 = 12 <span class="eq">≡</span> 3 mod 9</p>
+      <p class="formula" data-fragment="2">42 = 4 · 9 + <span class="mark">6</span></p>
+      <p class="formula" data-fragment="2">42 <span class="eq">≡</span> 6 mod 9</p>
+      <p class="margin-note" data-fragment="3">keep only the remainder</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Every cipher in this course does arithmetic in a finite set. You already know one: a clock. Keep adding hours and you never leave 1 to 12.</p>
+        <p>Here is a clock with nine positions, 0 to 8.</p>
+      </div>
+      <div data-step="1">
+        <p>8 plus 4 is 12, but on this dial you walk four steps from 8, wrap past 0, and land on 3. We write 8 plus 4 is congruent to 3 mod 9.</p>
+      </div>
+      <div data-step="2">
+        <p>The rule: divide by the modulus and keep the remainder. 42 is 4 times 9 plus 6, so 42 is congruent to 6 mod 9.</p>
+      </div>
+      <div data-step="3">
+        <p>Formally, a is congruent to r mod m when m divides a minus r. That has a surprise: the remainder is not unique. 12, 3, 21 and minus 6 are all the same thing mod 9. They form one equivalence class.</p>
+        <p>So in practice we reduce: keep only the remainder, here 0 to 8.</p>
+      </div>
+    <h3>Next</h3>
+    <p data-profile="full">That surprise turns out to be very useful.</p>
+    <p data-profile="short">Caesar's cipher is exactly this clock with 26 positions.</p>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Which remainder do we write down?</strong> By convention the one from 0 to m minus 1, but any member of the class gives the same final answer.</li>
+      <li><strong>What is Z<sub>m</sub>?</strong> The integer ring: the numbers 0 to m minus 1 with addition and multiplication mod m.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <p>Paar and Pelzl, Ex. 1.4 to 1.7, Definition 1.4.1. Fact log F-10.</p>
+    </details>
+  </aside>
+</section>

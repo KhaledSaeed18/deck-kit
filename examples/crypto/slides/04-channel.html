@@ -1,0 +1,62 @@
+<section class="slide" data-type="diagram" data-id="channel" aria-labelledby="channel-h">
+  <h2 id="channel-h">Alice, Bob and Oscar</h2>
+  <svg role="img" viewBox="0 0 1600 600" class="dgm-channel">
+    <title>Alice encrypts x into y with key k, sends y over an insecure channel where Oscar listens, and Bob decrypts it back to x</title>
+    <desc>Alice passes plaintext x to the encryption function e, which outputs ciphertext y. y crosses an insecure channel to the decryption function d, which gives x to Bob. Oscar taps the insecure channel. The key k reaches both e and d over a separate secure channel.</desc>
+    <rect class="dgm-box" x="20" y="250" width="200" height="110" rx="10" />
+    <text class="dgm-title" x="120" y="318">Alice</text>
+    <rect class="dgm-box" x="1380" y="250" width="200" height="110" rx="10" />
+    <text class="dgm-title" x="1480" y="318">Bob</text>
+    <g data-fragment="1">
+      <path class="dgm-line" d="M 220 305 H 330 M 312 291 L 330 305 L 312 319" />
+      <text class="dgm-var" x="275" y="285">x</text>
+      <rect class="dgm-box dgm-box-fn" x="330" y="255" width="120" height="100" rx="10" />
+      <text class="dgm-title" x="390" y="320">e</text>
+      <path class="dgm-line" d="M 450 305 H 1150 M 1132 291 L 1150 305 L 1132 319" />
+      <text class="dgm-var" x="800" y="285">y</text>
+      <text class="dgm-hand" x="800" y="356">insecure channel</text>
+      <rect class="dgm-box dgm-box-fn" x="1150" y="255" width="120" height="100" rx="10" />
+      <text class="dgm-title" x="1210" y="320">d</text>
+      <path class="dgm-line" d="M 1270 305 H 1380 M 1362 291 L 1380 305 L 1362 319" />
+      <text class="dgm-var" x="1325" y="285">x</text>
+    </g>
+    <g data-fragment="2">
+      <path class="dgm-line dgm-line-dashed dgm-line-attack" d="M 800 375 V 470" />
+      <rect class="dgm-box dgm-box-attack" x="680" y="470" width="240" height="100" rx="10" />
+      <text class="dgm-title" x="800" y="535">Oscar</text>
+      <text class="dgm-hand dgm-hand-red" x="1080" y="530">listening</text>
+    </g>
+    <g data-fragment="3">
+      <rect class="dgm-box dgm-box-key" x="720" y="20" width="160" height="90" rx="10" />
+      <text class="dgm-title" x="800" y="80">k</text>
+      <path class="dgm-line dgm-line-key" d="M 720 65 H 390 V 255 M 376 237 L 390 255 L 404 237 M 880 65 H 1210 V 255 M 1196 237 L 1210 255 L 1224 237" />
+      <text class="dgm-hand" x="560" y="140">secure channel</text>
+    </g>
+  </svg>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Every crypto story has the same cast. Alice wants to send Bob a message.</p>
+      </div>
+      <div data-step="1">
+        <p>She feeds the plaintext x into an encryption function e and gets ciphertext y. It crosses an insecure channel, which could be the Internet or the air between your phone and a Wi-Fi router. Bob decrypts with d and gets x back.</p>
+      </div>
+      <div data-step="2">
+        <p>Oscar, named to remind you of "opponent", can read everything on that channel. Listening like this is called eavesdropping. With a good cipher, y looks like random bits to him.</p>
+      </div>
+      <div data-step="3">
+        <p>The catch: Alice and Bob need the same key k, and it must travel over a secure channel, even a person carrying it. So the problem of sending a message secretly becomes the problem of sending and storing a key secretly.</p>
+      </div>
+    <h3>Next</h3>
+    <p>And here is the counterintuitive part: the algorithm is public.</p>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>What are x, y, k called?</strong> Plaintext or cleartext, ciphertext, and key. All possible keys form the key space.</li>
+      <li><strong>Does encryption also stop Oscar changing the message?</strong> Not on its own. This picture is only about confidentiality; integrity and sender authentication come later in the book.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <p>Paar and Pelzl, Figs. 1.4 and 1.5, section 1.2.1 (redrawn). The book's secure-channel example: pre-shared keys in WPA Wi-Fi.</p>
+    </details>
+  </aside>
+</section>

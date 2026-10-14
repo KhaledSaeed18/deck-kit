@@ -1,0 +1,87 @@
+<section class="slide" data-type="diagram" data-id="frequency" data-wordcount="exempt" aria-labelledby="frequency-h">
+  <h2 id="frequency-h">The letters give it away</h2>
+  <svg role="img" viewBox="0 0 1600 540" class="dgm-frequency">
+    <title>English letter frequencies next to the ciphertext's: q is the most common ciphertext letter, as E is in English</title>
+    <desc>Left, the six most common English letters in percent: E 12.7, T 9.1, A 8.2, O 7.5, I 7.0, N 6.8. Right, the six most common ciphertext letters in percent: q 16.4, h 11.5, c 9.8, r 8.2, b 8.2, w 8.2. The tallest cipher bar, q, stands for E.</desc>
+    <g data-fragment="1">
+      <text class="dgm-caption" x="60" y="40">English, percent</text>
+      <rect class="dgm-bar dgm-bar-plain" x="60" y="190.6" width="80" height="279.4" />
+      <text class="dgm-letter" x="100" y="520">E</text>
+      <text class="dgm-value" x="100" y="176.6">12.7</text>
+      <rect class="dgm-bar dgm-bar-plain" x="170" y="270.7" width="80" height="199.3" />
+      <text class="dgm-letter" x="210" y="520">T</text>
+      <text class="dgm-value" x="210" y="256.7">9.1</text>
+      <rect class="dgm-bar dgm-bar-plain" x="280" y="290.3" width="80" height="179.7" />
+      <text class="dgm-letter" x="320" y="520">A</text>
+      <text class="dgm-value" x="320" y="276.3">8.2</text>
+      <rect class="dgm-bar dgm-bar-plain" x="390" y="304.8" width="80" height="165.2" />
+      <text class="dgm-letter" x="430" y="520">O</text>
+      <text class="dgm-value" x="430" y="290.8">7.5</text>
+      <rect class="dgm-bar dgm-bar-plain" x="500" y="316.7" width="80" height="153.3" />
+      <text class="dgm-letter" x="540" y="520">I</text>
+      <text class="dgm-value" x="540" y="302.7">7.0</text>
+      <rect class="dgm-bar dgm-bar-plain" x="610" y="321.5" width="80" height="148.5" />
+      <text class="dgm-letter" x="650" y="520">N</text>
+      <text class="dgm-value" x="650" y="307.5">6.8</text>
+    </g>
+    <g data-fragment="2">
+      <text class="dgm-caption" x="900" y="40">This ciphertext, percent</text>
+      <rect class="dgm-bar dgm-bar-cipher" x="900" y="109.3" width="80" height="360.7" />
+      <text class="dgm-letter" x="940" y="520">q</text>
+      <text class="dgm-value" x="940" y="95.3">16.4</text>
+      <rect class="dgm-bar dgm-bar-cipher" x="1010" y="217.5" width="80" height="252.5" />
+      <text class="dgm-letter" x="1050" y="520">h</text>
+      <text class="dgm-value" x="1050" y="203.5">11.5</text>
+      <rect class="dgm-bar dgm-bar-cipher" x="1120" y="253.6" width="80" height="216.4" />
+      <text class="dgm-letter" x="1160" y="520">c</text>
+      <text class="dgm-value" x="1160" y="239.6">9.8</text>
+      <rect class="dgm-bar dgm-bar-cipher" x="1230" y="289.7" width="80" height="180.3" />
+      <text class="dgm-letter" x="1270" y="520">r</text>
+      <text class="dgm-value" x="1270" y="275.7">8.2</text>
+      <rect class="dgm-bar dgm-bar-cipher" x="1340" y="289.7" width="80" height="180.3" />
+      <text class="dgm-letter" x="1380" y="520">b</text>
+      <text class="dgm-value" x="1380" y="275.7">8.2</text>
+      <rect class="dgm-bar dgm-bar-cipher" x="1450" y="289.7" width="80" height="180.3" />
+      <text class="dgm-letter" x="1490" y="520">w</text>
+      <text class="dgm-value" x="1490" y="275.7">8.2</text>
+    </g>
+    <path class="dgm-line dgm-line-base" d="M 40 470 H 1560" />
+    <g data-fragment="3">
+      <path class="dgm-scribble" d="M 862 120 C 700 40, 300 60, 110 150" />
+      <path class="dgm-scribble" d="M 128 128 L 108 152 L 136 158" />
+      <text class="dgm-hand dgm-hand-red" x="500" y="66">q must be E</text>
+    </g>
+  </svg>
+  <p class="plaintext" data-fragment="4">WE WILL MEET IN THE MIDDLE OF THE LIBRARY AT NOON</p>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Here is the weakness. The same plaintext letter always becomes the same ciphertext letter, so the statistics of the language survive encryption.</p>
+      </div>
+      <div data-step="1">
+        <p>In English, E is about 13 percent of all letters, then T, then A.</p>
+      </div>
+      <div data-step="2">
+        <p>Now count the ciphertext from the start of the talk. One letter, q, clearly stands out.</p>
+      </div>
+      <div data-step="3">
+        <p>So q is almost certainly E. Add letter pairs, like Q almost always followed by U, and short words like THE and AND, and the table falls apart one letter at a time.</p>
+      </div>
+      <div data-step="4">
+        <p>And there it is: "We will meet in the middle of the library at noon. All arrangements are made." No key search at all.</p>
+        <p>The lesson: a large key space is necessary but not enough. A good cipher must hide the statistics of the plaintext.</p>
+      </div>
+    <h3>Next</h3>
+    <p>This was a maths attack. Real attackers have easier options.</p>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Does this work on short texts?</strong> Surprisingly well. Even short texts are close to the language's distribution, and pairs and short words fill the gaps. This text has only 61 letters.</li>
+      <li><strong>Why is h second here, not T?</strong> Short texts wander. h is A; the next three are tied at five each, so you never rely on exact ranks, only on the overall shape.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <p>English: Table 1.1 (E 12.70, T 9.06, A 8.17, O 7.51, I 6.97, N 6.75). Ciphertext: 61 letters; q 10, h 7, c 6, r, b, w 5 each; q is E, h is A, c is L, r is T, b is N, w is R. Fact log F-01, F-02, F-04.</p>
+      <p>This is an analytical attack: it exploits the inner structure of the cipher, unlike brute force.</p>
+    </details>
+  </aside>
+</section>

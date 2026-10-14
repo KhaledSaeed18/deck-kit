@@ -1,0 +1,52 @@
+<section class="slide" data-type="comparison-table" data-id="key-bits" data-wordcount="exempt" aria-labelledby="key-bits-h">
+  <h2 id="key-bits-h">How many key bits are enough?</h2>
+  <table>
+    <caption>Brute force against a symmetric cipher (Paar and Pelzl, Table 1.2)</caption>
+    <thead>
+      <tr><th scope="col">Key length</th><th scope="col">Holds for</th></tr>
+    </thead>
+    <tbody>
+      <tr data-fragment="1"><th scope="row">56 to 64 bits</th><td>Hours or days</td></tr>
+      <tr data-fragment="2" data-focus><th scope="row">112 to 128 bits</th><td>Decades, without quantum computers</td></tr>
+      <tr data-fragment="3"><th scope="row">256 bits</th><td>Decades, even with known quantum algorithms</td></tr>
+    </tbody>
+  </table>
+  <p class="margin-note" data-fragment="4">only if brute force is the best attack</p>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Suppose the maths is sound and brute force is the best attack. How long should the key be?</p>
+      </div>
+      <div data-step="1">
+        <p>56 to 64 bits falls in hours or days. The old DES standard used 56 bits.</p>
+      </div>
+      <div data-step="2">
+        <p>112 to 128 bits holds for decades. This is where AES-128 sits, and in 2026 it is still approved by NIST.</p>
+      </div>
+      <div data-step="3">
+        <p>256 bits holds even against the quantum algorithms we know today, which is why it is the conservative long-term choice.</p>
+      </div>
+      <div data-step="4">
+        <p>Two warnings. The table only counts if brute force is the best attack; the substitution cipher had 88 bits and fell anyway. And symmetric and public-key lengths are not comparable: 80 symmetric bits are roughly 1024-bit RSA.</p>
+      </div>
+    <h3>Next</h3>
+    <p data-profile="full">And the attacker's computers keep getting cheaper.</p>
+    <p data-profile="short">Now the maths that every one of these ciphers is built on.</p>
+    <h3>Acronyms</h3>
+    <ul class="acronyms">
+      <li><strong>AES</strong>: Advanced Encryption Standard</li>
+      <li><strong>DES</strong>: Data Encryption Standard</li>
+      <li><strong>RSA</strong>: Rivest, Shamir, Adleman</li>
+      <li><strong>NIST</strong>: US National Institute of Standards and Technology</li>
+    </ul>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>Do quantum computers break AES-128 now?</strong> No. Quantum computers exist in 2026, but none breaks AES or RSA. Grover's algorithm at best halves the effective key length in theory, and it parallelises badly. The real quantum worry is public-key crypto, which is why NIST standardised ML-KEM and ML-DSA in 2024.</li>
+      <li><strong>The book says quantum computers may never exist?</strong> It was written in 2010. Small, noisy ones now exist; none is anywhere near breaking these ciphers.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <p>Paar and Pelzl, Table 1.2 and section 1.6. 2026 status: NIST SP 800-57 Part 1 Rev. 5; SP 800-131A Rev. 3 draft (128-bit minimum after 2030); NIST IR 8547 draft; FIPS 203 and 204. Some of these were still drafts at the time of writing: check csrc.nist.gov before quoting them as final. Fact log F-16, F-17, F-19.</p>
+    </details>
+  </aside>
+</section>

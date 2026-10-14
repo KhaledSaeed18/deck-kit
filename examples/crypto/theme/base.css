@@ -1,0 +1,192 @@
+@layer engine, theme;
+
+@layer theme {
+  html {
+    background: var(--letterbox);
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-variation-settings: var(--serif-text);
+    font-variant-numeric: lining-nums tabular-nums;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* A notebook page: grid paper, a red double margin rule and three binder holes. */
+  .slide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--pad-top) var(--pad-right) var(--pad-bottom) var(--pad-left);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      var(--hole), var(--hole), var(--hole), var(--margin-rule), var(--grid-rows), var(--grid-cols);
+    background-size:
+      var(--hole-size) var(--hole-size),
+      var(--hole-size) var(--hole-size),
+      var(--hole-size) var(--hole-size),
+      100% 100%,
+      100% var(--grid),
+      var(--grid) 100%;
+    background-position:
+      var(--hole-x) var(--hole-1-y),
+      var(--hole-x) var(--hole-2-y),
+      var(--hole-x) var(--hole-3-y),
+      0 0,
+      0 0,
+      0 0;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  .slide h1,
+  .slide h2,
+  .slide h3 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-variation-settings: var(--serif-display);
+    font-weight: 620;
+    letter-spacing: var(--tracking-head);
+    line-height: var(--lh-tight);
+    text-wrap: balance;
+  }
+
+  .slide h1 {
+    font-size: var(--fs-title);
+  }
+
+  /* Slide titles get a red-pencil underline, drawn by hand. */
+  .slide h2 {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--underline-gap);
+    font-size: var(--fs-h2);
+    background: var(--underline) left bottom / var(--underline-size) no-repeat;
+  }
+
+  .slide h3 {
+    font-size: var(--fs-h3);
+  }
+
+  .slide p,
+  .slide ul,
+  .slide ol {
+    margin: 0 0 var(--space-3);
+  }
+
+  .slide p,
+  .slide li,
+  .slide caption {
+    text-wrap: pretty;
+  }
+
+  .slide strong {
+    font-weight: 700;
+  }
+
+  .slide sup,
+  .slide sub {
+    font-size: var(--fs-sup);
+    line-height: 0;
+  }
+
+  .slide cite {
+    font-style: italic;
+  }
+
+  /* Ledger tables: no box, a red rule under the header, dashed pencil lines between rows. */
+  .slide table {
+    border-collapse: collapse;
+    font-size: var(--fs-body);
+  }
+
+  .slide caption {
+    caption-side: bottom;
+    padding-top: var(--space-3);
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    text-align: start;
+  }
+
+  .slide th,
+  .slide td {
+    padding: var(--space-2) var(--space-4) var(--space-2) 0;
+    text-align: start;
+    vertical-align: baseline;
+    border-bottom: var(--line-thin) dashed var(--ink-rule);
+  }
+
+  .slide thead th {
+    padding-bottom: var(--space-2);
+    color: var(--pencil);
+    border-bottom: var(--line) solid var(--pencil);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  .slide tbody th {
+    font-variation-settings: var(--serif-display);
+    font-weight: 620;
+  }
+
+  .slide tr[data-focus] > * {
+    background: linear-gradient(transparent 58%, var(--marker-soft) 58% 90%, transparent 90%);
+  }
+
+  .slide svg[role="img"] {
+    display: block;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    stroke-width: var(--icon-stroke);
+    vertical-align: var(--icon-baseline);
+  }
+
+  /* Builds: ink settles onto the page (no motion under reduced motion). */
+  [data-fragment] {
+    transition:
+      opacity var(--dur-step) var(--ease),
+      transform var(--dur-step) var(--ease),
+      visibility var(--dur-step);
+  }
+
+  [data-fragment-state="hidden"] {
+    opacity: 0;
+  }
+
+  .slide p[data-fragment-state="hidden"],
+  .slide article[data-fragment-state="hidden"],
+  .slide li[data-fragment-state="hidden"] {
+    transform: translateY(var(--rise));
+  }
+
+  :focus-visible {
+    outline: var(--line) solid var(--pencil);
+    outline-offset: var(--line);
+  }
+
+  kbd {
+    display: inline-block;
+    margin-block: var(--space-hair);
+    padding: 0 var(--kbd-pad);
+    background: var(--card);
+    border: var(--line-thin) solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: var(--kbd-shadow);
+    font-family: var(--font-mono);
+    font-size: var(--kbd-fs);
+    font-weight: 500;
+  }
+
+  ::selection {
+    background: var(--marker);
+    color: var(--ink);
+  }
+}

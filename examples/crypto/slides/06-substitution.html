@@ -1,0 +1,36 @@
+<section class="slide" data-type="two-column" data-id="substitution" aria-labelledby="substitution-h">
+  <h2 id="substitution-h">The substitution cipher</h2>
+  <div class="columns">
+    <article>
+      <h3>The rule</h3>
+      <p class="mapping"><span>A <i data-icon="arrow-right"></i> k</span><span>B <i data-icon="arrow-right"></i> d</span><span>C <i data-icon="arrow-right"></i> w</span></p>
+      <p class="example">ABBA becomes <span class="ciphertext">kddk</span></p>
+    </article>
+    <article data-fragment="1">
+      <h3>The key</h3>
+      <p>The whole table</p>
+      <p class="big-number">26!</p>
+      <p>tables, about 2<sup>88</sup></p>
+    </article>
+  </div>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>The oldest idea in the book: swap every letter for another. A becomes k, B becomes d, and so on. The pop group ABBA becomes kddk.</p>
+      </div>
+      <div data-step="1">
+        <p>The key is the whole table. For A there are 26 choices, then 25 for B, and so on: 26 factorial, about 2 to the 88.</p>
+        <p>The obvious attack, brute force, decrypts with every key until the output makes sense. It always works in principle. Whether it works in practice depends only on the size of the key space, and here it is hopeless.</p>
+      </div>
+    <h3>Next</h3>
+    <p>So the cipher must be safe. Unless we stop treating it as a black box.</p>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>What exactly is brute force?</strong> Given a known plaintext and ciphertext pair, try every key until decrypting the ciphertext gives the plaintext. It treats the cipher as a black box.</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <p>Paar and Pelzl, Ex. 1.1, Definition 1.2.1. Fact log F-03, F-05.</p>
+    </details>
+  </aside>
+</section>

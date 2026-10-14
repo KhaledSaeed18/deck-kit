@@ -7,7 +7,7 @@ description: Add, rewrite, split or merge a slide in this deck kit, with notes, 
 
 1. Read `docs/authoring.md`, and `docs/brief.md` plus `docs/decisions.md` if they exist. Look at
    the neighbouring slides in `src/slides/` so the new one matches their voice and notes depth.
-   `examples/wifi/slides/` has a worked example of every slide type.
+   `examples/wifi/slides/` and `examples/crypto/slides/` have worked examples of every slide type.
 2. Settle the content. Facts and numbers must come from the brief, the decisions or
    `docs/fact-log.md`. If the slide needs a new claim, research it (with a source), add it to
    the fact log, and mark the on-screen text `data-todo="new claim, needs approval"` until the

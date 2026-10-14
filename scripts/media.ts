@@ -4,10 +4,11 @@
  * - sync.gif: the deck and presenter windows side by side, moving together (needs ffmpeg)
  * - the illustrations in docs/media/src/*.html, rendered at 2x with the bundled fonts;
  *   lint.html gets real slide-lint output for a deliberately broken slide
- * Run after `pnpm build`. Screens come from src/, so they follow the starter deck and theme.
+ * - examples/<name>-*.png: a few slides and the presenter of each example deck (examples/*)
+ * Run with `pnpm media` (it builds the starter deck and the examples first).
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -50,6 +51,63 @@ async function screens(browser: Browser): Promise<void> {
   await presenter.locator('[data-status][data-linked]').waitFor();
   await presenter.screenshot({ path: resolve(media, 'presenter.png') });
   await context.close();
+}
+
+/** Slides worth showing from each example deck, fully built at the given step. */
+const EXAMPLES: readonly {
+  name: string;
+  mode: string;
+  slides: readonly string[];
+  presenter: string;
+}[] = [
+  {
+    name: 'wifi',
+    mode: 'example',
+    slides: ['#/1', '#/3/4', '#/7/6', '#/12/5'],
+    presenter: '#/7/3',
+  },
+  {
+    name: 'crypto',
+    mode: 'example-crypto',
+    slides: ['#/1/1', '#/7/4', '#/13/2', '#/4/3'],
+    presenter: '#/7/3',
+  },
+];
+
+async function exampleScreens(browser: Browser): Promise<void> {
+  mkdirSync(resolve(media, 'examples'), { recursive: true });
+  for (const [i, example] of EXAMPLES.entries()) {
+    const port = 4178 + i;
+    const url = `http://127.0.0.1:${port}`;
+    const server = await preview({
+      root,
+      mode: example.mode,
+      preview: { port, strictPort: true, host: '127.0.0.1' },
+    });
+    const context = await browser.newContext({ viewport: { width: 1600, height: 900 } });
+    try {
+      const page = await context.newPage();
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      for (const [n, hash] of example.slides.entries()) {
+        await page.goto(`${url}/index.html${hash}`);
+        await settle(page);
+        await page.screenshot({ path: resolve(media, `examples/${example.name}-${n + 1}.png`) });
+      }
+      await page.goto(`${url}/index.html${example.presenter}`);
+      await settle(page);
+      const presenter = await context.newPage();
+      await presenter.emulateMedia({ reducedMotion: 'reduce' });
+      await presenter.goto(`${url}/presenter.html${example.presenter}`);
+      await settle(presenter);
+      await presenter.locator('[data-status][data-linked]').waitFor();
+      await presenter.screenshot({
+        path: resolve(media, `examples/${example.name}-presenter.png`),
+      });
+    } finally {
+      await context.close();
+      await new Promise<void>((done) => server.httpServer.close(() => done()));
+    }
+  }
 }
 
 /** Records both windows while the deck is driven from either side, then stacks them. */
@@ -165,6 +223,7 @@ const server = await preview({
 const browser = await chromium.launch();
 try {
   await screens(browser);
+  await exampleScreens(browser);
   await syncGif(browser);
   await illustrations(browser);
   console.log(`wrote ${media}`);

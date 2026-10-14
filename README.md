@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="#start-a-new-talk"><b>Start a new talk</b></a> ·
+  <a href="#examples">Examples</a> ·
   <a href="#features">Features</a> ·
   <a href="#keys">Keys</a> ·
   <a href="#on-the-day">On the day</a> ·
@@ -58,6 +59,48 @@ open Claude Code in the folder and run:
 
 No Claude? Slides are plain HTML: copy one from `src/slides/`, add it to `src/deck.ts`, and
 follow [`docs/authoring.md`](docs/authoring.md).
+
+## Examples
+
+Two complete talks ship in [`examples/`](examples/), each with its own content, notes and
+design on the same engine. Run them with `pnpm dev:example` and `pnpm dev:example:crypto`.
+
+### Wireless Networks by Coverage and the Evolution of Wi-Fi
+
+A 12:40 course talk with an 8:50 cut (CENG645 Mobile Communication), in a neo-brutalist look: cream paper,
+ink borders, hard shadows, Archivo Black. It is also the fixture the engine's browser tests run
+against.
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/media/examples/wifi-1.png" alt="Wi-Fi deck: title slide"></td>
+    <td width="50%"><img src="docs/media/examples/wifi-2.png" alt="Wi-Fi deck: nested coverage diagram, WPAN inside WLAN inside WMAN inside WWAN"></td>
+  </tr>
+  <tr>
+    <td><img src="docs/media/examples/wifi-3.png" alt="Wi-Fi deck: generations table built row by row"></td>
+    <td><img src="docs/media/examples/wifi-presenter.png" alt="Wi-Fi deck: presenter window with the script for the current step"></td>
+  </tr>
+</table>
+
+### The Key Is the Only Secret
+
+A talk on Chapter 1 of Paar and Pelzl, *Understanding Cryptography*, made end to end with
+`/new-deck` as a test of the kit. The design is a cryptanalyst's notebook: graph paper, a red
+margin, fountain-pen navy, red-pencil notes and typewriter ciphertext (Fraunces, IBM Plex Mono,
+Caveat). The title arrives encrypted and decrypts on the first click; the ciphertext on slide 2
+is broken with letter frequencies on slide 7. Its brief, plan, decisions and fact log are in
+[`examples/crypto/docs/`](examples/crypto/docs/).
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/media/examples/crypto-1.png" alt="Crypto deck: the title in Caesar ciphertext above its decryption"></td>
+    <td width="50%"><img src="docs/media/examples/crypto-2.png" alt="Crypto deck: English letter frequencies against the ciphertext's, with the decrypted sentence"></td>
+  </tr>
+  <tr>
+    <td><img src="docs/media/examples/crypto-3.png" alt="Crypto deck: a Caesar cipher wheel with a shift of three"></td>
+    <td><img src="docs/media/examples/crypto-presenter.png" alt="Crypto deck: presenter window on the notebook theme"></td>
+  </tr>
+</table>
 
 ## Features
 
@@ -142,7 +185,7 @@ src/
   theme/         every visual value, as tokens; the design pass touches only this
   assets/        icons.ts: the lucide icon whitelist
   deck.ts        slide order, profiles, target times
-examples/wifi/   a complete real deck: worked example, and the engine's e2e fixture
+examples/        two complete decks: wifi (also the engine's e2e fixture) and crypto
 docs/            authoring.md, templates/, media/, and per deck: brief, decisions, plan, fact log
 .claude/skills/  new-deck, add-slide, retheme, ship-deck
 ```
@@ -162,7 +205,8 @@ framework and no presentation library. Node 22.12 or later.
 | Command | What it does |
 |---|---|
 | `pnpm dev` | Authoring server with live reload and the slide-lint overlay |
-| `pnpm dev:example` | The bundled example deck |
+| `pnpm dev:example` | The Wi-Fi example deck |
+| `pnpm dev:example:crypto` | The cryptography example deck |
 | `pnpm build` | Static multi-page build in `dist/` (deck and `presenter.html`) |
 | `pnpm build:single` | One self-contained `dist-single/deck.html` that opens by double-click |
 | `pnpm preview` | Serves `dist/` on http://127.0.0.1:4175 |
@@ -172,7 +216,7 @@ framework and no presentation library. Node 22.12 or later.
 | `pnpm test:e2e` | Both suites |
 | `pnpm shots [profile]` | Screenshots of every slide and the presenter in `out/shots/` |
 | `pnpm pdf` | `out/deck-<profile>.pdf` for every profile |
-| `pnpm notes:pdf [profile]` | `out/presenter-script.pdf` |
+| `pnpm notes:pdf [profile]` | `out/presenter-script-<profile>.pdf` |
 | `pnpm notes:md` | `docs/presenter-script.md` |
 | `pnpm media` | Regenerates the images in this README (needs ffmpeg for the GIF) |
 
@@ -180,6 +224,8 @@ First run of the browser tests: `pnpm exec playwright install chromium webkit`.
 
 ## Credits
 
-The example deck, "Wireless Networks by Coverage and the Evolution of Wi-Fi", was made for
-CENG645 Mobile Communication (LIU), Fall 2026. Fonts: Archivo Black and Space Grotesk (SIL OFL
-1.1) through Fontsource. Icons: Lucide (ISC). MIT licensed.
+The example decks were made for university courses at LIU, Fall 2026: "Wireless Networks by
+Coverage and the Evolution of Wi-Fi" (CENG645 Mobile Communication) and "The Key Is the Only
+Secret" (Chapter 1 of Paar and Pelzl, *Understanding Cryptography*, Springer 2010; the book's
+text is not included). Fonts: Archivo Black, Space Grotesk, Fraunces,
+IBM Plex Mono and Caveat (SIL OFL 1.1) through Fontsource. Icons: Lucide (ISC). MIT licensed.

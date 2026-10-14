@@ -1,0 +1,201 @@
+/* Diagram classes (dgm-*): fountain-pen navy lines, red pencil for attacks and annotations. */
+@layer engine, theme;
+
+@layer theme {
+  .dgm-box {
+    fill: var(--card);
+    stroke: var(--ink);
+    stroke-width: var(--dgm-stroke);
+  }
+
+  .dgm-box-root {
+    fill: var(--ink-wash);
+    stroke-width: var(--dgm-stroke-bold);
+  }
+
+  .dgm-box-fn {
+    fill: var(--ink-wash);
+  }
+
+  .dgm-box-attack {
+    fill: var(--pencil-wash);
+    stroke: var(--pencil);
+  }
+
+  .dgm-box-key {
+    fill: var(--marker);
+  }
+
+  .dgm-line {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: var(--dgm-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .dgm-line-dashed {
+    stroke-dasharray: var(--dgm-dash);
+  }
+
+  .dgm-line-attack {
+    stroke: var(--pencil);
+  }
+
+  .dgm-line-key {
+    stroke: var(--brass);
+    stroke-width: var(--dgm-stroke-bold);
+  }
+
+  .dgm-line-base {
+    stroke-width: var(--dgm-stroke);
+  }
+
+  /* Red pencil strokes: arrows and circles drawn over the figure. */
+  .dgm-scribble {
+    fill: none;
+    stroke: var(--pencil);
+    stroke-width: var(--dgm-stroke-bold);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .dgm-title,
+  .dgm-label,
+  .dgm-var {
+    fill: var(--ink);
+    font-family: var(--font-serif);
+    text-anchor: middle;
+  }
+
+  .dgm-title {
+    font-size: var(--dgm-fs-title);
+    font-variation-settings: var(--serif-display);
+    font-weight: 620;
+  }
+
+  .dgm-label {
+    font-size: var(--dgm-fs-label);
+    font-weight: 500;
+  }
+
+  .dgm-var {
+    font-size: var(--dgm-fs-title);
+    font-style: italic;
+  }
+
+  .dgm-hand {
+    fill: var(--ink-soft);
+    font-family: var(--font-hand);
+    font-size: var(--dgm-fs-title);
+    font-weight: 650;
+    text-anchor: middle;
+  }
+
+  .dgm-hand-red {
+    fill: var(--pencil);
+  }
+
+  .dgm-hand-step {
+    font-size: var(--dgm-fs-label);
+  }
+
+  /* Bar charts */
+  .dgm-bar-plain {
+    fill: var(--ink);
+  }
+
+  .dgm-bar-cipher {
+    fill: var(--pencil);
+  }
+
+  .dgm-letter {
+    fill: var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--dgm-fs-letter);
+    font-weight: 600;
+    text-anchor: middle;
+  }
+
+  .dgm-letter-cipher {
+    fill: var(--pencil);
+    font-size: var(--dgm-fs-letter-sm);
+  }
+
+  .dgm-value,
+  .dgm-axis {
+    fill: var(--ink-soft);
+    font-family: var(--font-mono);
+    font-size: var(--dgm-fs-small);
+    font-weight: 500;
+    text-anchor: middle;
+  }
+
+  .dgm-value-left {
+    text-anchor: start;
+  }
+
+  .dgm-caption {
+    fill: var(--ink-soft);
+    font-family: var(--font-mono);
+    font-size: var(--dgm-fs-small);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+
+  /* Cipher wheel and clock dial */
+  .dgm-ring {
+    fill: var(--card);
+    stroke: var(--ink);
+    stroke-width: var(--dgm-stroke);
+  }
+
+  .dgm-ring-inner {
+    fill: var(--pencil-wash);
+  }
+
+  .dgm-tick {
+    stroke: var(--ink);
+    stroke-width: var(--dgm-stroke-hair);
+    opacity: 0.45;
+  }
+
+  .dgm-dot {
+    fill: var(--card);
+    stroke: var(--ink);
+    stroke-width: var(--dgm-stroke);
+  }
+
+  .dgm-dot-start {
+    fill: var(--ink-wash);
+  }
+
+  .dgm-dot-land {
+    fill: var(--marker);
+    stroke: var(--pencil);
+    stroke-width: var(--dgm-stroke-bold);
+  }
+
+  .dgm-num {
+    fill: var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--dgm-fs-letter);
+    font-weight: 600;
+    text-anchor: middle;
+  }
+
+  .dgm-center {
+    fill: var(--pencil);
+    font-family: var(--font-hand);
+    font-size: var(--dgm-fs-center);
+    font-weight: 700;
+    text-anchor: middle;
+  }
+
+  .dgm-center-big {
+    font-family: var(--font-serif);
+    font-size: var(--dgm-fs-center-big);
+    font-variation-settings: var(--serif-display);
+  }
+}

@@ -20,6 +20,9 @@ const SCANNED = [
   'examples/wifi/deck.ts',
   'examples/wifi/content.ts',
   'examples/wifi/slides',
+  'examples/crypto/deck.ts',
+  'examples/crypto/content.ts',
+  'examples/crypto/slides',
 ];
 
 function files(path: string): string[] {

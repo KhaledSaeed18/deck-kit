@@ -1,0 +1,37 @@
+<section class="slide" data-type="two-column" data-id="affine" aria-labelledby="affine-h">
+  <h2 id="affine-h">The affine cipher</h2>
+  <div class="columns">
+    <article>
+      <h3>Multiply, then shift</h3>
+      <p class="formula">y <span class="eq">≡</span> a · x + b mod 26</p>
+      <p class="aside-text">gcd(a, 26) must be 1</p>
+    </article>
+    <article data-fragment="1">
+      <h3>Still broken</h3>
+      <p class="formula">12 · 26 = <span class="mark">312</span> keys</p>
+      <p class="aside-text">Searched in a blink</p>
+    </article>
+  </div>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>One upgrade: multiply by a, then add b. The key is the pair a, b.</p>
+        <p>To decrypt we must divide by a, which needs an inverse mod 26, which needs gcd of a and 26 to be 1. That leaves 12 possible values of a: the odd numbers except 13.</p>
+      </div>
+      <div data-step="1">
+        <p>So the key space is 12 times 26, 312 keys. A laptop tries them all in a fraction of a second. And the mapping is still fixed letter to letter, so frequency analysis works as before.</p>
+        <p>With key 9, 13, ATTACK becomes NCCNFZ. Notice the double C: the T T leaks straight through.</p>
+      </div>
+    <h3>Next</h3>
+    <p>So what do we take away from chapter 1?</p>
+    <h3>If asked</h3>
+    <ul>
+      <li><strong>How do you decrypt?</strong> x = a<sup>-1</sup> · (y minus b) mod 26. For a = 9 the inverse is 3, because 9 · 3 = 27 = 1 mod 26.</li>
+      <li><strong>Does encrypting twice help?</strong> No: two affine ciphers combine into one affine cipher, so the key space does not grow (problem 1.14).</li>
+    </ul>
+    <details>
+      <summary>More detail and sources</summary>
+      <p>Paar and Pelzl, Definition 1.4.4, Ex. 1.12, Eq. 1.2. Fact log F-08.</p>
+    </details>
+  </aside>
+</section>

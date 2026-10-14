@@ -12,7 +12,8 @@ plus one deck's content and design. Each copy of this repo is one talk.
   decisions win.
 - `docs/authoring.md`: the slide format, notes structure, lint rules, icons, SVG rules, manifest.
 - `docs/fact-log.md` and `docs/research/`: verified facts. Check here before researching again.
-- `examples/wifi/`: a complete, finished deck. Copy its patterns (notes depth, Q&A, diagrams).
+- `examples/wifi/` and `examples/crypto/`: complete, finished decks. Copy their patterns (notes
+  depth, Q&A, diagrams); `examples/crypto/docs/` shows every document `/new-deck` produces.
 
 ## Skills
 - `/new-deck`: the whole workflow for a new talk, in phases with a review stop after each.
@@ -32,13 +33,16 @@ plus one deck's content and design. Each copy of this repo is one talk.
     `pnpm test:engine` to pass.
   - `src/slides/` holds content and semantic markup only.
   - `src/theme/` holds every visual value as a token.
-- **Never edit `examples/wifi/`**: it is the engine's test fixture.
+- **Never edit `examples/`**: they are finished talks, and `wifi/` is the engine's test fixture.
+  Their fonts and icons are shared with your deck: do not remove a font package or icon an
+  example still uses.
 - **Stack:** pnpm, Vite 8, strict TypeScript 7 (no `any`, enforced by Biome), vanilla DOM. No UI
   framework and no presentation library.
 - **Icons** come from `lucide`, hydrated from `<i data-icon="name">`. Never emoji or
   pictographic Unicode.
 - **On-screen copy voice:** no emoji, no em dashes, no exclamation marks. Arrows are icons. About
-  30 words per slide, except slides marked `data-wordcount="exempt"`. Detail goes in the notes.
+  30 words of prose per slide (diagram labels do not count), except slides marked
+  `data-wordcount="exempt"`. Detail goes in the notes.
 - **Diagrams** are hand-authored inline SVG with `dgm-*` classes, a `<title>`, and no paint
   attributes. Never copy vendor diagrams or screenshots.
 
@@ -56,5 +60,5 @@ plus one deck's content and design. Each copy of this repo is one talk.
 - `pnpm check` (typecheck, lint, unit tests, slide lint)
 - `pnpm test:deck` (your deck in a browser), `pnpm test:engine`, `pnpm test:e2e` (both)
 - `pnpm pdf`, `pnpm notes:pdf [profile]`, `pnpm notes:md`
-- `pnpm dev:example` shows the bundled example deck
+- `pnpm dev:example` and `pnpm dev:example:crypto` show the example decks
 - `pnpm media` regenerates the README images in `docs/media/` (sources in `docs/media/src/`)

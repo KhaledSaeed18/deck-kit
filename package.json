@@ -10,9 +10,10 @@
   "scripts": {
     "dev": "vite",
     "dev:example": "vite --mode example",
+    "dev:example:crypto": "vite --mode example-crypto",
     "build": "vite build",
     "build:single": "vite build --mode single",
-    "build:example": "vite build --mode example && vite build --mode example-single",
+    "build:example": "vite build --mode example && vite build --mode example-single && vite build --mode example-crypto && vite build --mode example-crypto-single",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
     "lint": "biome check .",
@@ -25,7 +26,7 @@
     "test:deck": "pnpm build && pnpm build:single && pnpm build:example && playwright test --project deck-chromium",
     "pdf": "pnpm build && node scripts/pdf.ts",
     "shots": "pnpm build && node scripts/shots.ts",
-    "media": "pnpm build && node scripts/media.ts",
+    "media": "pnpm build && pnpm build:example && node scripts/media.ts",
     "notes:md": "node scripts/export-notes.ts",
     "notes:pdf": "node scripts/export-notes-pdf.ts"
   },
@@ -37,6 +38,9 @@
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
     "@biomejs/biome": "2.5.15",
+    "@fontsource-variable/caveat": "5.3.0",
+    "@fontsource-variable/fraunces": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
     "@playwright/test": "1.64.0",
     "@types/node": "26.6.5",
     "happy-dom": "21.0.1",

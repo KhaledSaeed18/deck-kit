@@ -1,0 +1,30 @@
+<section class="slide" data-type="takeaway" data-id="lessons" aria-labelledby="lessons-h">
+  <h2 id="lessons-h">What chapter 1 teaches</h2>
+  <ol class="takeaways">
+    <li data-fragment="1">Never roll your own cipher</li>
+    <li data-fragment="2">A huge key space is not enough</li>
+    <li data-fragment="3">Only the key is secret</li>
+  </ol>
+  <aside class="notes">
+    <h3>Script</h3>
+      <div data-step="0">
+        <p>Three things to take home.</p>
+      </div>
+      <div data-step="1">
+        <p>Never design your own crypto algorithm unless a team of experienced cryptanalysts is attacking it, and never use unproven ones.</p>
+      </div>
+      <div data-step="2">
+        <p>A huge key space is not enough. The substitution cipher had 2 to the 88 keys and fell to a pencil. Attackers go for the weakest link: the maths, the device or the person.</p>
+      </div>
+      <div data-step="3">
+        <p>And only the key is secret. Publish the algorithm, protect the key, and use at least 128 bits for anything that must last.</p>
+        <p>Modular arithmetic, the clock maths, is the thread into the rest of the course: it is what public-key cryptography runs on.</p>
+      </div>
+    <h3>Next</h3>
+    <p>Sources, and your questions.</p>
+    <details>
+      <summary>More detail and sources</summary>
+      <p>Paar and Pelzl, section 1.6, Lessons Learned.</p>
+    </details>
+  </aside>
+</section>

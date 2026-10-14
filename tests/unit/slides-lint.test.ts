@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { partials as examplePartials } from '../../examples/wifi/content.ts';
-import { manifest as exampleManifest } from '../../examples/wifi/deck.ts';
+import { partials as cryptoPartials } from '../../examples/crypto/content.ts';
+import { manifest as cryptoManifest } from '../../examples/crypto/deck.ts';
+import { partials as wifiPartials } from '../../examples/wifi/content.ts';
+import { manifest as wifiManifest } from '../../examples/wifi/deck.ts';
 import { ICON_NAMES } from '../../src/assets/icons.ts';
 import { partials } from '../../src/content.ts';
 import { manifest } from '../../src/deck.ts';
@@ -9,10 +11,11 @@ import type { DeckManifest } from '../../src/engine/types.ts';
 import { formatIssues, lintDeck } from '../../src/engine/validate.ts';
 
 /** `pnpm check:slides`: every partial passes the slide lint, with no open todos. The example
- * deck is linted too, so an engine change that breaks it shows up here. */
+ * decks are linted too, so an engine change that breaks it shows up here. */
 const decks: readonly [string, DeckManifest, Record<string, string>][] = [
   ['src/slides', manifest, partials],
-  ['examples/wifi/slides', exampleManifest, examplePartials],
+  ['examples/wifi/slides', wifiManifest, wifiPartials],
+  ['examples/crypto/slides', cryptoManifest, cryptoPartials],
 ];
 
 describe.each(decks)('slide lint: %s', (_, deckManifest, deckPartials) => {

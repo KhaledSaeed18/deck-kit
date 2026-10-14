@@ -1,0 +1,161 @@
+@layer engine, theme;
+
+@layer theme {
+  /* Progress: a thin ink line along the bottom of the page. */
+  .deck-progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--progress-h);
+    background: var(--paper-deep);
+  }
+
+  .deck-progress-bar {
+    height: 100%;
+    background: var(--ink);
+  }
+
+  .deck-counter {
+    position: absolute;
+    right: var(--space-6);
+    bottom: calc(var(--progress-h) + var(--space-2));
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    letter-spacing: var(--tracking-mono);
+  }
+
+  .deck-jump,
+  .deck-toast {
+    left: 50%;
+    bottom: var(--space-12);
+    transform: translateX(-50%) rotate(var(--tilt));
+    padding: var(--space-2) var(--space-6);
+    background: var(--card);
+    color: var(--ink);
+    border-radius: var(--radius-paper);
+    box-shadow: var(--lift);
+    font-family: var(--font-mono);
+    font-size: var(--fs-lead);
+    font-weight: 500;
+  }
+
+  .deck-jump[data-invalid] {
+    color: var(--pencil);
+    text-decoration: line-through var(--strike-w);
+  }
+
+  .deck-toast {
+    font-family: var(--font-serif);
+    font-size: var(--fs-body);
+  }
+
+  .deck-blackout {
+    background: var(--blackout);
+  }
+
+  /* Overview: the notebook's pages spread out on the desk. */
+  .overview {
+    padding: var(--space-6);
+    box-sizing: border-box;
+    background: var(--paper-deep);
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6) var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .overview-thumb {
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--radius-paper);
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: var(--lift-sm);
+    font: inherit;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    text-align: start;
+    cursor: pointer;
+  }
+
+  .overview-thumb[data-selected] {
+    outline: var(--select-w) solid var(--pencil);
+    outline-offset: var(--select-gap);
+    box-shadow: var(--lift);
+  }
+
+  .overview-label {
+    display: block;
+    padding: var(--space-1) var(--space-2);
+  }
+
+  /* Help: a loose page laid over the deck. */
+  .help {
+    inset: var(--space-12) var(--space-12) auto;
+    max-height: calc(100% - 2 * var(--space-12));
+    padding: var(--space-4) var(--space-8) var(--space-6);
+    background: var(--card);
+    color: var(--ink);
+    border-radius: var(--radius-paper);
+    box-shadow: var(--lift);
+    box-sizing: border-box;
+    font-size: var(--fs-small);
+  }
+
+  .help-title {
+    margin: 0 0 var(--space-4);
+    padding-bottom: var(--underline-gap);
+    font-family: var(--font-serif);
+    font-variation-settings: var(--serif-display);
+    font-size: var(--fs-help-title);
+    font-weight: 620;
+    background: var(--underline) left bottom / var(--underline-size) no-repeat;
+  }
+
+  .help-table {
+    border-collapse: collapse;
+  }
+
+  .help-table th,
+  .help-table td {
+    padding: var(--space-1) var(--space-3) var(--space-1) 0;
+    text-align: start;
+    vertical-align: top;
+    border-bottom: var(--line-thin) dashed var(--ink-rule);
+  }
+
+  .help-table th {
+    font-weight: 400;
+  }
+
+  .help-table kbd {
+    margin-inline-end: var(--space-1);
+  }
+
+  .help-hint {
+    margin: var(--space-3) 0 0;
+    color: var(--ink-soft);
+    font-family: var(--font-hand);
+    font-size: var(--fs-help-hint);
+  }
+
+  .lint-overlay {
+    max-height: var(--lint-max-h);
+    padding: var(--space-2);
+    background: var(--pencil);
+    color: var(--card);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+  }
+}

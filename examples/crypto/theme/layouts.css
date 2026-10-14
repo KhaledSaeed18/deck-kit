@@ -1,0 +1,75 @@
+/* Per-slide-type layout. */
+@layer engine, theme;
+
+@layer theme {
+  .slide .columns {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: var(--space-8);
+    align-items: start;
+    width: 100%;
+    padding-top: var(--space-3);
+  }
+
+  .slide[data-type="two-column"] .columns {
+    max-width: var(--measure-quote);
+  }
+
+  /* Content sits in the middle of the space under the title. */
+  .slide.slide > h2 + * {
+    margin-top: auto;
+  }
+
+  .slide.slide > :last-child {
+    margin-bottom: auto;
+  }
+
+  .slide[data-type="title"] {
+    justify-content: center;
+  }
+
+  .slide.slide[data-type="title"] > :last-child {
+    margin-bottom: 0;
+  }
+
+  .slide[data-type="title"] > .eyebrow {
+    margin-top: auto;
+  }
+
+  /* Diagram and working side by side. */
+  .slide .split {
+    display: grid;
+    grid-template-columns: var(--figure-w) 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    width: 100%;
+  }
+
+  .slide .split > svg {
+    width: var(--figure-w);
+  }
+
+  .slide .working {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .slide .working .margin-note {
+    align-self: flex-start;
+    margin: var(--space-3) 0 0 var(--space-4);
+  }
+
+  .slide[data-type="diagram"] > svg {
+    width: 100%;
+  }
+
+  .slide[data-type="comparison-table"] table {
+    min-width: 72%;
+  }
+
+  .slide[data-type="references"] .columns {
+    gap: var(--space-12);
+  }
+}
