@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose an improvement to the reusable deck kit.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues first. This tracker is for improvements to the reusable kit. Create personal talks in your own template copy. Contributions follow CONTRIBUTING.md and CODE_OF_CONDUCT.md in the repository root.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe who encounters the problem and a concrete authoring or presenting scenario.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain the intended outcome and how someone would use it.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include existing commands or workarounds you have tried.
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Compatibility and additional context
+      description: Consider offline use, single-file builds, presenter sync, keyboard access, and exports. Sketches or examples are welcome.

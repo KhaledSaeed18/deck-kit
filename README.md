@@ -240,6 +240,18 @@ framework and no presentation library. Node 22.12 or later.
 
 First run of the browser tests: `pnpm exec playwright install chromium webkit`.
 
+## Contributing and community
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, project rules, and validation before opening
+a pull request. Use the [issue forms](https://github.com/KhaledSaeed18/deck-kit/issues/new/choose)
+for bug reports and feature requests. Participation follows our
+[Code of Conduct](CODE_OF_CONDUCT.md). Report vulnerabilities privately as described in
+[SECURITY.md](SECURITY.md).
+
+When publishing your own template copy, update the reporting contacts and repository links
+in the community files (`CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, and `SECURITY.md`), this
+section, and `.github/ISSUE_TEMPLATE/`, so reports reach your maintainers.
+
 ## Credits
 
 The example decks were made for university courses at LIU, Fall 2026: "Wireless Networks by

@@ -1,0 +1,57 @@
+name: Bug report
+description: Report a reproducible problem with the deck kit.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues before reporting a bug. For vulnerabilities, email contact@khaledsaeed.tech instead of posting details here. Remove private notes, credentials, and personal information from examples and logs.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include commands, keys, URLs, profile, and minimal sample files as relevant. Say whether it happens with the unchanged starter or an example deck.
+      placeholder: |
+        1. Run pnpm dev
+        2. Open the deck and presenter
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Version or commit
+      description: Release tag or the output of git rev-parse --short HEAD. Say if your copy has local modifications.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include your OS, browser and version, Node.js version, and pnpm version. For agent workflow problems, include the agent and skill used.
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: How are you running the deck?
+      options:
+        - Development server (pnpm dev)
+        - Static build on a server (dist)
+        - Single file opened locally (deck.html)
+        - PDF or notes export
+        - Build, checks, or agent workflow
+        - Other (describe above)
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs, screenshots, or additional context
+      description: Include relevant error output and failed check commands. Check attachments for private content before uploading.
