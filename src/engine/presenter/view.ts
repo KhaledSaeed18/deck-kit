@@ -6,6 +6,7 @@ import { createHelp } from '../help.ts';
 import { iconElement } from '../icons.ts';
 import { createJumpBuffer } from '../jump.ts';
 import { bindKeyboard } from '../keyboard.ts';
+import { bindLaserInput, LASER_UNSTYLED, laserStyled } from '../laser.ts';
 import { createOverview } from '../overview.ts';
 import { bindPointer } from '../pointer.ts';
 import { createPreview } from '../preview.ts';
@@ -153,10 +154,12 @@ export function mountPresenter(app: HTMLElement, deck: DeckModel): { store: Posi
   // Status.
   let linked = false;
   let audienceBlackout = false;
+  let laserOn = false;
   const renderStatus = (): void => {
     status.textContent = `${linked ? 'Linked to deck' : 'Waiting for the deck window'}${
       audienceBlackout ? ', audience blacked out' : ''
-    }`;
+    }${laserOn ? ', laser on' : ''}`;
+    html.toggleAttribute('data-laser', laserOn);
     status.toggleAttribute('data-linked', linked);
     html.toggleAttribute('data-audience-blackout', audienceBlackout);
   };
@@ -221,6 +224,10 @@ export function mountPresenter(app: HTMLElement, deck: DeckModel): { store: Posi
       audienceBlackout = on;
       renderStatus();
     },
+    onLaser: (on) => {
+      laserOn = on;
+      renderStatus();
+    },
     onLink: (value) => {
       linked = value;
       renderStatus();
@@ -277,7 +284,22 @@ export function mountPresenter(app: HTMLElement, deck: DeckModel): { store: Posi
     isBlackout: () => audienceBlackout,
     toggleBlackout: () => sync.sendBlackout(!audienceBlackout),
     blackoutBlocksNavigation: false,
+    toggleLaser: () => {
+      if (!laserOn && !laserStyled(html)) {
+        chrome.toast(LASER_UNSTYLED);
+        return;
+      }
+      laserOn = !laserOn;
+      sync.sendLaser(laserOn);
+      renderStatus();
+    },
   });
+  bindLaserInput(
+    current.element,
+    current.element,
+    () => laserOn,
+    (point) => sync.sendLaser(true, point),
+  );
   bindKeyboard('presenter', controller.handleKey);
   bindPointer(root, {
     clickAdvances: false,

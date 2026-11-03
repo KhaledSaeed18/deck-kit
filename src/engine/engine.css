@@ -93,6 +93,34 @@
     transform-origin: left center;
   }
 
+  /* Laser pointer: dots placed in canvas units by laser.ts; the theme gives them a look. */
+  .laser {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .laser > * {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(calc(var(--x, 0) * 1px), calc(var(--y, 0) * 1px)) translate(-50%, -50%);
+  }
+
+  .laser:not([data-visible]) > * {
+    opacity: 0;
+  }
+
+  html[data-role="deck"][data-laser] .deck-viewport,
+  html[data-role="deck"][data-cursor-idle] .deck-viewport {
+    cursor: none;
+  }
+
+  html[data-laser] .presenter-preview-current {
+    cursor: crosshair;
+  }
+
   .deck-jump,
   .deck-toast {
     position: absolute;
@@ -217,6 +245,7 @@
     }
 
     .deck-chrome,
+    .laser,
     .deck-jump,
     .deck-toast,
     .overview,

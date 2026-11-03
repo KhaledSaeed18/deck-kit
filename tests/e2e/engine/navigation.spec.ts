@@ -162,10 +162,17 @@ test('help overlay is rendered from the keymap', async ({ page }) => {
   await page.keyboard.press('Shift+Slash');
   const help = page.locator('[data-help]');
   await expect(help).toBeVisible();
-  await expect(help.getByRole('row')).toHaveCount(12);
+  await expect(help.getByRole('row')).toHaveCount(13);
   await expect(help).toContainText('Black out the audience screen');
   await page.keyboard.press('Shift+Slash');
   await expect(help).toBeHidden();
+});
+
+test('L does nothing but explain itself when the theme has no laser style', async ({ page }) => {
+  // The example theme predates the laser pointer, so it defines no --laser-size.
+  await page.keyboard.press('l');
+  await expect(page.locator('.deck-toast')).toContainText('no laser pointer style');
+  await expect(page.locator('html')).not.toHaveAttribute('data-laser', '');
 });
 
 test('H hides the chrome and the choice survives a reload', async ({ page }) => {

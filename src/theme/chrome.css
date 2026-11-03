@@ -174,4 +174,41 @@
     font-family: var(--font-mono);
     font-size: var(--fs-label);
   }
+
+  /* Laser pointer: a red dot with an ink rim and a soft glow, trailed by fading dots. */
+  .laser > * {
+    width: var(--laser-size);
+    height: var(--laser-size);
+    border-radius: var(--laser-radius);
+    transition: opacity var(--laser-fade) ease-out;
+  }
+
+  .laser-dot {
+    background: var(--laser);
+    border: var(--border-w-thin) solid var(--border);
+    box-shadow: var(--laser-halo);
+    box-sizing: border-box;
+  }
+
+  .laser-trail {
+    width: calc(var(--laser-size) * (0.8 - 0.5 * var(--trail, 0)));
+    height: calc(var(--laser-size) * (0.8 - 0.5 * var(--trail, 0)));
+    background: var(--laser);
+  }
+
+  /* Only while shown: the engine fades every dot out when the pointer goes still. */
+  .laser[data-visible] .laser-trail {
+    opacity: calc(0.5 * (1 - var(--trail, 0)));
+  }
+
+  /* The block under the dot gets a quiet ring, never a layout change. */
+  .slide [data-laser-target] {
+    box-shadow: var(--laser-target-ring);
+    border-radius: var(--radius);
+    transition: box-shadow var(--laser-fade) ease-out;
+  }
+
+  .slide .columns > article[data-laser-target] {
+    box-shadow: var(--shadow-md), var(--laser-target-ring);
+  }
 }

@@ -30,7 +30,7 @@ in this pass. At the end, `git diff --stat` should list only `src/theme/**`, `pa
 | `content.css` | Component classes used by the slides (cards, `.question`, `.takeaways`, `.refs`, …) |
 | `types/layouts.css` | Per-`data-type` layout |
 | `diagrams.css` | `dgm-*` SVG classes |
-| `chrome.css` | Progress bar, counter, jump chip, overview, help, blackout |
+| `chrome.css` | Progress bar, counter, jump chip, overview, help, blackout, laser pointer |
 | `presenter.css` | The presenter window |
 
 Rules:
@@ -70,7 +70,7 @@ theme.
 2. `pnpm test:deck`: axe colour contrast on every slide, every slide still fits the canvas, the
    PDF still has one page per slide, nothing is fetched from the network.
 3. `pnpm shots`, then look at every image in `out/shots/`, including the `-step1` builds and
-   `presenter.png`. Also check the overview (O), help (?) and blackout (B) in `pnpm dev`, or ask
+   `presenter.png`. Also check the overview (O), help (?), blackout (B) and laser pointer (L) in `pnpm dev`, or ask
    the speaker to.
 4. `pnpm test:engine` only if you touched selectors the engine relies on (it runs on the
    example deck's own theme, so it normally stays green).

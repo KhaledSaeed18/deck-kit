@@ -27,6 +27,8 @@ export interface SyncOptions {
   readonly onBlackout: (on: boolean) => void;
   /** Deck only: current blackout, sent with the state. */
   readonly getBlackout?: () => boolean;
+  /** Laser pointer from the other window: on/off, and the dot (null hides it). */
+  readonly onLaser?: (on: boolean, point: { x: number; y: number } | null) => void;
   /** Link status: true when the other window is heard, false on bye or a missed heartbeat. */
   readonly onLink?: (linked: boolean) => void;
   readonly senderId?: string;
@@ -39,6 +41,8 @@ export interface Sync {
   readonly sender: string;
   /** Deck: announce a blackout change. Presenter: ask the deck to change it. */
   sendBlackout(on: boolean): void;
+  /** Laser on/off, with the dot in canvas units (left out to hide it). */
+  sendLaser(on: boolean, point?: { x: number; y: number } | null): void;
   close(): void;
 }
 
@@ -133,6 +137,11 @@ export function createSync(options: SyncOptions): Sync {
       case 'blackout':
         onBlackout(envelope.payload.on);
         break;
+      case 'laser': {
+        const { on, x, y } = envelope.payload;
+        options.onLaser?.(on, x !== undefined && y !== undefined ? { x, y } : null);
+        break;
+      }
       case 'bye':
         // The heartbeat finds the deck again once it is back.
         break;
@@ -152,6 +161,8 @@ export function createSync(options: SyncOptions): Sync {
   return {
     sender,
     sendBlackout: (on) => send({ type: 'blackout', payload: { on } }),
+    sendLaser: (on, point) =>
+      send({ type: 'laser', payload: point ? { on, x: point.x, y: point.y } : { on } }),
     close() {
       stopHello();
       unsubscribeStore();
