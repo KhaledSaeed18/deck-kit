@@ -24,6 +24,7 @@ export interface ControllerOptions {
   readonly blackoutBlocksNavigation: boolean;
   readonly openPresenter?: () => void;
   readonly toggleChrome?: () => void;
+  readonly toggleLaser?: () => void;
 }
 
 const NAVIGATION = new Set([
@@ -148,6 +149,9 @@ export function createController(options: ControllerOptions): {
       case 'chrome':
         options.toggleChrome?.();
         return options.toggleChrome !== undefined;
+      case 'laser':
+        options.toggleLaser?.();
+        return options.toggleLaser !== undefined;
       case 'escape':
         if (help.isOpen) {
           help.close();

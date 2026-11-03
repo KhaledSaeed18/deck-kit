@@ -7,6 +7,13 @@ import { createHelp } from './help.ts';
 import { hydrateIcons } from './icons.ts';
 import { createJumpBuffer } from './jump.ts';
 import { bindKeyboard } from './keyboard.ts';
+import {
+  bindCursorIdle,
+  bindLaserInput,
+  createLaser,
+  LASER_UNSTYLED,
+  laserStyled,
+} from './laser.ts';
 import { parseFragment, rootSection } from './loader.ts';
 import { createOverview } from './overview.ts';
 import { bindPointer } from './pointer.ts';
@@ -71,8 +78,20 @@ export function mountDeck(app: HTMLElement, deck: DeckModel, singleFile: boolean
 
   const overview = createOverview(deck.slides, (index) => store.goto({ slide: index, step: 0 }));
   const jump = createJumpBuffer({ count: () => store.count, onChange: chrome.setJump });
+  // Toggling here tells the presenter window; `remoteLaser` marks a toggle it asked for.
+  let remoteLaser = false;
+  const laser = createLaser(stage, (on) => {
+    if (!remoteLaser) sync.sendLaser(on);
+  });
 
-  stage.append(...sections, chrome.root, ...chrome.overlays, overview.element, help.element);
+  stage.append(
+    ...sections,
+    laser.element,
+    chrome.root,
+    ...chrome.overlays,
+    overview.element,
+    help.element,
+  );
   viewport.append(stage, chrome.blackout, live.element);
   app.replaceChildren(viewport);
 
@@ -111,6 +130,13 @@ export function mountDeck(app: HTMLElement, deck: DeckModel, singleFile: boolean
     transport: combineTransports(transports),
     onBlackout: setBlackout,
     getBlackout: () => blackout,
+    onLaser: (on, point) => {
+      if (on && !laserStyled(stage)) return;
+      remoteLaser = true;
+      laser.setOn(on);
+      remoteLaser = false;
+      laser.moveTo(point);
+    },
   });
 
   const openPresenter = (): void => {
@@ -134,6 +160,13 @@ export function mountDeck(app: HTMLElement, deck: DeckModel, singleFile: boolean
     blackoutBlocksNavigation: true,
     openPresenter,
     toggleChrome: chrome.toggleHidden,
+    toggleLaser: () => {
+      if (!laser.isOn && !laserStyled(stage)) {
+        chrome.toast(LASER_UNSTYLED);
+        return;
+      }
+      laser.setOn(!laser.isOn);
+    },
   });
 
   bindKeyboard('deck', controller.handleKey);
@@ -154,6 +187,8 @@ export function mountDeck(app: HTMLElement, deck: DeckModel, singleFile: boolean
       return false;
     },
   });
+  bindLaserInput(viewport, stage, () => laser.isOn, laser.moveTo);
+  bindCursorIdle();
   bindStageScale(stage);
   bindFullscreenState();
   bindPrint(() => {

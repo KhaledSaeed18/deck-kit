@@ -138,6 +138,8 @@ is broken with letter frequencies on slide 7. Its brief, plan, decisions and fac
   `file://` in Firefox.
 - **Profiles**: several versions of one talk (`?profile=short`), each with its own slide order
   and timings, plus backup slides after the end.
+- **Laser pointer** (L): a dot with a short trail that rings the block under it and fades when
+  you stop. Point from the presenter window too. The cursor hides itself when still.
 - **Blackout** (B), **jump** to any slide, **hide chrome** (H), **fullscreen** (F), and swipe
   on touch screens.
 - **Print**: Ctrl/Cmd+P gives one slide per page with every step shown. `pnpm pdf` does this
@@ -164,6 +166,7 @@ is broken with letter frequencies on slide 7. Its brief, plan, decisions and fac
 | Presenter | P |
 | Help | ? |
 | Hide chrome | H (remembered across reloads) |
+| Laser pointer | L (in the presenter window, point over the current slide; the dot shows on the audience screen) |
 
 Letters match the physical key, so they work on AZERTY and Arabic layouts. Ctrl, Cmd and Alt
 shortcuts go to the browser. Clickers send PageUp/PageDown, so they work out of the box.

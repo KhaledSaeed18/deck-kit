@@ -12,6 +12,7 @@ const TOGGLES: ReadonlySet<Action> = new Set([
   'presenter',
   'help',
   'chrome',
+  'laser',
   'jump',
 ]);
 

@@ -72,6 +72,41 @@ test('the presenter window loads with notes for every slide', async ({ page }) =
   }
 });
 
+test('the laser pointer follows the mouse, here and from the presenter window', async ({
+  context,
+  page,
+}) => {
+  await page.goto('/index.html#/1');
+  const laser = page.locator('.laser');
+  const styled = await page.evaluate(
+    () => getComputedStyle(document.documentElement).getPropertyValue('--laser-size').trim() !== '',
+  );
+  test.skip(!styled, 'this theme has no laser pointer style');
+  await page.keyboard.press('l');
+  await expect(page.locator('html')).toHaveAttribute('data-laser', '');
+  await page.mouse.move(600, 400);
+  await page.mouse.move(640, 420);
+  await expect(laser).toHaveAttribute('data-visible', '');
+  await page.keyboard.press('l');
+  await expect(laser).toBeHidden();
+
+  const presenter = await context.newPage();
+  await presenter.goto('/presenter.html');
+  await expect(presenter.locator('[data-status]')).toContainText('Linked');
+  await presenter.keyboard.press('l');
+  await expect(page.locator('html')).toHaveAttribute('data-laser', '');
+  const box = await presenter.locator('.presenter-preview-current').boundingBox();
+  if (!box) throw new Error('no current-slide preview');
+  await presenter.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await presenter.mouse.move(box.x + box.width / 2 + 10, box.y + box.height / 2);
+  await expect(laser).toHaveAttribute('data-visible', '');
+  const dot = await page
+    .locator('.laser-dot')
+    .evaluate((el) => [el.style.getPropertyValue('--x'), el.style.getPropertyValue('--y')]);
+  expect(Math.abs(Number(dot[0]) - 970)).toBeLessThan(20);
+  expect(Math.abs(Number(dot[1]) - 540)).toBeLessThan(20);
+});
+
 test('single-file deck.html runs with the browser fully offline', async ({ context, page }) => {
   await context.setOffline(true);
   const seen: string[] = [];

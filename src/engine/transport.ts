@@ -15,7 +15,12 @@ export type Message =
       /** `ack`: set by the deck when confirming a presenter move (that message's seq). */
       readonly payload: { readonly slide: number; readonly step: number; readonly ack?: number };
     }
-  | { readonly type: 'blackout'; readonly payload: { readonly on: boolean } };
+  | { readonly type: 'blackout'; readonly payload: { readonly on: boolean } }
+  | {
+      readonly type: 'laser';
+      /** `x`/`y`: the dot in canvas units; left out to hide the dot (or just toggle). */
+      readonly payload: { readonly on: boolean; readonly x?: number; readonly y?: number };
+    };
 
 export type Envelope = Message & {
   readonly v: typeof PROTOCOL_VERSION;
@@ -61,6 +66,13 @@ export function parseEnvelope(data: unknown, ns: string): Envelope | null {
       const p = data.payload;
       if (!isRecord(p) || typeof p.on !== 'boolean') return null;
       return { ...base, type: 'blackout', payload: { on: p.on } };
+    }
+    case 'laser': {
+      const p = data.payload;
+      if (!isRecord(p) || typeof p.on !== 'boolean') return null;
+      if (isInt(p.x) && isInt(p.y))
+        return { ...base, type: 'laser', payload: { on: p.on, x: p.x, y: p.y } };
+      return { ...base, type: 'laser', payload: { on: p.on } };
     }
     default:
       return null;

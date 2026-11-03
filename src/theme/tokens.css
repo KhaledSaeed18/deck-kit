@@ -35,6 +35,12 @@
     --patch-ink: #000000;
 
     --letterbox: #1a1815;
+    --laser: var(--destructive);
+    --laser-size: 30px;
+    --laser-radius: 50%;
+    --laser-halo: 0 0 0 7px rgb(230 57 70 / 0.2), 0 0 18px 4px rgb(230 57 70 / 0.3);
+    --laser-target-ring: 0 0 0 6px rgb(230 57 70 / 0.3);
+    --laser-fade: 220ms;
     --blackout: #000000;
 
     /* Shape */

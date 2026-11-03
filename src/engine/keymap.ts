@@ -21,6 +21,7 @@ export type Action =
   | 'presenter'
   | 'help'
   | 'chrome'
+  | 'laser'
   | 'escape';
 
 export interface Binding {
@@ -91,6 +92,12 @@ export const BINDINGS: readonly Binding[] = [
     labels: ['H'],
     description: 'Hide or show the progress bar and counter',
     roles: ['deck'],
+  },
+  {
+    action: 'laser',
+    codes: ['KeyL'],
+    labels: ['L'],
+    description: 'Laser pointer (presenter window: point over the current slide)',
   },
   {
     action: 'escape',
